@@ -1,0 +1,33 @@
+{% extends "pagina-modelo.html" %}
+{% block title %}
+    {% if not request.user.is_authenticated %}
+        Não Conectado
+    {% else %}
+        Conectado como {{ request.user.username }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="conteudo">
+
+        <main>
+            <h1>Portal de Gerenciamento de Aulas e Aplicação das Habilidades de Conhecimento</h1>
+
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi quo ratione quidem explicabo necessitatibus dolorem iure aperiam blanditiis perspiciatis atque quam, expedita, nisi quod sapiente culpa eligendi unde! Ab, dolore.</p>
+
+            <button class="conteudo-bnt">Cadastre-se</button>
+        </main>
+
+        <aside class="ilustracao">
+            {% load static %}
+            <picture>
+                <!-- imagem para mobile
+                <source src="#" type="" media="" />
+                imagem para desktop -->
+                <source src="{% static './img/landing-page.png' %}" type="image/png" media="all" />
+                <!-- imagem padrão -->
+                <img width="350" src="{% static 'img/landing-page.png' %}" alt="ilustração" />
+            </picture>
+        </aside>
+    </div>
+{% endblock %}

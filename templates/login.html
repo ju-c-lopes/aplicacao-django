@@ -1,0 +1,60 @@
+{% block content %}
+    <header>
+
+        <div class="h-logo">
+            <picture>
+                {% load static %}
+                <!-- imagem para mobile
+                <source src="#" type="" media="" />
+                imagem para desktop -->
+                <source src="{% static 'img/logo-univesp.webp' %}" type="image/webp" media="all" />
+                <!-- imagem padrão -->
+                <img class="h-logo--img" width="200" src="{% static 'img/logo-univesp.webp' %}" alt="Logo Univesp" />
+            </picture>
+        </div>
+
+        <nav>
+            <!-- Menu meio -->
+            <ul class="menu">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="#">BNCC</a></li>
+            </ul>
+        </nav>
+
+        <div width="200" class="h-login">
+            {% load static %}
+            {% if not request.user.is_authenticated %}
+            <button class="login-btn"><a href="login/">Login</a></button>
+            <div>
+                <!-- imagem login -->
+                <picture>
+                    <!--   
+                    <source src="" type="" media="" />
+                    -->
+                    <source src="{% static './img/user.jpg' %}" type="image/webp" media="all" />
+                    <!--   -->
+                    <img class="h-login--img" src="{% static './img/user.jpg' %}" alt="login" />
+                </picture>
+                
+
+            </div>
+            {% else %}
+            {{ request.user.username }}
+            <div>
+                <!-- imagem login -->
+                <picture>
+                    <!--   
+                    <source src="" type="" media="" />
+                    -->
+                    <source src="images/user.jpg" type="image/jpg" media="all" />
+                    <!--   -->
+                    <img class="h-login--img" src="images/user.jpg" alt="login" />
+                </picture>
+                
+
+            </div>
+            {% endif %}
+        </div>
+
+    </header>
+{% endblock %}
