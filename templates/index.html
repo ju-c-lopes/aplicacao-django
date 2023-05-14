@@ -1,20 +1,24 @@
 {% extends "pagina-modelo.html" %}
 {% load static %}
 {% block title %}
-    {% if not request.user.is_authenticated %}
-        Não Conectado
-    {% else %}
-        Conectado como {{ request.user.username }}
-    {% endif %}
+{% if not request.user.is_authenticated %}
+Não Conectado
+{% else %}
+Conectado como {{ request.user.username }}
+{% endif %}
 {% endblock %}
 
 {% block content %}
-<div class="col-sm-12 col-md-12 col-lg-6">
-    <h1 class="display-8 font-weight-bold">Portal de Gerenciamento de Aulas e Aplicação das Habilidades de Conhecimento</h1>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi quo ratione quidem explicabo necessitatibus dolorem iure aperiam blanditiis perspiciatis atque quam, expedita, nisi quod sapiente culpa eligendi unde! Ab, dolore.</p>
-    <a class="btn btn-primary mt-2" href="/#">Cadastre-se</a>
-</div>
-<div class="col-sm-12 col-md-12 col-lg-6">
-    <img class="img-fluid rounded" src="{% static 'img/landing.png' %}" alt="Bem-vindo">
-</div>
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <h1 class="display-8 font-weight-bold">Portal de Gerenciamento de Aulas e Aplicação das Habilidades de
+            Conhecimento</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi quo ratione quidem explicabo necessitatibus
+            dolorem iure aperiam blanditiis perspiciatis atque quam, expedita, nisi quod sapiente culpa eligendi unde!
+            Ab, dolore.</p>
+        <a class="btn btn-primary mt-2 w-100" href="/cadastro">Cadastre-se</a>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <img class="img-fluid rounded" src="{% static 'img/landing.png' %}" alt="Bem-vindo">
+    </div>
 {% endblock %}

@@ -1,26 +1,28 @@
 {% extends 'pagina-modelo.html' %}
+{% load static %}
 {% block content %}
-    <div class="titulo">
-        <h1>Realize seu cadastro!</h1>
-        <p>As habilidades de conhecimento serão listadas conforme as disciplinas e turmas que você leciona.</p>
-    </div>
 
-    <div class="cadastro-usuario">
-            
+<div class="row text-center">
+    <h1 class="display-8 font-weight-bold">Realize seu cadastro!</h1>
+    <p>As habilidades de conhecimento serão listadas conforme as disciplinas e turmas que você leciona.</p>
+</div>
+<div class="row pb-4">
+    <div class="col-sm-12 col-md-12 col-lg-6">
         <main>
             <form action="" method="get" accept-charset="utf-8">
                 <fieldset class="formulario">
 
                     <div class="campo">
                         <label for="nome" class="label">Usuário</label>
-                        <input type="text" id="nome" name="nome" class="cadastro-usuario--nome" placeholder="Digite seu nome" />
+                        <input type="text" id="nome" name="nome" class="cadastro-usuario--nome"
+                            placeholder="Digite seu nome" />
                     </div>
 
                     <div class="campo">
                         <label for="rg" class="label">RG</label>
                         <input type="number" id="rg" name="rg" class="cadastro-usuario--rg" placeholder="Digite o seu RG" />
                     </div>
-                    
+
                     <div class="campo">
                         <label for="cargo" class="label">Cargo</label>
                         <select name="cargo" id="cargo" class="cadastro-usuario--cargo">
@@ -29,13 +31,15 @@
                             <option value="diretor">Diretor</option>
                         </select>
                     </div>
-                    
+
                     <div class="campo">
                         <legend>Professor Eventual</legend>
                         <label for="prof-eventual-sim" class="lab-prof-eventual">Sim</label>
-                        <input type="radio" id="sim" name="prof-eventual-sim" class="cadastro-usuario--prof-eventual-sim" value="Sim" />
+                        <input type="radio" id="sim" name="prof-eventual-sim" class="cadastro-usuario--prof-eventual-sim"
+                            value="Sim" />
                         <label for="prof-eventual-nao" class="lab-prof-eventual">Não</label>
-                        <input type="radio" id="nao" name="prof-eventual" class="cadastro-usuario--prof-eventual-nao" value="Não" />
+                        <input type="radio" id="nao" name="prof-eventual" class="cadastro-usuario--prof-eventual-nao"
+                            value="Não" />
                     </div>
 
                     <div class="campo">
@@ -63,23 +67,15 @@
                         <input type="password" name="senha" class="cadastro-usuario--rg" placeholder="Digite sua Senha" />
                     </div>
 
-                    <div class="campo">
-                        <input type="submit" value="Finalizar Cadastro" id="finalizar-cadastro" class="cadastro-usuario--submit">
+                    <div class="campo pt-4">
+                        <button type="submit" class="btn btn-primary w-100" id="finalizar-cadastro">Finalizar Cadastro</button>
                     </div>
                 </fieldset>
             </form>
         </main>
-
-        <aside class="ilustracao">
-            <picture>
-                {% load static %}
-                <!-- imagem para mobile
-                <source src="#" type="" media="" />
-                imagem para desktop -->
-                <source src="{% static './img/cadastro-ilustr.png' %}"  type="image/png" media="all" />
-                <!-- imagem padrão -->
-                <img width="350" src="{% static './img/cadastro-ilustr.png' %}" alt="ilustração" />
-            </picture>
-        </aside>
     </div>
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <img class="img-fluid rounded" src="{% static 'img/cadastro-ilustr.png' %}" alt="ilustração">
+    </div>
+</div>
 {% endblock %}
