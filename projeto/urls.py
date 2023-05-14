@@ -22,5 +22,5 @@ from pi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', views.index),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

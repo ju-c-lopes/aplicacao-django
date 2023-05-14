@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 
 
-def home(request):
+def index(request):
     if request.user.is_authenticated:
         return redirect('/')
-    return render(request, 'home.html') # A modificar string de retorno 
+    return render(request, 'index.html') # A modificar string de retorno 

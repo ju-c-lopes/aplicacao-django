@@ -1,11 +1,10 @@
-footer {
-    position: fixed;
-    margin: auto 0 auto 0;
+.footer-custom {
+    background-color: var(--bncc-green);    
+}
+
+.footer {
+    position: absolute;
     bottom: 0;
-    text-align: center;
-    line-height: 6em;
-    color: antiquewhite;
-    background-color: #0F2907;
-    height: 6em;
     width: 100%;
+    height: 56px;
 }
