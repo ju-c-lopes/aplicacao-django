@@ -7,3 +7,6 @@ def index(request):
     if request.user.is_authenticated:
         return redirect('/')
     return render(request, 'index.html') # A modificar string de retorno 
+
+def cadastro(request):
+    return render(request, 'cadastro.html')

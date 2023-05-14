@@ -24,5 +24,6 @@ Com isso, vemos que todos os dados do banco estão presentes
 
 <hr>
 
-07/maio/2023 - Adicionado templates base, arquivos estáticos como css, view home(para teste)
-07/maio/2023 - Feito layout da home, header e footer
+\- 07/maio/2023 - Adicionado templates base, arquivos estáticos como css, view home(para teste)<br>
+\- 07/maio/2023 - Feito layout da home, header e footer<br>
+\- 08/maio/2023 - Feito layout da página de cadastro de professores, com arquivo css e adição ao template<br>
