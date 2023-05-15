@@ -4,7 +4,7 @@
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow px-2 py-1 fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/#">
+        <a class="navbar-brand" href="{% url 'home' %}">
             <img src="{% static 'img/logo-univesp.png' %}" alt="Logo" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarText"
@@ -14,10 +14,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="">Início</a>
+                    <a class="nav-link" href="{% url 'home' %}">Início</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Sobre a BNCC</a>
+                    <a class="nav-link" href="{% url 'aboutus' %}">Sobre nós</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -28,7 +28,7 @@
             {% if user.is_authenticated %}
 
             {% else %}
-                <a class="pull-right btn btn-primary ml-auto" href="#">Login</a>
+                <a class="pull-right btn btn-primary ml-auto" href="{% url 'login' %}">Login</a>
             {% endif %}
         </div>
     </div>

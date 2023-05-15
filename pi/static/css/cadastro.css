@@ -46,17 +46,3 @@
 }
 /* ========== end Fieldset Formulario ========== */
 /* ========== end main ========== */
-
-/* ========== start ilustracao ========== */
-.ilustracao {
-    height: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-
-.ilustracao picture {
-    display: sticky;
-}
-/* ========== end ilustracao ========== */
-/* --------- End Cadastro Usuário --------- */

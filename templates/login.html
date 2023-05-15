@@ -1,61 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Login - Portal BNCC
+{% endblock %}
+
 {% block content %}
-    <header>
-
-        <div class="h-logo">
-            <picture>
-                {% load static %}
-                <!-- imagem para mobile
-                <source src="#" type="" media="" />
-                imagem para desktop -->
-                <source src="{% static 'img/logo-univesp.webp' %}" type="image/webp" media="all" />
-                <!-- imagem padrão -->
-                <img class="h-logo--img" width="200" src="{% static 'img/logo-univesp.webp' %}" alt="Logo Univesp" />
-            </picture>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-header">
+          <h4>Login</h4>
         </div>
-
-        <nav>
-            <!-- Menu meio -->
-            <ul class="menu">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="#">BNCC</a></li>
-                <li><a href="#">Cadastro das Aulas</a></li>
-            </ul>
-        </nav>
-
-        <div width="200" class="h-login">
-            {% load static %}
-            {% if not request.user.is_authenticated %}
-            <button class="login-btn"><a href="login/">Login</a></button>
-            <div>
-                <!-- imagem login -->
-                <picture>
-                    <!--   
-                    <source src="" type="" media="" />
-                    -->
-                    <source src="{% static './img/user.jpg' %}" type="image/webp" media="all" />
-                    <!--   -->
-                    <img class="h-login--img" src="{% static './img/user.jpg' %}" alt="login" />
-                </picture>
-                
-
+        <div class="card-body">
+          {% if error_message %}
+          <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+          </div>
+          {% endif %}
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="username">Usuário (RG)</label>
+              <input type="text" class="form-control" id="username" name="username" required>
             </div>
-            {% else %}
-            {{ request.user.username }}
-            <div>
-                <!-- imagem login -->
-                <picture>
-                    <!--   
-                    <source src="" type="" media="" />
-                    -->
-                    <source src="images/user.jpg" type="image/jpg" media="all" />
-                    <!--   -->
-                    <img class="h-login--img" src="images/user.jpg" alt="login" />
-                </picture>
-                
-
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            {% endif %}
+            <button type="submit" class="btn btn-primary w-100 mt-4">Login</button>
+          </form>
         </div>
-
-    </header>
+      </div>
+    </div>
+  </div>
 {% endblock %}

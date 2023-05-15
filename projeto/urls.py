@@ -22,6 +22,9 @@ from pi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('cadastro/', views.cadastro),
+    path('', views.index, name='home'),
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.login, name='login'),
+    path('sobre-nos/', views.sobre_nos, name='aboutus'),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
