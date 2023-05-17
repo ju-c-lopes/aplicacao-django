@@ -7,6 +7,7 @@
 * {
     margin: 0;
     padding: 0
+
 }
 
 html {
@@ -18,5 +19,6 @@ html {
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding-top: 56px;
+    padding-bottom: 56px;
 }
   
