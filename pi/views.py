@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import LoginForm, RegistrationForm
+from pi.models import Habilidades
 
 # Create your views here.
 def index(request):
@@ -42,3 +43,39 @@ def signup(request):
         form = RegistrationForm()
     
     return render(request, 'signup.html', {'form': form})
+
+def listar(request):
+    
+    codigos = Habilidades.objects.all().values()
+    escolhas = None
+    if request.method == 'POST':
+        escolhas = {
+            'cod_hab': request.POST['habilidade'],
+            'turma': request.POST['turma'],
+            'disciplina': request.POST['disciplina'],
+            'descricao': request.POST['descricao'],
+        }
+
+    dados = {
+        'codigos': [v['cod_hab'] for v in codigos],
+    }
+    if escolhas is not None and escolhas['cod_hab'] != '':
+        dados['retorno'] = [escolhas]
+    else:
+        dados['retorno'] = []
+        for v in codigos:
+            if escolhas is not None and escolhas['descricao'] in v['desc_habilidade']:
+                escolha = {
+                    'cod_hab': v['cod_hab'],
+                    'turma': request.POST['turma'],
+                    'disciplina': request.POST['disciplina'],
+                    'descricao': v['desc_habilidade'],
+                }
+                dados['retorno'].append(escolha)
+    cont = 0
+    if escolhas is not None and escolhas['cod_hab'] != '':
+        cont = 1
+    elif escolhas is not None and len(dados['retorno']) >= 1:
+        cont = len(dados['retorno'])
+    dados['cont'] = cont
+    return render(request, 'listagens.html', dados)

@@ -1,0 +1,71 @@
+.div-cadastro {
+    bottom: 40px;
+}
+
+.list-form {
+    display: grid;
+    grid-template-columns: 2fr 2fr auto;
+    width: 100%;
+    border: 1px gray solid;
+    padding: 2em;
+    margin-bottom: 3em;
+}
+
+.list-form div {
+    display: flex;
+    padding: 1em;
+    justify-content: space-around;
+    align-self: center;
+}
+
+.list-form div label {
+    font-size: 2em;
+}
+
+.select-box, #descricao {
+    width: 20em;
+}
+
+.disciplina--submit {
+    margin: 0 auto;
+    background-color: #E8B930;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 2% 2vh;
+}
+
+.box3 {
+    grid-column-start: 3;
+    grid-row: 1 / span 2;
+    align-self: center;
+}
+
+table {
+    width: 100%;
+    border-top: 1px gray solid;
+    border-bottom: 1px gray solid;
+    border-left: 1px gray solid;
+    border-right: 1px gray solid;
+}
+
+thead {
+    border-bottom: 1px gray solid;
+}
+
+th {
+    background-color: #b0b0b0;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.cel1, .cel2, .cel4 {
+    width: 20%;
+}
+
+.cel3 {
+    width: 40%;
+}
