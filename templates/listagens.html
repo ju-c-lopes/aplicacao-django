@@ -6,14 +6,14 @@
     <h1 class="display-8 font-weight-bold">Cadastro das disciplinas aplicadas e o resumo da aula dada</h1>
 </div>
 <p>Selecione os filtros para facilitar a busca</p><br>
-<div class="form-cadastro"><!-- class="row mb-4">-->
-    <div> <!--class="col-sm-12 col-md-12 col-lg-6">-->
+<div class="form-cadastro">
+    <div>
         <form action="" method="post">
             {% csrf_token %}
             <fieldset class="list-form">
                 <div>
                     <label for="turma">Turma</label>
-                    <select name="turma" id="turma" class="select-box">
+                    <select name="turma" id="turma" class="select-box" required>
                         <option value="">Selecione</option>
                         <option value="primeiro ano">1° Ano</option>
                         <option value="segundo ano">2° Ano</option>
@@ -39,9 +39,10 @@
                     <label for="disciplina">Disciplina</label>
                     <select name="disciplina" id="disciplina" class="select-box">
                         <option value="">Selecione</option>
-                        <option value="portugues">Português</option>
-                        <option value="matematica">Matemática</option>
-                        <option value="historia">História</option>
+                        <option value="Português">Português</option>
+                        <option value="Matemática">Matemática</option>
+                        <option value="História">História</option>
+                        <option value=""></option>
                     </select>
                 </div>
 
@@ -78,7 +79,15 @@
                     <td class="cel1">{{ ret.disciplina.title }}</td>
                     <td class="cel2">{{ ret.cod_hab }}</td>
                     <td class="cel3">{{ ret.descricao }}</td>
-                    <td class="cel4"><a href="#"><img src="{% static './img/lapis.png' %}" alt=""></a></td>
+                    <td class="cel4">
+                        <form action="./mais-info/" method="get">
+                            <input type="hidden" name="disciplina" value="{{ ret.disciplina }}">
+                            <input type="hidden" name="cod_hab" value="{{ ret.cod_hab }}">
+                            <input type="hidden" name="descricao" value="{{ ret.descricao }}">
+                            <input type="hidden" name="turma" value="{{ ret.turma }}">
+                            <button class="bt-edit" type="submit"><img src="{% static './img/lapis.png' %}" alt=""></button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
                 

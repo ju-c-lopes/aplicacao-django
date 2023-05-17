@@ -79,3 +79,18 @@ def listar(request):
         cont = len(dados['retorno'])
     dados['cont'] = cont
     return render(request, 'listagens.html', dados)
+
+def mais_info(request):
+    infos = {
+        'cod_hab': request.GET['cod_hab'],
+        'turma': request.GET['turma'],
+        'disciplina': request.GET['disciplina'],
+        'descricao': request.GET['descricao'],
+    }
+    print(infos)
+    return render(request, 'mais-info.html', infos)
+
+def salvar_aula(request):
+    print(request.POST)
+    # falta apenas saber onde serão salvas as informacões que será executada neste processo
+    return render(request, 'aula-salva.html')
