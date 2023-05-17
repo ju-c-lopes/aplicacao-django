@@ -26,13 +26,16 @@
     <link rel="stylesheet" type="text/css" href="{% static './css/header.css' %}" media="all">
     <link rel="stylesheet" type="text/css" href="{% static './css/footer.css' %}" media="all">
     <link rel="stylesheet" type="text/css" href="{% static './css/index.css' %}" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static './css/about-us.css' %}" media="all">
     <link rel="stylesheet" type="text/css" href="{% static './css/cadastro.css' %}" media="all">
     <link rel="stylesheet" type="text/css" href="{% static './css/listagens.css' %}" media="all">
     {% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body class="d-flex flex-column">
+<body class="container-fluid vh-100">
+
+    <div class="d-flex flex-column">
 
     <!-- Cabeçalho da página com opções de menu e login -->
     <div class="row">
@@ -40,7 +43,7 @@
     </div>
     
     <!-- Chama o conteúdo principal da tela -->
-    <div class="row px-4 py-3">
+    <div class="row mt-5 px-5 mb-5">
         {% block content %}
         {% endblock %}
     </div>
@@ -49,6 +52,7 @@
     <div class="row">
         {% include "footer.html" %}
     </div>
+
     <!-- Include Bootstrap JS -->
     {% block head-javascript %}
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>

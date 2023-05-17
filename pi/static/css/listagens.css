@@ -1,21 +1,15 @@
 .div-cadastro {
-    bottom: 40px;
+    bottom: 50px;
 }
 
 .list-form {
-    display: grid;
     grid-template-columns: 2fr 2fr auto;
     width: 100%;
-    border: 1px gray solid;
-    padding: 2em;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
 }
 
 .list-form div {
-    display: flex;
     padding: 1em;
-    justify-content: space-around;
-    align-self: center;
 }
 
 .list-form div label {
@@ -28,11 +22,10 @@
 
 .disciplina--submit {
     margin: 0 auto;
-    background-color: #E8B930;
-    width: 100%;
+    width: 20%;
     border: none;
     border-radius: 5px;
-    padding: 2% 2vh;
+    padding: 1em;
 }
 
 .box3 {
