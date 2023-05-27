@@ -44,9 +44,9 @@
                 </div>
 
                 <div class="campo">
-                    <label for="{{ form.cod_disc.id_for_label }}">Disciplinas</label>
+                    <label for="{{ form.cod_disc.id_for_label }}">Disciplinas</label> <!-- {{ form.cod_disc.id_for_label }} -->
                     <select name="disciplinas" id="disciplinas" class="cadastro-usuario--disciplinas">
-                        <option value="selecione">Selecione</option>
+                        <option value="selecione" selected>Selecione</option>
                         <option value="portugues">Português</option>
                         <option value="matematica">Matemática</option>
                         <option value="historia">História</option>
@@ -70,7 +70,7 @@
 
                 <div class="campo">
                     <label for="{{ form.password2.id_for_label }}" class="label">Confirme a senha</label>
-                    <input type="password" name="password2" placeholder="Confirme a senhaSenha" />
+                    <input type="password" name="password2" placeholder="Confirme a senha" />
                 </div>
 
                 <div class="campo pt-4">

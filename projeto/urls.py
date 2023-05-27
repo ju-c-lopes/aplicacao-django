@@ -24,9 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
     path('signup/', views.signup, name='signup'),
-    path('login/', views.login, name='login'),
+    path('login/', views.log_in, name='login'),
+    path('logout/', views.logout_user, name='logout'),
     path('sobre-nos/', views.sobre_nos, name='aboutus'),
-    path('listar/', views.listar, name='listar'),
-    path('listar/mais-info/', views.mais_info, name='mais-info'),
+    path('cadastrar-aula/', views.cadastrar_aula, name='cadastrar-aula'),
+    path('cadastrar-aula/mais-info/', views.mais_info, name='mais-info'),
     path('salvar/', views.salvar_aula, name='salvar-aula')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

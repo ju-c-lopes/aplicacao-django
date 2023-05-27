@@ -21,7 +21,7 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cadastro das Aulas</a>
+                    <a class="nav-link" href="{% url 'cadastrar-aula' %}">Cadastro das Aulas</a>
                 </li>
 
                 <li class="nav-item">
@@ -29,12 +29,9 @@
                 </li>
                 {% endif %}
             </ul>
-            {% if user.is_authenticated %}
-
-            {% else %}
-                <a class="pull-right btn btn-primary mr-auto" href="{% url 'login' %}">Login</a>
-            {% endif %}
+            
         </div>
+        {% include 'log-in.html' %}
     </div>
 </nav>
 {% endblock %}
