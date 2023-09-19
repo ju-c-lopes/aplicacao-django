@@ -16,18 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf import settings
 from django.conf.urls.static import static
-from pi import views
+from django.conf import settings
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='home'),
-    path('signup/', views.signup, name='signup'),
-    path('login/', views.log_in, name='login'),
-    path('logout/', views.logout_user, name='logout'),
-    path('sobre-nos/', views.sobre_nos, name='aboutus'),
-    path('cadastrar-aula/', views.cadastrar_aula, name='cadastrar-aula'),
-    path('cadastrar-aula/mais-info/', views.mais_info, name='mais-info'),
-    path('salvar/', views.salvar_aula, name='salvar-aula')
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('', include('gerenciaAula.urls.IndexUrl')),
+    path('usuario/', include('gerenciaAula.urls.UsuarioUrl')),
+    path('sobre-nos/', include('gerenciaAula.urls.AboutUsUrl')),
+    path('login/', include('gerenciaAula.urls.LoginUrl')),
+    path('logout/', include('gerenciaAula.urls.LogoutUrl')),
+    path('signup/', include('gerenciaAula.urls.SignUpUrl')),
+    path('cadastrar-aula', include('gerenciaAula.urls.CadastraAulaUrl')),
+    path('cadastrar-aula/mais-info/', include('gerenciaAula.urls.MaisInfoUrl')),
+    path('salvar/', include('gerenciaAula.urls.SalvaAulaUrl')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
