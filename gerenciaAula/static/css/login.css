@@ -1,0 +1,12 @@
+.form-message--success {
+    text-align: center;
+    line-height: 2em;
+    width: 30vw;
+    height: 2em;
+    margin: 0 auto 0 auto;
+    background-color: aqua;
+    font-weight: 500;
+}
+.show-user {
+    margin: 3em auto 0 auto;
+}

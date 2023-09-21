@@ -35,3 +35,12 @@
 21° - Criado as views e urls restantes
 22° - Adicionado as urls restantes no arquivo urls geral do projeto
 23° - Reorganizado todas templates com os css necessários
+24° - Refeito forma de fazer login retornando o nome do usuário para logar
+
+PARA FAZER:
+
+- Limitar criação de direção e coordenação com aval de direção
+- Limitar criação de professor com aval de direção ou coordenação
+- Campo de busca de usuário pelo nome em caso de esquecimento do nome do usuário
+- Página de edição do usuário (permitindo adicionar uma imagem)
+- Configurar exibição da imagem do usuário logado 

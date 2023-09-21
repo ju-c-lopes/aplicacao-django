@@ -51,5 +51,13 @@
     border-radius: 5px;
     padding: 2% 2vh;
 }
+.form-message--erro {
+    text-align: center;
+    line-height: 2em;
+    width: inherit;
+    height: 2em;
+    background-color: rgb(226, 133, 116);
+    font-weight: 500;
+}
 /* ========== end Fieldset Formulario ========== */
 /* ========== end main ========== */

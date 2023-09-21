@@ -4,6 +4,9 @@ from gerenciaAula.forms import LoginForm
 from gerenciaAula.views import *
 
 def login_user(request):
+    print(request)
+    context = None
+
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -20,4 +23,13 @@ def login_user(request):
     else:
         form = LoginForm()
         error_message = None
-    return render(request, 'login/login.html', {'form': form, 'error_message': error_message}, status=200)
+    
+    if request.GET.get('message'):
+        context = {
+            'usuario': request.GET.get('usuario'),
+            'message': {
+                'type': request.GET.get('type'),
+                'text': request.GET.get('message')
+            }
+        }
+    return render(request, 'login/login.html', context=context, status=200)

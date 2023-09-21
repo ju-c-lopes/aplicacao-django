@@ -4,12 +4,12 @@ class Usuario(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=45, blank=True, null=True)
     nivel_usuario = models.IntegerField(choices=ROLE_CHOICE, default=3)
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    token = models.CharField(max_length=255, null=True, blank=True)
     eventual_doc = models.BooleanField(blank=True, null=True)  # This field type is a guess.
     cod_turma = models.ManyToManyField('Turma', db_column='cod_turma', blank=True, null=True)
     cod_disc = models.ManyToManyField('Disciplina', db_column='cod_disc', blank=True, null=True)
+    
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     image = models.ImageField(null=True, blank=True)
 

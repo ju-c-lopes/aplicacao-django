@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head-css %}
+<link rel="stylesheet" type="text/css" href="{% static './css/login.css' %}" media="all">
+{% endblock %}
+
 {% block title %}
     Login - Portal BNCC
 {% endblock %}
 
 {% block content %}
+  {% if message is not None and message.type == 'success' %}
+  <div class="form-message--success">{{ message.text }}</div>
+  {% endif %}
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card mt-5">
@@ -34,4 +41,9 @@
       </div>
     </div>
   </div>
+  {% if usuario is not none %}
+  <div class="form-message--success show-user">
+    Seu usuário para acesso é: {{ usuario }}
+  </div>
+  {% endif %}
 {% endblock %}
