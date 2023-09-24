@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block head-css %}
+<link rel="stylesheet" type="text/css" href="{% static './css/listagens.css' %}" media="all">
+{% endblock %}
+
 {% block content %}
 
 <div class="adicional">
@@ -25,6 +30,7 @@
 
     <form class="form-adicional" action="/salvar/" method="post">
         {% csrf_token %}
+        <input type="hidden" name="cod_turma" value="{{ cod_turma }}">
         <input type="hidden" name="disciplina" value="{{ disciplina }}">
         <input type="hidden" name="cod_hab" value="{{ cod_hab }}">
         <input type="hidden" name="descricao" value="{{ descricao }}">

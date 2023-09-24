@@ -3,7 +3,7 @@ from .models import *
 
 class UsuarioAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_at'
-    list_display = ['nome', 'nivel_usuario', 'eventual_doc', 'created']
+    list_display = ['id', 'user', 'nome', 'nivel_usuario', 'eventual_doc', 'created']
     empty_value_display = 'Vazio'
     list_display_links = 'user', 'nivel_usuario'
     list_filter = 'user__is_active', 'user__is_superuser'

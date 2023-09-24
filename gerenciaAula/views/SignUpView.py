@@ -5,7 +5,7 @@ from gerenciaAula.views import *
 from django.contrib import messages
 from django.contrib.auth.models import User
 from gerenciaAula.models import Usuario
-from gerenciaAula.forms import RegistrationForm, RegistrationUserForm
+from gerenciaAula.forms import RegistrationForm
 
 def signup(request):
 

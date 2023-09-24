@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from gerenciaAula.models import Habilidade
+from gerenciaAula.models import Habilidade, Turma
 from gerenciaAula.views import *
 
 def cadastrar_aula(request):
@@ -9,6 +9,7 @@ def cadastrar_aula(request):
     if request.method == 'POST':
         escolhas = {
             'cod_hab': request.POST['habilidade'],
+            # 'cod_turma': Turma.objects.get(cod_turma=)
             'turma': request.POST['turma'],
             'disciplina': request.POST['disciplina'],
             'descricao': request.POST['descricao'],
@@ -43,8 +44,7 @@ def cadastrar_aula(request):
                 }
                 dados['retorno'].append(escolha)
     cont = 0
-    # if escolhas is not None and escolhas['cod_hab'] != '':
-    #     cont = 1
+    
     if escolhas is not None and len(dados['retorno']) >= 1:
         cont = len(dados['retorno'])
     dados['cont'] = cont
