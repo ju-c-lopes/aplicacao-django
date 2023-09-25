@@ -18,6 +18,97 @@
     max-height: 40px; /* Adjust the value as needed */
 }
 
+.nav-button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .nav-header {
+        position: fixed;
+        height: 4em;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .nav-button {
+        position: relative;
+        width: 3em;
+        height: 3em;
+        background: #fff;
+        box-shadow: 
+            -1px 1px 5px #9c9c9c,
+            1px 1px 5px #9c9c9c,
+            -1px 1px 5px #9c9c9c,
+            1px 1px 5px #9c9c9c;
+        /* border: #6c6c6c solid 1px; */
+        border-radius: 0.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .nav-button span {
+        position: absolute;
+        width: 1.5em;
+        height: 0.1em;
+        background: #6c6c6c;
+        border-radius: 0.025em;
+        transition: 0.5s;
+    }
+
+    .nav-button span:nth-child(1) {
+        transform: translateY(-15px);
+        width: 1.5em;
+        text-align: center;
+    }
+    
+    .nav-button.active span:nth-child(1) {
+        width: 1.5em;
+        transform: translateY(0) rotate(45deg);
+        transition-delay: 0.125s;
+    }
+    
+    .nav-button span:nth-child(2) {
+        transform: translateY(15px);
+        width: 1.5em;
+        text-align: center;
+    }
+    
+    .nav-button.active span:nth-child(2) {
+        width: 1.5em;
+        transform: translateY(0) rotate(315deg);
+        transition-delay: 0.25s;
+    }
+    
+    .nav-button.active span:nth-child(3) {
+        transform: translateX(60px);
+    }
+
+    .menu-container {
+        display: none;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        background-color: #f2f2f2;
+        height: 14em;
+        box-shadow: 1px 1px 5px #6c6c6c;
+    }
+
+    .navbar-nav {
+        position: inherit;
+        top: 1em;
+        margin-left: 1em;
+    }
+    
+    .open {
+        display: block;
+        top: 4em;
+        height: 12em;
+    }
+}
+
 .h-login {
     margin: 0 1vw 0 auto;
     height: 95%;
