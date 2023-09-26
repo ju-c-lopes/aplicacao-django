@@ -1,79 +1,4 @@
-create database PIC01;
-use PIC01;
-
-create table habilidades 
-(
-cod_hab VARCHAR (12) NOT NULL,
-habilidade VARCHAR(60),
-desc_habilidade LONGTEXT,
-PRIMARY KEY(cod_hab)
-);
-
-create table turma
-(
-cod_turma int AUTO_INCREMENT,
-nome_turma varchar(45),
-cod_disc int,
-primary key (cod_turma)
-);
-
-create table docente
-(
-cod_doc int,
-nome_doc varchar(45),
-eventual_doc bit(1),
-cod_turma int,
-primary key (cod_doc)
-);
-
-create table coordenacao
-(
-cod_coord int,
-nome_coord varchar(45),
-primary key (cod_coord)
-);
-
-create table direcao
-(
-cod_dir int,
-nome_dir varchar(45),
-primary key (cod_dir)
-);
-
-create table aula
-(
-cod_aula int,
-tema_aula varchar(100),
-cod_hab VARCHAR(12),
-desc_aula LONGTEXT,
-cod_doc int,
-cod_turma int,
-fluxo_aula VARCHAR(500),
-info_adicionais VARCHAR(500),
-primary key (cod_aula)
-);
-
-create table disciplina
-(
-cod_disc int,
-nome_disc varchar(45),
-cod_aula int,
-primary key (cod_disc)
-);
-
-alter table turma add constraint fk_cod_disc foreign key (cod_disc) references disciplina (cod_disc);
-
-alter table docente add constraint fk_cod_turma foreign key (cod_turma) references turma (cod_turma);
-
-alter table aula add constraint fk_cod_hab foreign key (cod_hab) references habilidades (cod_hab);
-
-alter table aula add constraint fk_cod_doc foreign key (cod_doc) references docente (cod_doc);
-
-alter table aula add constraint fk_cod_turma foreign key (cod_turma) references turma (cod_turma);
-
-alter table disciplina add constraint fk_cod_aula foreign key (cod_aula) references aula (cod_aula);
-
-INSERT INTO habilidades values
+INSERT INTO Habilidade values
 ('EM13CNT310', 'Habilidades de Linguagens e suas Tecnologias','Investigar e analisar os efeitos de programas de infraestrutura e demais serviços básicos (saneamento, energia elétrica, transporte, telecomunicações, cobertura vacinal, atendimento primário à saúde e produção de alimentos, entre outros) e identificar necessidades locais e/ou regionais em relação a esses serviços, a fim de avaliar e/ou promover ações que contribuam para a melhoria na qualidade de vida e nas condições de saúde da população.'),
 ('EM13LGG101', 'Habilidades de Linguagens e suas Tecnologias','Compreender e analisar processos de produção e circulação de discursos, nas diferentes linguagens, para fazer escolhas fundamentadas em função de interesses pessoais e coletivos.'),
 ('EM13LGG102', 'Habilidades de Linguagens e suas Tecnologias','Analisar visões de mundo, conflitos de interesse, preconceitos e ideologias presentes nos discursos veiculados nas diferentes mídias, ampliando suas possibilidades de explicação, interpretação e intervenção crítica da/na realidade.'),
@@ -257,6 +182,3 @@ INSERT INTO habilidades values
 ('EM13LP52', 'Habilidades de Língua Portuguesa','Analisar obras significativas das literaturas brasileiras e de outros países e povos, em especial a portuguesa, a indígena, a africana e a latino-americana, com base em ferramentas da crítica literária (estrutura da composição, estilo, aspectos discursivos) ou outros critérios relacionados a diferentes matrizes culturais, considerando o contexto de produção (visões de mundo, diálogos com outros textos, inserções em movimentos estéticos e culturais etc.) e o modo como dialogam com o presente.'),
 ('EM13LP53', 'Habilidades de Língua Portuguesa','Produzir apresentações e comentários apreciativos e críticos sobre livros, filmes, discos, canções, espetáculos de teatro e dança, exposições etc. (resenhas, vlogs e podcasts literários e artísticos, playlists comentadas, fanzines, e-zines etc.).'),
 ('EM13LP54', 'Habilidades de Língua Portuguesa','Criar obras autorais, em diferentes gêneros e mídias - mediante seleção e apropriação de recursos textuais e expressivos do repertório artístico -, e/ou produções derivadas (paródias, estilizações, fanfics, fanclipes etc.), como forma de dialogar crítica e/ou subjetivamente com o texto literário.');
-
-INSERT INTO turma (nome_turma) values ('1° Ano'), ('2° Ano'), ('3° Ano');
-

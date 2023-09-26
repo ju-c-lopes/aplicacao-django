@@ -1,8 +1,6 @@
 from gerenciaAula.models import *
 
 class Disciplina(models.Model):
-#     def first():
-#         return Turma.objects.last().cod_disc + 1
     
     cod_disc = models.AutoField(primary_key=True, default=0)
     nome_disc = models.CharField(max_length=45, blank=True, null=True)

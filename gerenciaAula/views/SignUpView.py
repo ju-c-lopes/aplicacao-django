@@ -62,7 +62,7 @@ def signup(request):
             else:
                 message = {'type': 'erro', 'text': 'Não foi possível cadastrar seu usuário.'}
         else:
-            message = {'type': 'error',  'text': "There's an error on your form, check it."}
+            message = {'type': 'error',  'text': "Houve um erro no cadastro, verifique novamente."}
             form = RegistrationForm()
     
     context = {

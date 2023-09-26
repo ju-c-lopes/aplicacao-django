@@ -43,4 +43,6 @@ PARA FAZER:
 - Limitar criação de professor com aval de direção ou coordenação
 - Campo de busca de usuário pelo nome em caso de esquecimento do nome do usuário
 - Página de edição do usuário (permitindo adicionar uma imagem)
-- Configurar exibição da imagem do usuário logado 
+- Configurar exibição da imagem do usuário logado
+- Página para consultar aulas dadas
+- Documento para uso da aplicação
