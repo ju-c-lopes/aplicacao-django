@@ -15,73 +15,147 @@
     <div class="card col-sm-12 col-md-12 col-lg-6">
         <form action="{% url 'signup' %}" method="post" accept-charset="utf-8">
             {% csrf_token %}
+            
             <fieldset class="formulario">
-                    
-                {% if message is not None and message.type == 'error' %}
+                {% if message is not None and message.type == 'erro' %}
                 <div class="form-message--erro">{{ message.text }}</div>
-                {% endif %}            
+                {% endif %}
+
+                <!-- Aprovação -->
+
+                {% if aprovar %}
+                <div class="aprovar">
+                    <input type="hidden" name="aprovar" value="1">
+                    <div class="form-group">
+                        <label for="super">Usuário</label>
+                        <input type="text" class="form-control" id="super" name="super" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="pass-super">Senha</label>
+                        <input type="password" class="form-control" id="pass-super" name="pass-super" required>
+                      </div>
+                      <button type="submit" class="btn btn-primary w-100 mt-4">Aprovar</button>
+                </div>
+                
+                {% endif %}
+
+                <!-- Nome -->
 
                 <div class="campo">
+                    {% if aprovar %}
+                    <label for="nome" class="label">Usuario</label>
+                    <input type="text" name="nome" id="nome" value="{{ nome }}" />
+                    {% else %}
                     <label for="{{ form.nome.id_for_label }}" class="label">Usuário</label>
                     <input type="text" id="{{ form.nome.id_for_label }}" name="nome" class="cadastro-usuario--nome"
                         placeholder="Digite seu nome" />
+                    {% endif %}
                 </div>
 
+                <!-- Cargo -->
+                
                 <div class="campo">
+
+                    {% if aprovar %}
+                    
                     <label for="{{ form.nivel_usuario.id_for_label }}" class="label">Cargo</label>
-                    <!-- <label for="role" class="label">Cargo</label> -->
+                    <select name="{{ form.nivel_usuario.html_name }}" class="cadastro-usuario--cargo" id="{{ form.nivel_usuario.id_for_label }}">
+                        <option value="{{ role }}" selected>{{ rolename }}</option>
+                    </select>
+                    
+                    {% else %}
+                    
+                    <label for="{{ form.nivel_usuario.id_for_label }}" class="label">Cargo</label>
                     <select name="{{ form.nivel_usuario.html_name }}" class="cadastro-usuario--cargo" id="{{ form.nivel_usuario.id_for_label }}">
                         <option value="selecione">Selecione</option>
                         {% for value, label in form.nivel_usuario.field.choices %}
                             <option value="{{ value }}">{{ label }}</option>
                         {% endfor %}
                     </select>
+
+                    {% endif %}
                 </div>
+
+                <!-- Professor Eventual -->
 
                 <div class="campo">
                     <label for="{{ form.eventual_doc.label.lower }}" class="label">Professor Eventual</label>
                     {% for value, label in form.eventual_doc.field.choices %}
                       <div class="form-check">
+                        {% if aprovar and eventual_doc == value %}
+                        <input class="form-check-input" type="radio" id="id_agreed_to_terms_{{ forloop.counter }}" name="{{ form.eventual_doc.html_name }}" value="{{ value }}" checked>
+                        {% else %}
                         <input class="form-check-input" type="radio" id="id_agreed_to_terms_{{ forloop.counter }}" name="{{ form.eventual_doc.html_name }}" value="{{ value }}">
+                        {% endif %}
                         <label class="form-check-label" for="id_agreed_to_terms_{{ forloop.counter }}">{{ label }}</label>
                       </div>
                     {% endfor %}
-                    
                 </div>
 
+                <!-- Materias -->
+
                 <div class="campo">
-                    <label for="{{ form.teached_subject.label }}" class="label">Disciplinas</label> <!-- {{ form.cod_disc.id_for_label }} -->
+                    <label for="{{ form.teached_subject.label }}" class="label">Disciplinas</label>
                     <select multiple name="{{ form.teached_subject.html_name }}" id="disciplinas" class="cadastro-usuario--disciplinas" size="3">
                         <option disabled>Selecione</option>
                         {% for x, y in form.teached_subject.field.choices %}
+                            {% if aprovar and x in subjects %}
+                            <option value="{{ x }}" selected>{{ y }}</option>
+                            {% else %}
                             <option value="{{ x }}">{{ y }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                 </div>
+
+                <!-- Turmas -->
 
                 <div class="campo">
                     <label for="{{ form.teached_classes.label }}" class="label">Turmas</label>
                     <select multiple name="{{ form.teached_classes.html_name }}" id="turmas" class="cadastro-usuario--turmas" size="3">
                         <option disabled>Selecione</option>
                         {% for x, y in form.teached_classes.field.choices %}
+                            {% if aprovar and x in classes %}
+                            <option value="{{ x }}" selected>{{ y }}</option>
+                            {% else %}
                             <option value="{{ x }}">{{ y }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                 </div>
 
+                <!-- SENHA 1 -->
+
+                {% if aprovar %}
+                <div class="campo">
+                    <label for="{{ form.password1.id_for_label }}" class="label">Senha</label>
+                    <input type="password" name="password1" value="{{ password }}" />
+                </div>
+                {% else %}
                 <div class="campo">
                     <label for="{{ form.password1.id_for_label }}" class="label">Senha</label>
                     <input type="password" name="password1" placeholder="Digite sua Senha" />
                 </div>
+                {% endif %}
 
+                <!-- SENHA 2 -->
+
+                {% if aprovar %}
+                <div class="campo">
+                    <label for="{{ form.password2.id_for_label }}" class="label">Confirme a senha</label>
+                    <input type="password" name="password2" value="{{ password }}" />
+                </div>
+                {% else %}
                 <div class="campo">
                     <label for="{{ form.password2.id_for_label }}" class="label">Confirme a senha</label>
                     <input type="password" name="password2" placeholder="Confirme a senha" />
                 </div>
+                {% endif %}
 
                 <div class="campo pt-4">
-                    <button type="submit" class="btn btn-primary w-100" id="finalizar-cadastro">Finalizar
-                        Cadastro</button>
+                    <button type="submit" class="btn btn-primary w-100" id="finalizar-cadastro">
+                        Finalizar Cadastro
+                    </button>
                 </div>
             </fieldset>
         </form>

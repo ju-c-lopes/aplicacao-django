@@ -4,6 +4,7 @@ from django.urls import reverse
 from gerenciaAula.views import *
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password
 from gerenciaAula.models import Usuario
 from gerenciaAula.forms import RegistrationForm
 
@@ -13,6 +14,12 @@ def signup(request):
     redirecionar = False
     message = None
     user_do_usuario = None
+    approved = False
+    ROLE_CHOICE = (
+        ('1', 'Direção'),
+        ('2', 'Coordenação'),
+        ('3', 'Docente'),
+    )
 
     if request.user.is_authenticated:
         logout(request)
@@ -36,7 +43,11 @@ def signup(request):
 
         nome = request.POST['nome']
         nivel_usuario = int(request.POST['nivel_usuario'])
-        eventual_doc = request.POST['eventual_doc']
+        eventual_doc = False if request.POST['eventual_doc'] == 'False' else True
+        
+        subjects = request.POST.getlist('teached_subject')
+        classes = request.POST.getlist('teached_classes')
+
         is_staff = True if nivel_usuario == 1 or nivel_usuario == 2 else False
         is_superuser = True if nivel_usuario == 1 else False
 
@@ -44,26 +55,59 @@ def signup(request):
         
         if form.is_valid():
             password = request.POST['password1']
-            print(password)
 
-            usuario = User.objects.create_user(username=username, password=password, is_staff=is_staff, is_superuser=is_superuser)
+            aprovar = request.POST.get('aprovar', False)
 
-            if usuario is not None:
-                funcionario_usuario = Usuario.objects.filter(user__username=username).first()
-                funcionario_usuario.nome = nome
-                funcionario_usuario.nivel_usuario = nivel_usuario
-                funcionario_usuario.eventual_doc = eventual_doc
-                funcionario_usuario.save()
+            if aprovar:
+                super = request.POST['super']
+                superior = Usuario.objects.filter(user__username=super).first()
+                pass_super = check_password(request.POST['pass-super'], superior.user.password)
+                if (nivel_usuario == 1 or nivel_usuario == 2) and \
+                    (superior.nivel_usuario == 1 and pass_super):
+                    approved = True
+                elif nivel_usuario == 3 and \
+                    ((superior.nivel_usuario == 2 and pass_super) or \
+                     (superior.nivel_usuario == 1 and pass_super)):
+                    approved = True
+            
+            else:
+                aprovar = True
+                context = {
+                    'aprovar': aprovar,
+                    'nome': nome,
+                    'nivel_usuario': nivel_usuario,
+                    'eventual_doc': eventual_doc,
+                    'password': password,
+                    'role': ROLE_CHOICE[nivel_usuario - 1][0],
+                    'rolename': ROLE_CHOICE[nivel_usuario - 1][1],
+                    'form': form,
+                    'subjects': subjects,
+                    'classes': classes,
+                }
+                return render(request, 'signup/signup.html', context=context) 
 
-                message = {'type': 'success',  'text': 'Registration successful. You can now log in.'}
-                user_do_usuario = funcionario_usuario.user
-                print("eventual: ", funcionario_usuario.eventual_doc)
-                redirecionar = True
+            if approved:
+                print("\nCriando usuario...\n")
+                usuario = User.objects.create_user(username=username, password=password, is_staff=is_staff, is_superuser=is_superuser)
+
+                if usuario is not None:
+                    funcionario_usuario = Usuario.objects.filter(user__username=username).first()
+                    funcionario_usuario.nome = nome
+                    funcionario_usuario.nivel_usuario = nivel_usuario
+                    funcionario_usuario.eventual_doc = eventual_doc
+                    funcionario_usuario.save()
+
+                    message = {'type': 'success',  'text': 'Registration successful. You can now log in.'}
+                    user_do_usuario = funcionario_usuario.user
+                    print("eventual: ", funcionario_usuario.eventual_doc)
+                    redirecionar = True
+                else:
+                    message = {'type': 'erro', 'text': 'Não foi possível cadastrar seu usuário.'}
             else:
                 message = {'type': 'erro', 'text': 'Não foi possível cadastrar seu usuário.'}
         else:
-            message = {'type': 'error',  'text': "Houve um erro no cadastro, verifique novamente."}
-            form = RegistrationForm()
+            message = {'type': 'erro',  'text': "Houve um erro no cadastro, verifique novamente."}
+            form = RegistrationForm(request.POST)
     
     context = {
         'usuario': user_do_usuario,
