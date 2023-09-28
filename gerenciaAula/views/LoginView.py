@@ -4,7 +4,6 @@ from gerenciaAula.forms import LoginForm
 from gerenciaAula.views import *
 
 def login_user(request):
-    print(request)
     context = None
 
     if request.method == 'POST':

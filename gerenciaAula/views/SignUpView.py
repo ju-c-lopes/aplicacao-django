@@ -9,6 +9,7 @@ from gerenciaAula.models import Usuario
 from gerenciaAula.forms import RegistrationForm
 
 def signup(request):
+    print(request.POST)
 
     form = RegistrationForm() 
     redirecionar = False
@@ -97,7 +98,7 @@ def signup(request):
                     funcionario_usuario.eventual_doc = eventual_doc
                     funcionario_usuario.save()
 
-                    message = {'type': 'success',  'text': 'Registration successful. You can now log in.'}
+                    message = {'type': 'success',  'text': 'Cadastro feito com sucesso. Agora você pode fazer login.'}
                     user_do_usuario = funcionario_usuario.user
                     print("eventual: ", funcionario_usuario.eventual_doc)
                     redirecionar = True
