@@ -5,13 +5,13 @@ class Usuario(models.Model):
     nome = models.CharField(max_length=45, blank=True, null=True)
     nivel_usuario = models.IntegerField(choices=ROLE_CHOICE, default=3)
     eventual_doc = models.BooleanField(blank=True, null=True)  # This field type is a guess.
-    cod_turma = models.ManyToManyField('Turma', db_column='cod_turma', blank=True, null=True)
-    cod_disc = models.ManyToManyField('Disciplina', db_column='cod_disc', blank=True, null=True)
+    cod_turma = models.ManyToManyField('Turma', db_column='cod_turma', blank=True)
+    cod_disc = models.ManyToManyField('Disciplina', db_column='cod_disc', blank=True)
     
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, default=None)
 
     def __str__(self):
         return f'{self.user.username}'

@@ -1,0 +1,219 @@
+.page-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.full-user--img {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.full-user--img img {
+    width: auto;
+    height: 90vh;
+    text-align: center;
+}
+
+.full-image--active {
+    background-color: #3c3c3c;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+@keyframes apagar {
+    0% {transform: scale(1);}
+    100% {transform: scale(0); visibility: hidden;}
+}
+
+.no-user--img {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    right: 2em;
+    line-height: 2em;
+    background-color: #FFF;
+    border-radius: 0.3em;
+    box-shadow: 0.5em 0.5em 2em #000;
+    text-align: center;
+    margin: 0 auto 0 auto;
+    width: 15em;
+    display: none;
+    z-index: 4;
+}
+
+.user-img, .user-img picture {
+    position: sticky;
+    top: 0;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.user-img--foto, .user-img--foto picture, .user-img--foto picture img {
+    position: sticky;
+    border-radius: 50%;
+    width: 20vw;
+    height: 20vw;
+    z-index: 1;
+    object-fit: cover;
+    object-position: center;
+}
+
+@keyframes closeBtUp {
+    0% {transform: scale(1);}
+    100% {transform: scale(1.2);}
+}
+
+@keyframes closeBtDown {
+    0% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0; display: flex;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0; display: none;}
+}
+
+.logout-img {
+    position: fixed;
+    top: 1em;
+    right: 2em;
+    color: #FFF;
+    margin-left: auto;
+}
+.logout-img:after {
+    content: "\2715";
+    font-size: 3em; 
+}
+
+.menu-buttons {
+    position: relative;
+    top: -5em;
+    display: flex;
+    flex-direction: column;
+    animation: 0.01s fadeOut linear forwards;
+    z-index: 2;
+}
+
+.img-menu--button {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 2em;
+    box-shadow: 0.5em 0.5em 2em rgba(255, 255, 255, 0.7);
+    margin: 0 auto 0.7em auto;
+    width: 40%;
+}
+
+.img-menu--button a {
+    text-decoration: none;
+    color: #000;
+}
+
+.dados-user {
+    width: 40%;
+}
+
+table {
+    border: #9c9c9c 0.1em dotted;
+}
+
+td {
+    width: 25em;
+    height: 3em;
+    padding-left: 1em;
+}
+
+tr:nth-child(2) {
+    padding-left: 0;
+}
+
+h1, h2 {
+    font-size: 10px;
+    text-wrap: nowrap;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .page-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .dados-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        width: 20em;
+    }
+
+    .user-img--foto, .user-img--foto picture, .user-img--foto picture img {
+        position: sticky;
+        border-radius: 50%;
+        width: 40vw;
+        margin-bottom: 5vh;
+        height: 40vw;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .menu-buttons {
+        position: relative;
+        top: -12vh;
+        display: flex;
+        flex-direction: column;
+        animation: 0.01s fadeOut linear forwards;
+        z-index: 2;
+    }
+
+    .img-menu--button {
+        background-color: rgba(255, 255, 255, 0.7);
+        border: none;
+        border-radius: 2em;
+        box-shadow: 0.5em 0.5em 2em rgba(0, 0, 0, 0.5);
+        margin: 0 auto 0.3em auto;
+        width: 80%;
+        /* z-index: 2; */
+    }
+
+    .no-user--img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        line-height: 2em;
+        background-color: #FFF;
+        border-radius: 0.3em;
+        box-shadow: 0.5em 0.5em 2em #000;
+        text-align: center;
+        margin: 0 auto 0 auto;
+        width: 80%;
+        display: none;
+        z-index: 4;
+    }
+}

@@ -36,13 +36,13 @@
 22° - Adicionado as urls restantes no arquivo urls geral do projeto
 23° - Reorganizado todas templates com os css necessários
 24° - Refeito forma de fazer login retornando o nome do usuário para logar
+25° - Documento para uso da aplicação
+26° - Limitar criação de direção e coordenação com aval de direção
+27° - Limitar criação de professor com aval de direção ou coordenação
+28° - Página de edição do usuário (permitindo adicionar uma imagem)
+29° - Configurar exibição da imagem do usuário logado
 
 PARA FAZER:
 
-- Limitar criação de direção e coordenação com aval de direção
-- Limitar criação de professor com aval de direção ou coordenação
 - Campo de busca de usuário pelo nome em caso de esquecimento do nome do usuário
-- Página de edição do usuário (permitindo adicionar uma imagem)
-- Configurar exibição da imagem do usuário logado
 - Página para consultar aulas dadas
-- Documento para uso da aplicação

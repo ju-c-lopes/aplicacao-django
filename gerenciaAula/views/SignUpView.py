@@ -5,11 +5,10 @@ from gerenciaAula.views import *
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
-from gerenciaAula.models import Usuario
+from gerenciaAula.models import Usuario, Disciplina, Turma
 from gerenciaAula.forms import RegistrationForm
 
 def signup(request):
-    print(request.POST)
 
     form = RegistrationForm() 
     redirecionar = False
@@ -89,6 +88,13 @@ def signup(request):
 
             if approved:
                 print("\nCriando usuario...\n")
+
+                if subjects is not None:
+                    subjects_cods = Disciplina.objects.filter(cod_disc__in=[x for x in subjects])
+                
+                if classes is not None:
+                    classes_cods = Turma.objects.filter(cod_turma__in=[x for x in classes])
+
                 usuario = User.objects.create_user(username=username, password=password, is_staff=is_staff, is_superuser=is_superuser)
 
                 if usuario is not None:
@@ -96,6 +102,10 @@ def signup(request):
                     funcionario_usuario.nome = nome
                     funcionario_usuario.nivel_usuario = nivel_usuario
                     funcionario_usuario.eventual_doc = eventual_doc
+                    for x in subjects_cods:
+                        funcionario_usuario.cod_disc.add(x)
+                    for x in classes_cods:
+                        funcionario_usuario.cod_turma.add(x)
                     funcionario_usuario.save()
 
                     message = {'type': 'success',  'text': 'Cadastro feito com sucesso. Agora você pode fazer login.'}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head-css %}
+<link rel="stylesheet" type="text/css" href="{% static './css/user-view.css'%}" media="all" />
+<link rel="stylesheet" type="text/css" href="{% static './css/login.css' %}" media="all">
+{% endblock %}
+
+{% block content %}
+<div>
+    <div class="page-user">
+        
+        <div class="user-img">
+            <div class="user-img--foto">
+                {% if not request.user.usuario.image %}
+                <!-- Span para pop up informando que não tem foto -->
+                <span class="no-user--img">Usuário sem foto</span>
+                <picture>
+                    <source src="/media/user.jpg" type="" media="" />
+                    <img src="/media/user.jpg" alt="{{ request.user.usuario.nome }}" />
+                </picture>
+                {% else %}
+                <!-- Div que vai cobrir a pagina para exibir a imagem full -->
+                <div class="full-user--img">
+                    <img src="/media/{{ request.user.usuario.image }}" alt="{{ request.user.usuario.nome }}" />
+                    <div class="logout-img"></div>
+                </div>
+                <picture>
+                    <source src="/media/{{ request.user.usuario.image }}" type="" media="" />
+                    <img src="/media/{{ request.user.usuario.image }}" alt="{{ request.user.usuario.nome }}" />
+                </picture>
+                {% endif %}
+                <div class="menu-buttons">
+                    <button class="img-menu--button">Ver Imagem</button>
+                    <button class="img-menu--button"><a href="{% url 'usuario-edit' %}">Editar Usuário</a></button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="dados-user">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Nome:</td>
+                        <td>{{ request.user.usuario.nome }}</td>
+                    </tr>
+                    <tr>
+                        <td>Cargo</td>
+                        <td>{{ role }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td rowspan="{{ request.user.usuario.cod_disc.all | length }}">Matérias</td>
+                        {% for cod in request.user.usuario.cod_disc.all %}
+                        {% if forloop.counter == 1 %}
+                        <td>{{ cod.nome_disc }}</td>
+                        {% else %}
+                        <tr><td>{{ cod.nome_disc }}</td></tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td rowspan="{{ request.user.usuario.cod_disc.all | length }}">Turmas</td>
+                        {% for cod in request.user.usuario.cod_turma.all %}
+                        {% if forloop.counter == 1 %}
+                        <td>{{ cod.nome_turma }}</td>
+                        {% else %}
+                        <tr><td>{{ cod.nome_turma }}</td></tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% if message is not None and message.type == 'success' %}
+    <div class="form-message--success">{{ message.text }}</div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/verImagem.js' %}"></script>
+{% endblock %}

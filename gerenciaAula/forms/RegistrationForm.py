@@ -22,7 +22,10 @@ class RegistrationForm(forms.ModelForm):
     SUBJECTS = (
         ('mat', 'Matemática'),
         ('por', 'Português'),
-        ('his', 'História')
+        ('his', 'História'),
+        ('geo', 'Geografia'),
+        ('qui', 'Química'),
+        ('fis', 'Física'),
     )
 
     CLASSES = (

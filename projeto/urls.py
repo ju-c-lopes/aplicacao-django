@@ -23,7 +23,7 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('gerenciaAula.urls.IndexUrl')),
-    path('usuario/', include('gerenciaAula.urls.UsuarioUrl')),
+    path('usuario/', include('gerenciaAula.urls.UserPageUrl')),
     path('sobre-nos/', include('gerenciaAula.urls.AboutUsUrl')),
     path('login/', include('gerenciaAula.urls.LoginUrl')),
     path('logout/', include('gerenciaAula.urls.LogoutUrl')),
