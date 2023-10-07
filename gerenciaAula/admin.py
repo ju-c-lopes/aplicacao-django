@@ -7,7 +7,6 @@ class UsuarioAdmin(admin.ModelAdmin):
     empty_value_display = 'Vazio'
     list_display_links = 'user', 'nivel_usuario'
     list_filter = 'user__is_active', 'user__is_superuser'
-    # fields = 'user', ('nivel_usuario',), 'image', 'cod_disc'
     fieldsets = ((
         ('Usuário', {
             'fields': ('user', 'nome', 'image', 'nivel_usuario'),

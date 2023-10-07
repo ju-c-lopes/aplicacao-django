@@ -8,3 +8,4 @@ from .CadastraAulaView import *
 from .MaisInfoView import *
 from .SalvaAulaView import *
 from .UserPageView import *
+from .MinhasAulasView import *

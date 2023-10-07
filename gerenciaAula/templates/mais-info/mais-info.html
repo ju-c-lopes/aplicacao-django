@@ -9,6 +9,7 @@
 
 <div class="adicional">
 
+    {% if user_agent != 'Android' and user_agent != 'Iphone' %}
     <table>
         <thead>
             <tr>
@@ -20,35 +21,55 @@
         </thead>
         <tbody>
             <tr>
-                <td class="cel1">{{ disciplina }}</td>
+                <td class="cel1">{{ disciplina.nome_disc }}</td>
                 <td class="cel2">{{ cod_hab }}</td>
                 <td class="cel3">{{ descricao }}</td>
                 <td class="cel4">{{ turma }}</td>
             </tr>
         </tbody>
     </table>
+    {% else %}
+    <table>
+        <tbody>
+            <tr>
+                <th class="cel1">Disciplina</th>
+                <td class="cel1">{{ disciplina.nome_disc }}</td>
+            </tr>
+            <tr>
+                <th class="cel2">Código Habilidade</th>
+                <td class="cel2">{{ cod_hab }}</td>
+            </tr>
+            <tr>
+                <th class="cel3">Descrição Habilidade</th>
+                <td class="cel3">{{ descricao }}</td>
+            </tr>
+            <tr>
+                <th class="cel4">Turma</th>
+                <td class="cel4">{{ turma }}</td>
+            </tr>
+    </table>
+    {% endif %}
 
     <form class="form-adicional" action="/salvar/" method="post">
         {% csrf_token %}
         <input type="hidden" name="cod_turma" value="{{ cod_turma }}">
-        <input type="hidden" name="disciplina" value="{{ disciplina }}">
+        <input type="hidden" name="disciplina" value="{{ disciplina.cod_disc }}">
         <input type="hidden" name="cod_hab" value="{{ cod_hab }}">
         <input type="hidden" name="descricao" value="{{ descricao }}">
         <input type="hidden" name="turma" value="{{ turma }}">
 
         <div class="adicional-div-form">
             <div>
-                <label for="fluxo">Fluxo:</label>
+                <label id="label-fluxo" for="fluxo">Fluxo:</label>
                 <textarea name="fluxo" id="fluxo" cols="30" rows="10" placeholder="Descreva como foi o fluxo da aula"></textarea>
             </div>
 
             <div>
-                <label for="adicionais">Informações Adicionais:</label>
+                <label id="label-adicionais" for="adicionais">Informações Adicionais:</label>
                 <textarea name="adicionais" id="adicionais" cols="30" rows="10" placeholder="Digite informações que julgue importantes"></textarea>
             </div>
+            <input class="bt-salvar" type="submit" value="Salvar">
         </div>
-
-        <input class="bt-salvar" type="submit" value="Salvar">
     </form>
 
 </div>

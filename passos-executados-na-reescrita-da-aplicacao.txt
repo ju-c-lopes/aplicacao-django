@@ -41,8 +41,10 @@
 27° - Limitar criação de professor com aval de direção ou coordenação
 28° - Página de edição do usuário (permitindo adicionar uma imagem)
 29° - Configurar exibição da imagem do usuário logado
+30° - Criado campo created_at em Aula para informar a data de criação da aula, pode ser editável e atualizado no campo também adicionado chamado updated_at
+31° - Página para consultar aulas dadas
 
 PARA FAZER:
 
 - Campo de busca de usuário pelo nome em caso de esquecimento do nome do usuário
-- Página para consultar aulas dadas
+- Página para professor editar a aula

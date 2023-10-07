@@ -3,14 +3,11 @@
     justify-content: center;
 }
 
-.form-table tr, .form-table tr td {
-    text-align: left;
-    padding: 1em 0 1em 0;
-}
 
-.form-table tr td {
-    width: 10em;
-    margin: 2em;
+.form-table tr, .form-table tr td {
+    width: 50%;
+    padding: 1em 0 1em 0;
+    margin: 0 auto 0 auto;
 }
 
 .form-message--erro {

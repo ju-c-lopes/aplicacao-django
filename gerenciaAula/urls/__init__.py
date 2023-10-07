@@ -8,3 +8,4 @@ from .CadastraAulaUrl import *
 from .MaisInfoUrl import *
 from .SalvaAulaUrl import *
 from .UserPageUrl import *
+from .MinhasAulasUrl import *

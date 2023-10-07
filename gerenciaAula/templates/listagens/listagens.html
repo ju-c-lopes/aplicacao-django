@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<div class="row my-4 text-center">
+<div id="h1-text" class="row my-4 text-center">
     <h1 class="display-8 font-weight-bold">Cadastro das disciplinas aplicadas e o resumo da aula dada</h1>
 </div>
 <br>
@@ -18,18 +18,27 @@
         <form action="" method="post">
             {% csrf_token %}
             <fieldset class="list-form">
+                {% if 'Android' in user_agent or 'Iphone' in user_agent %}
+                <div class="column form-mobile">
+                    <div class="form-group col-sm-12 col-md-12 col-lg-6 d-flex">
+                {% else %}
                 <div class="row">
                     <div class="form-group col-sm-12 col-md-12 col-lg-6 d-flex justify-content-between">
+                {% endif %}
                         <label for="turma">Turma</label>
                         <select name="turma" id="turma" class="select-box" required>
                             <option value="">Selecione</option>
-                            <option value="1">1° Ano</option>
-                            <option value="2">2° Ano</option>
-                            <option value="3">3° Ano</option>
+                            {% for turma in turmas %}
+                            <option value="{{ turma.cod_turma }}">{{ turma.nome_turma }}</option>
+                            {% endfor %}
                         </select>
                     </div>
 
+                    {% if 'Android' in user_agent or 'Iphone' in user_agent %}
+                    <div class="form-group col-sm-12 col-md-12 col-lg-6 d-flex">
+                    {% else %}
                     <div class="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-between">
+                    {% endif %}
                         <label for="habilidade">Código Habilidade</label>
                         <select name="habilidade" id="habilidade" class="select-box">
                             <option value="">Selecione</option>
@@ -38,70 +47,114 @@
                             {% endfor %}
                         </select>
                     </div>
+                {% if not user_agent %}
                 </div>
                 <div class="row">
+                {% endif %}
+                    {% if 'Android' in user_agent or 'Iphone' in user_agent %}
+                    <div class="form-group col-sm-12 col-md-12 col-lg-6 d-flex">
+                    {% else %}
                     <div class="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-between">
+                    {% endif %}
                         <label for="disciplina">Disciplina</label>
                         <select name="disciplina" id="disciplina" class="select-box" required>
                             <option value="">Selecione</option>
-                            <option value="Português">Português</option>
-                            <option value="Matemática">Matemática</option>
-                            <option value="História">História</option>
+                            {% for d in disciplinas %}
+                            <option value="{{ d.cod_disc }}">{{ d.nome_disc }}</option>
+                            {% endfor %}
                         </select>
                     </div>
 
+                    {% if 'Android' in user_agent or 'Iphone' in user_agent %}
+                    <div class="form-group col-sm-12 col-md-12 col-lg-6 d-flex">
+                    {% else %}
                     <div class="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-between">
+                    {% endif %}
                         <label for="descricao">Descrição Habilidade</label>
                         <input type="text" name="descricao" id="descricao" placeholder="Digite palavras-chave">
                     </div>
                 </div>
             </fieldset>
-            <button type="submit" class="disciplina--submit pull-right btn btn-primary"> Aplicar </button>
+            <button type="submit" id="lista-submit" class="disciplina--submit pull-right btn btn-primary"> Aplicar </button>
         </form>
     </div>
 </div>
 
-<div class="row mt-5 mb-5">
-    <div class="tabela-resultados text-md-left">
+<div id="resultados" class="row mt-5 mb-5">
+    <div id="retorno-resultados" class="tabela-resultados text-md-left">
         <p>
             Sua busca retornou <strong>
                 {{ cont }}</strong>
             resultados
         </p>
-
-        <table class="table table-striped table-responsive">
-            <thead>
-                <tr>
-                    <th class="cel1">Disciplina</th>
-                    <th class="cel2">Código Habilidade</th>
-                    <th class="cel3">Descrição Habilidade</th>
-                    <th class="cel4">Ação</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                {% for ret in retorno %}
-                <tr>
-                    {% load static %}
-                    <td class="cel1">{{ ret.disciplina.title }}</td>
-                    <td class="cel2">{{ ret.cod_hab }}</td>
-                    <td class="cel3">{{ ret.descricao }}</td>
-                    <td class="cel4">
-                        <form action="./cadastrar-aula/mais-info/" method="get">
-                            <input type="hidden" name="disciplina" value="{{ ret.disciplina }}">
-                            <input type="hidden" name="cod_hab" value="{{ ret.cod_hab }}">
-                            <input type="hidden" name="descricao" value="{{ ret.descricao }}">
-                            <!-- <input type="hidden" name="cod_turma" value="{{ cod_turma }}"> -->
-                            <input type="hidden" name="turma" value="{{ ret.turma }}">
-                            <button class="bt-edit" type="submit"><img src="{% static './img/lapis.png' %}"
-                                    alt=""></button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-
-            </tbody>
-        </table>
     </div>
+</div>
+
+<div id="lista-table">
+    {% if user_agent != 'Android' and user_agent != 'Iphone' %}
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <th class="cel1">Disciplina</th>
+                <th class="cel2">Código Habilidade</th>
+                <th class="cel3">Descrição Habilidade</th>
+                <th class="cel4">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for ret in retorno %}
+            <tr>
+                {% load static %}
+                <td class="cel1">{{ ret.disciplina.nome_disc.title }}</td>
+                <td class="cel2">{{ ret.cod_hab }}</td>
+                <td class="cel3">{{ ret.descricao }}</td>
+                <td class="cel4">
+                    <form action="./cadastrar-aula/mais-info/" method="get">
+                        <input type="hidden" name="disciplina" value="{{ ret.disciplina.cod_disc }}">
+                        <input type="hidden" name="cod_hab" value="{{ ret.cod_hab }}">
+                        <input type="hidden" name="descricao" value="{{ ret.descricao }}">
+                        <input type="hidden" name="turma" value="{{ ret.turma }}">
+                        <button class="bt-edit" type="submit"><img src="{% static './img/lapis.png' %}"
+                                alt=""></button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    {% else %}
+    {% for ret in retorno %}
+    <hr>
+    <table>
+        <tr>
+            <th class="cel1">Disciplina</th>
+            <td class="cel1">{{ ret.disciplina.nome_disc.title }}</td>
+        </tr>
+        <tr>
+            <th class="cel2">Código Habilidade</th>
+            <td class="cel2">{{ ret.cod_hab }}</td>
+        </tr>
+        <tr>
+            <th class="cel3">Descrição Habilidade</th>
+            <td class="cel3">{{ ret.descricao }}</td>
+        </tr>
+        <tr>
+            <th class="cel4">Ação</th>
+            <td class="cel4">
+                <form action="./cadastrar-aula/mais-info/" method="get">
+                    <input type="hidden" name="disciplina" value="{{ ret.disciplina.cod_disc }}">
+                    <input type="hidden" name="cod_hab" value="{{ ret.cod_hab }}">
+                    <input type="hidden" name="descricao" value="{{ ret.descricao }}">
+                    <input type="hidden" name="turma" value="{{ ret.turma }}">
+                    <button class="bt-edit" type="submit"><img src="{% static './img/lapis.png' %}" alt=""></button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    {% endfor %}
+    {% endif %}
+    
 </div>
 {% endblock %}

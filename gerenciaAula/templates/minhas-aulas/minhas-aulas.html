@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head-css %}
+<link rel="stylesheet" type="text/css" href="{% static './css/minhas-aulas.css' %}" media="all">
+<link rel="stylesheet" type="text/css" href="{% static './css/listagens.css' %}" media="all">
+<link rel="stylesheet" type="text/css" href="{% static './css/cadastro.css' %}" media="all">
+{% endblock %}
+
+{% block content %}
+<h1>
+    Aulas dadas por 
+    {% if professor.nome %}
+    {{ professor.nome }}
+    {% else %}
+    {{ request.user.usuario.nome }}
+    {% endif %}
+</h1>
+
+{% if request.user.usuario.nivel_usuario == 1 or request.user.usuario.nivel_usuario == 2 %}
+<form action="" method="POST">{% csrf_token %}
+    <div class="form-control">
+        <label for="prof">Pesquisar: </label>
+        <input type="text" name="prof" value="">
+        <button type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+    </div>
+    {% if message is not None and message.type == 'erro' %}
+    <div class="form-message--erro">{{ message.text }}</div>
+    {% endif %}
+
+    {% if professor is not None and professor|length > 1 %}
+        {% for prof in professor %}
+        <div class="input-checkbox">
+            <input type="checkbox" name="professor-selecionado" id="professor-selecionado", value="{{ prof.user }}">
+            <label for="professor-selecionado">{{ prof.nome }}</label>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary w-100 mt-4">Listar</button>        
+    {% endif %}
+</form>
+
+
+{% endif %}
+
+{% if user_agent != 'Android' and user_agent != 'Iphone' %}
+<table class="table table-striped table-responsive">
+    <thead>
+        <th>Aula dada em: </th>
+        <th>Matéria: </th>
+        <th>Turma: </th>
+        <th>Habilidade Aplicada: </th>
+        <th>Fluxo da aula: </th>
+        <th>Informações Adicionais: </th>
+    </thead>
+    <tbody>
+        {% for aula in aulas %}
+        <tr>
+            <td class="cel1">{{ aula.created_at }}</td>
+            <td class="cel2">{{ aula.cod_disc.nome_disc }}</td>
+            <td class="cel3">{{ aula.cod_turma.nome_turma }}</td>
+            <td class="cel4">
+                {{ aula.cod_hab.habilidade }}
+                <hr>
+                {{ aula.desc_aula }}
+            </td>
+            <td class="cel5">{{ aula.fluxo_aula }}</td>
+            <td class="cel6">{{ aula.info_adicionais }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    {% for aula in aulas %}
+    <table>
+        <tr>
+            <th class="cel1">Aula dada em: </th>
+            <td class="cel1">{{ aula.created_at }}</td>
+        </tr>
+        <tr>
+            <th class="cel2">Matéria: </th>
+            <td class="cel2">{{ aula.cod_disc.nome_disc }}</td>
+        </tr>
+        <tr>
+            <th class="cel3">Turma: </th>
+            <td class="cel3">{{ aula.cod_turma.nome_turma }}</td>
+        </tr>
+        <tr>
+            <th class="cel4">Habilidade Aplicada: </th>
+            <td class="cel4">
+                {{ aula.cod_hab.cod_hab }}
+                <hr>
+                {{ aula.desc_aula }}
+            </td>
+        </tr>
+        <tr>
+            <th class="cel5">Fluxo da aula: </th>
+            <td class="cel5">{{ aula.fluxo_aula }}</td>
+        </tr>
+        <tr>
+            <th class="cel6">Informações Adicionais: </th>
+            <td class="cel6">{{ aula.info_adicionais }}</td>
+        </tr>
+    </table>
+    {% endfor %}
+{% endif %}
+{% endblock %}
