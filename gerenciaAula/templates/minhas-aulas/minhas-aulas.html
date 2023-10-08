@@ -61,6 +61,8 @@
         <tr>
             <td class="cel1">
                 {{ aula.created_at }}
+                <hr>
+                Atualizada em:<br />{{ aula.updated_at }}
                 {% if request.user.usuario.nivel_usuario == 3 %}
                 <form action="{% url 'editar-aula' %}" method="POST">{% csrf_token %}
                     <input type="hidden" name="aula" value="{{ aula.cod_aula }}">

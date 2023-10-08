@@ -44,7 +44,7 @@
 30° - Criado campo created_at em Aula para informar a data de criação da aula, pode ser editável e atualizado no campo também adicionado chamado updated_at
 31° - Página para consultar aulas dadas
 32° - Página para professor editar a aula
+33° - Campo de busca de usuário pelo nome em caso de esquecimento do nome do usuário
 
 PARA FAZER:
 
-- Campo de busca de usuário pelo nome em caso de esquecimento do nome do usuário

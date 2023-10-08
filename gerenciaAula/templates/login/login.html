@@ -10,8 +10,10 @@ Login - Portal BNCC
 {% endblock %}
 
 {% block content %}
-{% if message is not None and message.type == 'success' %}
+{% if message is not None and message.type == 'success' and message.text is not None %}
 <div class="form-message--success">{{ message.text }}</div>
+{% elif message is not None and message.type == 'erro' %}
+<div class="form-message--erro">{{ message.text }}</div>
 {% endif %}
 <div class="row justify-content-center">
     <div class="col-md-6">
@@ -19,24 +21,46 @@ Login - Portal BNCC
             <div class="card-header">
                 <h4>Login</h4>
             </div>
+            {% if not lembrar %}
             <div class="card-body">
-                {% if error_message %}
-                <div class="alert alert-danger" role="alert">
-                    {{ error_message }}
-                </div>
-                {% endif %}
                 <form method="post">{% csrf_token %}
                     <div class="form-group">
                         <label for="username">Usuário</label>
+                        {% if message.usuario_inv %}
+                        <input type="text" class="form-control" id="username" name="username">
+                        {% else %}
                         <input type="text" class="form-control" id="username" name="username" required>
+                        {% endif %}
                     </div>
                     <div class="form-group">
                         <label for="password">Senha</label>
+                        {% if message.usuario_inv %}
+                        <input type="password" class="form-control" id="password" name="password">
+                        {% else %}
                         <input type="password" class="form-control" id="password" name="password" required>
+                        {% endif %}
                     </div>
                     <button type="submit" class="btn btn-primary w-100 mt-4">Login</button>
+                    {% if message is not None and message.usuario_inv %}
+                    <div class="d-flex justify-content-end">
+                        <input type="hidden" name="lembrar" value="1">
+                        <button type="submit" class="bt-remember">Não lembro meu usuário.</button>
+                    </div>
+                    {% endif %}
                 </form>
             </div>
+            {% else %}
+            <div class="card-body">
+                <form method="post">{% csrf_token %}
+                    <div class="form-control">
+                        <input type="hidden" name="lembrar" value="1">
+                        <label for="nome">Nome: </label>
+                        <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite o nome cadastrado.">
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Lembrar</button>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
