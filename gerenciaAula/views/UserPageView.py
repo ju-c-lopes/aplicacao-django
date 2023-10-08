@@ -34,12 +34,11 @@ def view_imagem(request, id=None):
     return render(request, template_name='user-page/user-page.html')
 
 def edit_user(request):
-    print(request.POST, request.FILES)
     message = None
     username_sem_uso = True
     usuario = get_object_or_404(Usuario, user=request.user)
     user_usuario = get_object_or_404(User, id=request.user.id)
-    print(usuario.image)
+
     form = EditUserForm(instance=usuario)
     user_form = UserForm(instance=request.user)
 
@@ -48,7 +47,6 @@ def edit_user(request):
         user_form = UserForm(request.POST, instance=request.user)
         verifica_username = Usuario.objects.filter(user__username=request.POST['username']).exclude(user__id=request.user.id).first()
         username_sem_uso = verifica_username is None
-        print(form.is_valid())
 
         if form.is_valid() and user_form.is_valid() and username_sem_uso:
             if request.POST['username'] is not None:

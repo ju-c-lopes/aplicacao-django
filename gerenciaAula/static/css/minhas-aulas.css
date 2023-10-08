@@ -22,6 +22,47 @@
     .input-checkbox {
         margin: 1em 0 1em 0;
     }
+    .bt-edit img{
+        width: 2em !important;
+        height: auto;
+    }
+    #habilidade {
+        font-size: 1em !important;
+    }
+    #label-fluxo, #label-adicionais, #fluxo, #adicionais {
+        font-size: 1em !important;
+        font-weight: 100 !important;
+    }
+    #descricao {
+        font-size: 1em !important;
+    }
+    .separador {
+        width: 100%;
+        height: 2em;
+        background-color: red;
+        margin-bottom: 1em;
+    }
+    input[type="checkbox" i] {
+        width: 1.5em;
+        height: 1.5em;
+        margin: 0.5em;
+    }
+    .small-bt {
+        border: none;
+        box-shadow: 0.2em 0.2em 2em #000;
+        border-radius: 0.5em;
+        width: 2em;
+        margin: 0.5em;
+    }
+    .check-tr {
+        width: 100%;
+    }
+    .check-tr td {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200%;
+    }
 }
 
 @media (min-width: 768px) {

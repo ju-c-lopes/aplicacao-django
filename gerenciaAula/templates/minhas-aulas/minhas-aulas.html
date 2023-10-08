@@ -35,7 +35,7 @@
     {% if professor is not None and professor|length > 1 %}
         {% for prof in professor %}
         <div class="input-checkbox">
-            <input type="checkbox" name="professor-selecionado" id="professor-selecionado", value="{{ prof.user }}">
+            <input type="checkbox" name="professor-selecionado" id="professor-selecionado" value="{{ prof.user }}">
             <label for="professor-selecionado">{{ prof.nome }}</label>
         </div>
         {% endfor %}
@@ -59,7 +59,16 @@
     <tbody>
         {% for aula in aulas %}
         <tr>
-            <td class="cel1">{{ aula.created_at }}</td>
+            <td class="cel1">
+                {{ aula.created_at }}
+                {% if request.user.usuario.nivel_usuario == 3 %}
+                <form action="{% url 'editar-aula' %}" method="POST">{% csrf_token %}
+                    <input type="hidden" name="aula" value="{{ aula.cod_aula }}">
+                    <button class="bt-edit" type="submit"><img src="{% static './img/lapis.png' %}"
+                        alt=""></button>
+                </form>
+                {% endif %}
+            </td>
             <td class="cel2">{{ aula.cod_disc.nome_disc }}</td>
             <td class="cel3">{{ aula.cod_turma.nome_turma }}</td>
             <td class="cel4">
@@ -78,7 +87,15 @@
     <table>
         <tr>
             <th class="cel1">Aula dada em: </th>
-            <td class="cel1">{{ aula.created_at }}</td>
+            <td class="cel1">
+                {{ aula.created_at }}
+                {% if request.user.usuario.nivel_usuario == 3 %}
+                <form action="{% url 'editar-aula' %}" method="POST">{% csrf_token %}
+                    <input type="hidden" name="aula" value="{{ aula.cod_aula }}">
+                    <button class="bt-edit" type="submit"><img src="{% static './img/lapis.png' %}" alt=""></button>
+                </form>
+                {% endif %}
+            </td>
         </tr>
         <tr>
             <th class="cel2">Matéria: </th>

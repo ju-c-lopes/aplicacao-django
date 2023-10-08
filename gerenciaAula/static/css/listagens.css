@@ -60,7 +60,7 @@
         background-color: #b0b0b0;
     }
     
-    .cel1, .cel2, .cel4 {
+    .cel1, .cel2, .cel4, .cel5, .cel6 {
         width: 20%;
     }
     
@@ -175,7 +175,7 @@
         text-align: center;
     }
     
-    .cel1, .cel2, .cel4 {
+    .cel1, .cel2, .cel4, .cel5, .cel6 {
         width: 20%;
     }
     

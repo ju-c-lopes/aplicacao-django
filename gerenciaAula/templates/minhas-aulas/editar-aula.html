@@ -3,8 +3,149 @@
 
 {% block head-css %}
 <link rel="stylesheet" type="text/css" href="{% static './css/minhas-aulas.css' %}" media="all">
+<link rel="stylesheet" type="text/css" href="{% static './css/listagens.css' %}" media="all">
+<link rel="stylesheet" type="text/css" href="{% static './css/cadastro.css' %}" media="all">
 {% endblock %}
 
 {% block content %}
+    <h1>{{ request.user.usuario.nome }} está editando a seguinte aula:</h1>
 
+    <div>
+        <form action="" method="POST">{% csrf_token %}
+            {% if user_agent != 'Android' and user_agent != 'Iphone' %}
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <th>Aula dada em: </th>
+                        <th>Matéria: </th>
+                        <th>Turma: </th>
+                        <th>Habilidade Aplicada: </th>
+                        <th>Fluxo da aula: </th>
+                        <th>Informações Adicionais: </th>
+                    </thead>
+                    <tbody>
+                        <td class="cel1">{{ aula.created_at}}</td>
+                        <td class="cel2">{{ aula.cod_disc.nome_disc }}</td>
+                        <td class="cel3">{{ aula.cod_turma.nome_turma }}</td>
+                        <td class="cel4">
+                            <select name="habilidade" id="habilidade" class="select-box">
+                                {% for cod in cod_hab %}
+                                    {% if cod_selected == cod.cod_hab %}
+                                        <option value="{{ cod.cod_hab }}" selected>{{ cod.cod_hab }}</option>
+                                    {% elif cod_selected is None and cod.cod_hab == aula.cod_hab.cod_hab %}
+                                        <option value="{{ cod.cod_hab }}" selected>{{ cod.cod_hab }}</option>
+                                    {% else %}
+                                        <option value="{{ cod.cod_hab }}">{{ cod.cod_hab }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="cel5">
+                            <textarea name="fluxo" id="fluxo" cols="30" rows="5">{{ aula.fluxo_aula }}</textarea>
+                        </td>
+                        <td class="cel6">
+                            <textarea name="adicionais" id="adicionais" cols="30" rows="5">{{ aula.info_adicionais }}</textarea>
+                        </td>
+                    </tbody>
+                </table>
+
+                {% if retorno %}
+                <div>
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th colspan="2" class="cel2">Código Habilidade</th>
+                                <th class="cel3">Descrição Habilidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ret in retorno %}
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="cod_selected" id="cod_selected" value="{{ ret.cod_hab }}">
+                                </td>
+                                <td class="cel2">{{ ret.cod_hab }}</td>
+                                <td class="cel3">{{ ret.descricao }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+
+            {% else %}
+                <table>
+                    <tr>
+                        <th class="cel1">Aula dada em: </th>
+                        <td class="cel1">{{ aula.created_at }}</td>
+                    </tr>
+                    <tr>
+                        <th class="cel2">Matéria: </th>
+                        <td class="cel2">{{ aula.cod_disc.nome_disc }}</td>
+                    </tr>
+                    <tr>
+                        <th class="cel3">Turma: </th>
+                        <td class="cel3">{{ aula.cod_turma.nome_turma }}</td>
+                    </tr>
+                    <tr>
+                        <th class="cel4">Habilidade Aplicada: </th>
+                        <td class="cel4">
+                            <select name="habilidade" id="habilidade" class="select-box">
+                                {% for cod in cod_hab %}
+                                    {% if cod_selected == cod.cod_hab %}
+                                        <option value="{{ cod.cod_hab }}" selected>{{ cod.cod_hab }}</option>
+                                    {% elif cod_selected is None and cod.cod_hab == aula.cod_hab.cod_hab %}
+                                        <option value="{{ cod.cod_hab }}" selected>{{ cod.cod_hab }}</option>
+                                    {% else %}
+                                        <option value="{{ cod.cod_hab }}">{{ cod.cod_hab }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cel5">Fluxo da aula: </th>
+                        <td class="cel5">
+                            <textarea name="fluxo" id="fluxo" cols="30" rows="5">{{ aula.fluxo_aula }}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cel6">Informações Adicionais: </th>
+                        <td class="cel6">
+                            <textarea name="adicionais" id="adicionais" cols="30" rows="5">{{ aula.info_adicionais }}</textarea>
+                        </td>
+                    </tr>
+                </table>
+                {% if retorno %}
+                    <div class="separador"></div>
+                    <div>
+                        {% for ret in retorno %}
+                        <table>
+                            <tr class="check-tr">
+                                <td colspan="2">
+                                    <input type="checkbox" name="cod_selected" id="cod_selected" value="{{ ret.cod_hab }}">
+                                    <button class="small-bt" type="submit">Ir</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="cel2">Código Habilidade</th>
+                                <td class="cel2">{{ ret.cod_hab }}</td>
+                            </tr>
+                            <tr>
+                                <th class="cel3">Descrição Habilidade</th>
+                                <td class="cel3">{{ ret.descricao }}</td>
+                            </tr>
+                        </table>
+                        {% endfor %}
+                    </div>                
+                {% endif %}
+            {% endif %}
+            <label for="descricao">Procurar Habilidade</label>
+            <input type="text" name="descricao" id="descricao" placeholder="Digite palavras-chave">
+
+
+            <input type="hidden" name="aula" value="{{ aula.cod_aula }}">
+            <input class="bt-salvar" type="submit" value="Salvar">
+
+        </form>
+    </div>
 {% endblock %}

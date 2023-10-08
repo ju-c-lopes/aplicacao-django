@@ -10,7 +10,6 @@ def cadastrar_aula(request):
     
     escolhas = None
     if request.method == 'POST':
-        # print(request.POST['disciplina'])
         disciplina = Disciplina.objects.get(cod_disc=request.POST['disciplina'])
         
         escolhas = {
@@ -64,6 +63,5 @@ def cadastrar_aula(request):
         cont = len(dados['retorno'])
     dados['cont'] = cont
     dados['user_agent'] = user_agent
-    print(dados['retorno'])
 
     return render(request, 'listagens/listagens.html', dados)
