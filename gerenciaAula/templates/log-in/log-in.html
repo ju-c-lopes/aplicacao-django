@@ -10,13 +10,11 @@
         <div>
             <!-- imagem login -->
             <picture>
-                  
-                <source src="" type="" media="" />
-               
-                <source src="/media/user.jpg" type="image/jpg" media="all" />
+                                 
+                <source src="{% static './img/user.jpg' %}" type="image/jpg" media="all" />
                 <!--   -->
                 
-                <img class="h-login--img" src="/media/user.jpg" alt="login" />
+                <img class="h-login--img" src="{% static './img/user.jpg' %}" alt="login" />
                 
             </picture>
         </div>
@@ -30,16 +28,16 @@
                 {% if not request.user.usuario.image %}
                 <!-- imagem login -->
                 <picture>
-                    <source src="/media/user.jpg" type="image/jpg" media="all" />
+                    <source src="{% static './img/user.jpg' %}" type="image/jpg" media="all" />
                     <!--   -->
-                    <img class="h-login--img" src="/media/user.jpg" alt="{{ request.user.usuario.image }}" />
+                    <img class="h-login--img" src="{% static './img/user.jpg' %}" alt="{{ request.user.usuario.image }}" />
                 </picture>
                 {% else %}
                 <!-- imagem login -->
                 <picture>
                     <source src="/media/images/{{ request.user.usuario.image }}" type="image/jpg" media="all" />
                     <!--   -->
-                    <img class="h-login--img" src="/media/{{ request.user.usuario.image }}" alt="{{ request.user.usuario.nome }}" />
+                    <img class="h-login--img" src="/media/{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
                 </picture>
                 {% endif %}
             </a>

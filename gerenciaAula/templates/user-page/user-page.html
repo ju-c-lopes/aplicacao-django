@@ -16,18 +16,18 @@
                 <!-- Span para pop up informando que não tem foto -->
                 <span class="no-user--img">Usuário sem foto</span>
                 <picture>
-                    <source src="/media/user.jpg" type="" media="" />
-                    <img src="/media/user.jpg" alt="{{ request.user.usuario.nome }}" />
+                    <source src="{% static './img/user.jpg' %}" type="" media="" />
+                    <img src="{% static './img/user.jpg' %}" alt="usuário {{ request.user.usuario.nome }}" />
                 </picture>
                 {% else %}
                 <!-- Div que vai cobrir a pagina para exibir a imagem full -->
                 <div class="full-user--img">
-                    <img src="/media/{{ request.user.usuario.image }}" alt="{{ request.user.usuario.nome }}" />
+                    <img src="/media/{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
                     <div class="logout-img"></div>
                 </div>
                 <picture>
                     <source src="/media/{{ request.user.usuario.image }}" type="" media="" />
-                    <img src="/media/{{ request.user.usuario.image }}" alt="{{ request.user.usuario.nome }}" />
+                    <img src="/media/{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
                 </picture>
                 {% endif %}
                 <div class="menu-buttons">
