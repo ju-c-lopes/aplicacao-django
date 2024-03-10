@@ -66,7 +66,13 @@ Login - Portal BNCC
 </div>
 {% if usuario is not None and message.type == 'success' %}
 <div class="form-message--success show-user">
-    Seu usuário para acesso é: {{ usuario }}
+    Seu usuário para acesso é: 
+    {% for usr in usuario %}
+        {{ usr }}
+        {% if usuario|length > 1 %}
+        &nbsp;|&nbsp;
+        {% endif %}
+    {% endfor %}
 </div>
 {% endif %}
 {% endblock %}

@@ -26,7 +26,7 @@ def login_user(request):
         try:
             # Tentará encontrar o usuário pelo nome
             nome_a_recordar = nome_a_recordar.strip()
-            nome = Usuario.objects.get(nome=nome_a_recordar)
+            nome = Usuario.objects.filter(nome__contains=nome_a_recordar)
             lembrar = False
             message['type'] = 'success'
         except:
