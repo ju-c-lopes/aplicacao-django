@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'localhost', '*', 'pi3votor
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'settings/db.sqlite3',
+        'NAME': BASE_DIR / 'projeto/settings/db.sqlite3',
     }
 }
 
