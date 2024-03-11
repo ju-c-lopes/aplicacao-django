@@ -17,6 +17,6 @@ path = os.getcwd()
 if path not in sys.path:
     sys.path.insert(0, path)
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'projeto.settings.production'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'projeto.settings.settings'
 
 application = get_wsgi_application()
