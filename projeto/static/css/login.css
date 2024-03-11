@@ -1,0 +1,98 @@
+@media (min-width: 768px) {
+    .form-message--success {
+        text-align: center;
+        line-height: 2em;
+        width: 30vw;
+        height: 2em;
+        margin: 0 auto 0 auto;
+        background-color: aqua;
+        font-weight: 500;
+    }
+    .show-user {
+        margin: 3em auto 0 auto;
+    }
+    .form-message--success {
+        text-align: center;
+        line-height: 2em;
+        width: inherit;
+        height: auto;
+        margin: 2em auto 4em auto;
+        background-color: aqua;
+        font-weight: 500;
+    }
+    .form-message--erro {
+        text-align: center;
+        line-height: 2em;
+        width: 100%;
+        height: 2em;
+        background-color: rgb(226, 133, 116);
+        font-weight: 500;
+    }
+    .aprovar input {
+        border: 1px solid #6c6c6c;
+        box-sizing: border-box;
+    }
+    .bt-remember {
+        margin-top: 2em;
+        background: none;
+        border: none;
+        color: blue;
+    }
+    .bt-remember:hover {
+        margin-top: 2em;
+        background: none;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+}
+
+@media (max-width: 768px) {
+    #main-content {
+        display: flex;
+        justify-content: center;
+        margin: 1em auto 1em auto;
+        width: 100%;
+        padding: 0 0 0 0 !important;
+    }
+    .form-message--success {
+        text-align: center;
+        line-height: 2em;
+        width: inherit;
+        height: auto;
+        margin: 0 auto 0 auto;
+        background-color: aqua;
+        font-weight: 500;
+    }
+    .card, .mt-5 {
+        display: flex;
+        justify-content: center;
+        margin: 1em auto 1em auto !important;
+    }
+    .show-user {
+        margin: 0 auto 0 auto;
+    }
+    input {
+        border: 1px solid #6c6c6c !important;
+        box-sizing: border-box;
+    }
+    .form-message--erro {
+        text-align: center;
+        line-height: 2em;
+        width: inherit;
+        height: 2em;
+        background-color: rgb(226, 133, 116);
+        font-weight: 500;
+    }
+    .bt-remember {
+        margin-top: 2em;
+        background: none;
+        border: none;
+        color: blue;
+    }
+    .bt-remember:hover {
+        margin-top: 2em;
+        background: none;
+        font-weight: 600;
+        text-decoration: solid;
+    }
+}

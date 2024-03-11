@@ -1,0 +1,20 @@
+.form-table {
+    display: flex;
+    justify-content: center;
+}
+
+
+.form-table tr, .form-table tr td {
+    width: 50%;
+    padding: 1em 0 1em 0;
+    margin: 0 auto 0 auto;
+}
+
+.form-message--erro {
+    text-align: center;
+    line-height: 2em;
+    width: 100%;
+    height: 2em;
+    background-color: rgb(226, 133, 116);
+    font-weight: 500;
+}
