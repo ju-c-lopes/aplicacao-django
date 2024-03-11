@@ -1,6 +1,6 @@
 from .settings import *
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'localhost', '*']
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
