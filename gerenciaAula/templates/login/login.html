@@ -68,9 +68,10 @@ Login - Portal BNCC
 <div class="form-message--success show-user">
     Seu usuário para acesso é: 
     {% for usr in usuario %}
-        {{ usr }}
         {% if usuario|length > 1 %}
-        &nbsp;|&nbsp;
+            {{ usr }}&nbsp;|&nbsp;
+        {% else %}
+            {{ usuario }}
         {% endif %}
     {% endfor %}
 </div>
