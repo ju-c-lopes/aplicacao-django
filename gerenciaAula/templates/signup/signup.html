@@ -85,14 +85,14 @@
                 <div class="campo">
                     <label for="{{ form.eventual_doc.label.lower }}" class="label">Professor Eventual</label>
                     {% for value, label in form.eventual_doc.field.choices %}
-                      <div class="form-check">
+                    <div class="form-check">
                         {% if aprovar and eventual_doc == value %}
                         <input class="form-check-input" type="radio" id="id_agreed_to_terms_{{ forloop.counter }}" name="{{ form.eventual_doc.html_name }}" value="{{ value }}" checked>
                         {% else %}
                         <input class="form-check-input" type="radio" id="id_agreed_to_terms_{{ forloop.counter }}" name="{{ form.eventual_doc.html_name }}" value="{{ value }}">
                         {% endif %}
                         <label id="label-radio" class="form-check-label" for="id_agreed_to_terms_{{ forloop.counter }}">{{ label }}</label>
-                      </div>
+                    </div>
                     {% endfor %}
                 </div>
 

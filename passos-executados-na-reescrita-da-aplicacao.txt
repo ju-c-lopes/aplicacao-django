@@ -48,3 +48,13 @@
 
 PARA FAZER:
 
+django
+pythonanywhere
+sqlite
+git
+ploty
+dask
+github actions
+seaborn pyplot
+https://github.com/marketplace/actions/reload-pythonanywhere-webapp
+

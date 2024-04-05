@@ -7,10 +7,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
-  	<meta charset="utf-8">
-  	<!--Add keywords that describe your project between the quotation marks. This helps search engines find and index your content-->
+
+    <meta charset="utf-8">
+    <!--Add keywords that describe your project between the quotation marks. This helps search engines find and index your content-->
     <meta name="keywords" content="BNCC, Currículo Paulista">
     <link rel="icon" type="image/x-icon" href="{% static '/img/favicon.ico' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,35 +28,37 @@
     <link rel="stylesheet" type="text/css" href="{% static './css/footer.css' %}" media="all">
     <link rel="stylesheet" type="text/css" href="{% static './css/header.css' %}" media="all">
     {% block head-css %}{% endblock %}
-    
+
     <title>{% block title %}{% endblock %}</title>
 
 </head>
+
 <body class="container-fluid vh-100">
 
     <div class="d-flex flex-column">
 
-    <!-- Cabeçalho da página com opções de menu e login -->
-    <div class="row">
-        {% include "header/header.html" %}
-    </div>
-    
-    <!-- Chama o conteúdo principal da tela -->
-    <div id="main-content" class="row mt-5 px-5 mb-5">
-        {% block content %}
-        {% endblock %}
-    </div>
+        <!-- Cabeçalho da página com opções de menu e login -->
+        <div class="row">
+            {% include "header/header.html" %}
+        </div>
 
-    <!-- Chama o template para o footer -->
-    <div class="row">
-        {% include "footer/footer.html" %}
-    </div>
+        <!-- Chama o conteúdo principal da tela -->
+        <div id="main-content" class="row mt-5 px-5 mb-5">
+            {% block content %}
+            {% endblock %}
+        </div>
 
-    <!-- Include Bootstrap JS -->
-    
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    {% block scripts %}{% endblock %}
+        <!-- Chama o template para o footer -->
+        <div class="row">
+            {% include "footer/footer.html" %}
+        </div>
+
+        <!-- Include Bootstrap JS -->
+
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        {% block scripts %}{% endblock %}
 </body>
+
 </html>
