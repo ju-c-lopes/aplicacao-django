@@ -12,9 +12,6 @@ certifi
 charset-normalizer
 contourpy
 cycler
-Django
-django-bootstrap4
-django-environ
 fonttools
 gunicorn
 idna
@@ -23,8 +20,7 @@ markdown-it-py
 matplotlib
 mdurl
 numpy
-packaging
-Pillow
+packagingls
 pipdate
 proto-plus
 protobuf
@@ -33,13 +29,11 @@ pyasn1-modules
 Pygments
 pyparsing
 python-dateutil
-python-dotenv
 requests
 rich
 rsa
 sdist
 six
 soupsieve
-sqlparse
 typing_extensions
 urllib3
