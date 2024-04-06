@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head-css %}
+<link rel="stylesheet" type="text/css" href="{% static './css/analises.css' %}" media="all">
+{% endblock %}
+
+{% block content %}
+<div class="grafico-h1">
+    <h1>Quantidade de Habilidade mais aplicada</h1>
+</div>
+<div class="grafico">
+    {% if 'Android' in user_agent or 'Iphone' in user_agent %}
+    <img width="900" src="data:image/png;base64,{{ chart }}" alt="">
+    {% else %}
+    <img width="720" height="480" src="data:image/png;base64,{{ chart }}" alt="">
+    {% endif %}
+</div>
+{% endblock %}

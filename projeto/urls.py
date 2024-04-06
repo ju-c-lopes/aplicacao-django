@@ -32,4 +32,5 @@ urlpatterns = [
     path('cadastrar-aula/mais-info/', include('gerenciaAula.urls.MaisInfoUrl')),
     path('salvar/', include('gerenciaAula.urls.SalvaAulaUrl')),
     path('minhas-aulas/', include('gerenciaAula.urls.MinhasAulasUrl')),
+    path('analises/', include('gerenciaAula.urls.AnalisesUrl')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

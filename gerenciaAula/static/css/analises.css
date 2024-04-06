@@ -1,0 +1,27 @@
+@media (max-width: 768px) {
+    body {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    #main-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .grafico-h1 h1{
+        text-align: center;
+    }
+    .grafico {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100%;
+    }
+    .grafico img {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+
+}

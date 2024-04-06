@@ -46,6 +46,10 @@
 32° - Página para professor editar a aula
 33° - Campo de busca de usuário pelo nome em caso de esquecimento do nome do usuário
 
+==================================================================================
+
+34° - Feito URL para Análise (renderizando gráfico)
+
 PARA FAZER:
 
 django

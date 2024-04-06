@@ -9,3 +9,4 @@ from .MaisInfoUrl import *
 from .SalvaAulaUrl import *
 from .UserPageUrl import *
 from .MinhasAulasUrl import *
+from .AboutUsUrl import *

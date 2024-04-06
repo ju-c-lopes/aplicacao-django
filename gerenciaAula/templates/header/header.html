@@ -28,6 +28,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'ver-aulas' %}">Consultar Aulas</a>
                 </li>
+                {% if user.usuario.nivel_usuario == 1 or user.usuario.nivel_usuario == 2%}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'analises' %}">Análises das Habilidades</a>
+                </li>
+                {%endif%}
                 {% endif %}
             </ul>
         </div>
