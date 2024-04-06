@@ -28,6 +28,7 @@
         height: 4em;
         width: 100%;
         background-color: #fff;
+        box-shadow: 1px 1px 5px #6c6c6c !important;
     }
 
     .nav-button {
@@ -92,7 +93,7 @@
         width: 100%;
         left: 0;
         background-color: #f2f2f2;
-        height: 14em;
+        /* height: 14em; */
         box-shadow: 1px 1px 5px #6c6c6c;
     }
 
@@ -110,7 +111,8 @@
     .open {
         display: block;
         top: 4em;
-        height: 12em;
+        height: 15em;
+        padding-bottom: 20px;
     }
 }
 
