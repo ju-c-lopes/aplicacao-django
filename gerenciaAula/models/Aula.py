@@ -14,5 +14,9 @@ class Aula(models.Model):
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self) -> str:
+        return f"Aula de {self.cod_disc.nome_disc} por {self.user.nome}"
+
     class Meta:
         db_table = 'Aula'
+

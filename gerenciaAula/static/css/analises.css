@@ -17,8 +17,55 @@
         padding-right: 0 !important;
         width: 100%;
     }
-    .grafico img {
+    .grafico>div>img {
         width: 100%;
+        margin-bottom: 3vh;
+    }
+    .lista-habilidades-retornadas {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .aba-hab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90vw;
+        max-height: 100%;
+    }
+    .habs-head {
+        position: relative;
+        width: 100%;
+        padding: 0.5em;
+        border: 1px rgba(0, 0, 0, .2) solid;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        box-shadow:  0 1px 5px #9c9c9c;
+    }
+    .expand-bt {
+        position: absolute;
+        width: 15px;
+        right: 3vw;
+    }
+    .descricao-habs {
+        text-align: center;
+        font-size: 10pt;
+    }
+    .descricao-habs {
+        background: linear-gradient(180deg, rgba(233, 233, 233, .8), rgba(200, 200, 200, .8));
+        height: 0;
+        text-align: center;
+        font-size: 10pt;
+        visibility: hidden;
+        opacity: 0.4;
+    }
+    .descricao-open {
+        display: block;
+        height: auto;
+        visibility: visible;
+        opacity: 1;
     }
 }
 
@@ -26,6 +73,46 @@
     .grafico-h1, .grafico {
         display: flex;
         flex-direction: row;
+    }
+    .grafico-h1 {
         justify-content: center;
+        margin-bottom: 2vh;
+    }
+    .grafico {
+        justify-content: space-around;
+    }
+    .aba-hab {
+        width: 30vw;
+        max-height: 100%;
+    }
+    .habs-head {
+        position: relative;
+        width: 30vw;
+        padding: 0.5em;
+        border: 1px rgba(0, 0, 0, .2) solid;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        box-shadow:  0 1px 5px #9c9c9c;
+    }
+    .expand-bt {
+        position: absolute;
+        width: 20px;
+        right: 3vw;
+    }
+    .descricao-habs {
+        background: linear-gradient(180deg, rgba(233, 233, 233, .8), rgba(200, 200, 200, .8));
+        height: 0;
+        text-align: center;
+        font-size: 10pt;
+        visibility: hidden;
+        opacity: 0.4;
+    }
+    .descricao-open {
+        display: block;
+        height: auto;
+        visibility: visible;
+        opacity: 1;
     }
 }

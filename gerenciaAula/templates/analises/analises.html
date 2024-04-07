@@ -10,10 +10,32 @@
     <h1>Quantidade de Habilidade mais aplicada</h1>
 </div>
 <div class="grafico">
-    {% if 'Android' in user_agent or 'Iphone' in user_agent %}
-    <img width="900" src="data:image/png;base64,{{ chart }}" alt="">
-    {% else %}
-    <img width="720" height="480" src="data:image/png;base64,{{ chart }}" alt="">
-    {% endif %}
+    <div>
+        {% if 'Android' in user_agent or 'Iphone' in user_agent %}
+        <img width="500" src="data:image/png;base64,{{ chart }}" alt="">
+        {% else %}
+        <img width="720" height="480" src="data:image/png;base64,{{ chart }}" alt="">
+        {% endif %}
+    </div>
+
+    <div class="lista-habilidades-retornadas">
+
+        <div class="aba-hab">
+            {% for key, hab in habilidade.items %}
+                <div class="habs-head">
+                    {{ key }}
+                    <img class="expand-bt" src="{% static 'img/open-bt.png' %}" />
+                </div>
+                <div class="descricao-habs">
+                    {{ hab.hab }}
+                    <hr>
+                    {{ hab.desc }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/analise.js' %}"></script>
 {% endblock %}
