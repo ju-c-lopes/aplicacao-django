@@ -24,4 +24,3 @@ jobs:
             - name:
               run: |
                 python manage.py test
-                coverage run manage.py test tests -v 2
