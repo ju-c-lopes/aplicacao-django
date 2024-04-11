@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gerenciaAula',  # Adicionado manualmente o app
     'bootstrap4',
+    'coverage',
 ]
 
 MIDDLEWARE = [

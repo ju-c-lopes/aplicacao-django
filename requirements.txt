@@ -1,6 +1,7 @@
 asgiref
 beautifulsoup4
 contourpy
+coverage
 cycler
 Django
 django-bootstrap4

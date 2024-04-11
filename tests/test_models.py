@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from django.contrib.auth.models import User
-from gerenciaAula.models import Usuario, Turma, Disciplina
+#from django.contrib.auth.models import User
+from gerenciaAula.models import Turma, Disciplina
 
 
 class TurmaModelTest(TestCase):
