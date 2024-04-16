@@ -133,31 +133,46 @@
                 {% if aprovar %}
                 <div class="campo">
                     <label for="{{ form.password1.id_for_label }}" class="label">Senha</label>
-                    <input type="password" name="password1" value="{{ password }}" />
+                    <input type="password" name="password1" value="{{ password }}" id="id_password1" />
                 </div>
                 {% else %}
                 <div class="campo">
                     <label for="{{ form.password1.id_for_label }}" class="label">Senha</label>
-                    <input type="password" name="password1" placeholder="Digite sua Senha" />
+                    <input class="input-type-pass" type="password" name="password1" placeholder="Digite sua Senha" id="id_password1" />
+                    <button class="show-hide-btn" type="button">
+                        <img src="{% static 'img/hide.png' %}" />
+                    </button>
                 </div>
                 {% endif %}
+                <div class="popup-validate">
+                    <p>A senha deve conter: </p>
+                    <ul>
+                        <li>❌ Pelo menos 1 letra maiúscula.</li>
+                        <li>❌ Pelo menos 1 número.</li>
+                        <li>❌ Pelo menos 1 caractere especial.</li>
+                        <li>❌ Entre 10 a 16 caracteres.</li>
+                    </ul>
+                </div>
 
                 <!-- SENHA 2 -->
 
                 {% if aprovar %}
                 <div class="campo">
                     <label for="{{ form.password2.id_for_label }}" class="label">Confirme a senha</label>
-                    <input type="password" name="password2" value="{{ password }}" />
+                    <input type="password" name="password2" value="{{ password }}" id="id_password2" />
                 </div>
                 {% else %}
                 <div class="campo">
                     <label for="{{ form.password2.id_for_label }}" class="label">Confirme a senha</label>
-                    <input type="password" name="password2" placeholder="Confirme a senha" />
+                    <input class="input-type-pass" type="password" name="password2" placeholder="Confirme a senha" id="id_password2" />
+                    <button class="show-hide-btn" type="button">
+                        <img src="{% static './img/hide.png' %}" />
+                    </button>
                 </div>
                 {% endif %}
 
                 <div class="campo pt-4">
-                    <button type="submit" class="btn btn-primary w-100" id="finalizar-cadastro">
+                    <button type="submit" class="btn btn-primary w-100" id="finalizar-cadastro" disabled>
                         Finalizar Cadastro
                     </button>
                 </div>
@@ -167,7 +182,11 @@
 
 
     <div class="col-sm-12 col-md-12 col-lg-6">
-        <img class="img-fluid rounded" src="{% static 'img/cadastro-ilustr.png' %}" alt="ilustração">
+        <img class="img-fluid rounded" src="{% static './img/cadastro-ilustr.png' %}" alt="ilustração">
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static './js/checkPass.js' %}"></script>
+<script src="{% static './js/buttonShowHide.js' %}"></script>
 {% endblock %}

@@ -44,6 +44,7 @@
         z-index: 0;
     }
     .campo {
+        position: relative;
         padding: 1vh 0;
         display: flex;
         flex-direction: column;
@@ -88,6 +89,51 @@
         height: 2em;
         background-color: rgb(226, 133, 116);
         font-weight: 500;
+    }
+    #id_password1, #id_password2 {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .show-hide-btn, .show-hide-btn:focus {
+        position: absolute;
+        background: none;
+        width: 20px;
+        outline: none;
+        border: none;
+        right: 5px;
+        bottom: 10px;
+    }
+    .show-hide-btn img {
+        background: none;
+        width: 20px;
+    }
+    .popup-validate {
+        color: #000000;
+        border-radius: 15px;
+        background: #F2E3D5;
+        /* padding: 0.3em 0.3em 0.3em 0.3em; */
+        text-shadow: none;
+        height: 0;
+        visibility: hidden;
+    }
+    .popup-validate p {
+        padding-left: 2vw;
+    }
+    .popup-validate ul {
+        padding-left: 1vw !important;
+    }
+    .popup-validate ul li {
+        color: red;
+        font-size: 12px;
+        margin-bottom: 2px;
+        height: 24px;
+        list-style: none;
+    }
+    .btn-disabled {
+        background-color: #808080 !important;
+        border-color: #808080 !important;
     }
 }
 
@@ -144,6 +190,7 @@
     }
     
     .campo {
+        position: relative;
         padding: 1vh 0;
         display: flex;
         justify-content: space-between;
@@ -188,6 +235,51 @@
         height: 2em;
         background-color: rgb(226, 133, 116);
         font-weight: 500;
+    }
+    #id_password1, #id_password2 {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .show-hide-btn, .show-hide-btn:focus {
+        position: absolute;
+        background: none;
+        width: 20px;
+        outline: none;
+        border: none;
+        right: 5px;
+        bottom: 10px;
+    }
+    .show-hide-btn img {
+        background: none;
+        width: 20px;
+    }
+    .popup-validate {
+        color: #000000;
+        border-radius: 15px;
+        background: #F2E3D5;
+        /* padding: 0.3em 0.3em 0.3em 0.3em; */
+        text-shadow: none;
+        height: 0;
+        visibility: hidden;
+    }
+    .popup-validate p {
+        padding-left: 2vw;
+    }
+    .popup-validate ul {
+        padding-left: 1vw !important;
+    }
+    .popup-validate ul li {
+        color: red;
+        font-size: 10px;
+        margin-bottom: 2px;
+        height: 24px;
+        list-style: none;
+    }
+    .btn-disabled {
+        background-color: #808080 !important;
+        border-color: #808080 !important;
     }
     /* ========== end Fieldset Formulario ========== */
     /* ========== end main ========== */
