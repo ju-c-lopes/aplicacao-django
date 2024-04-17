@@ -45,6 +45,9 @@
 31° - Página para consultar aulas dadas
 32° - Página para professor editar a aula
 33° - Campo de busca de usuário pelo nome em caso de esquecimento do nome do usuário
+34° - Colocado no PythonAniwhere
+35° - Migrado para SQLite
+36° - Adicionado ao GitHub Actions
 
 ==================================================================================
 
