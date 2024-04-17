@@ -253,7 +253,7 @@
     }
     .show-hide-btn img {
         background: none;
-        width: 20px;
+        width: 20px !important;
     }
     .popup-validate {
         color: #000000;
