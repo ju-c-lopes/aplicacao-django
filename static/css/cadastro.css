@@ -78,6 +78,9 @@
         text-align: center;
         z-index: 2;
     }
+    .aprovar.div-dark {
+        background-color: var(--elevate-dark);
+    }
     
     .aprovar input {
         border: 0.03em #000 solid;
@@ -115,8 +118,12 @@
         background: #F2E3D5;
         /* padding: 0.3em 0.3em 0.3em 0.3em; */
         text-shadow: none;
+        width: 120%;
         height: 0;
         visibility: hidden;
+    }
+    .popup-validate.div-dark {
+        background-color: var(--full-dark);
     }
     .popup-validate p {
         padding-left: 2vw;
