@@ -5,6 +5,7 @@ const header = document.querySelector('.navbar');
 const footer = document.querySelector('.footer-custom');
 const close = document.querySelector('.logout-img');
 const noPhoto = document.querySelector('.no-user--img');
+const dadosUser = document.querySelector(".dados-user");
 const menuButtons = document.querySelector('.menu-buttons');
 
 if (fullImg != null) {
@@ -12,6 +13,7 @@ if (fullImg != null) {
         verImg.addEventListener('touchstart' || 'click', () => {
             header.style.zIndex = '0';
             footer.style.display = 'none';
+            dadosUser.style.display = 'none';
             fullImg.classList.add('full-image--active');
             fullImg.style.display = "flex";
         });
@@ -25,6 +27,7 @@ if (fullImg != null) {
             if (footer.style.display != 'none') {
                 footer.style.display = 'none';
             }
+            dadosUser.style.display = 'none';
             fullImg.classList.add('full-image--active');
             fullImg.style.display = "flex";
         });
@@ -50,6 +53,7 @@ if (close != null) {
         fullImg.style.display = "none";
         fullImg.classList.remove('full-image--active');
         imagem.style.zIndex = '0';
+        dadosUser.style.display = 'flex';
         footer.style.display = 'block';
     });
     if (screen.width < 768) {
@@ -57,6 +61,7 @@ if (close != null) {
             fullImg.style.display = "none";
             fullImg.classList.remove('full-image--active');
             imagem.style.zIndex = '0';
+            dadosUser.style.display = 'flex';
             footer.style.display = 'block';
             header.style.zIndex = '3';
             document.querySelector('#menu').style.zIndex = '4';

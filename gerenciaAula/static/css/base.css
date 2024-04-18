@@ -2,7 +2,11 @@
     --bncc-blue: #246782;
     --bncc-yellow: #E8B930;
     --bncc-green: #002907;
-  }
+    --full-dark: #000000;
+    --elevate-dark: #212124;
+    --light-dark: #818181;
+    --font-dark: #ffffff;
+}
 
 * {
     margin: 0;
@@ -21,4 +25,57 @@ body {
     padding-top: 56px;
     padding-bottom: 56px;
 }
-  
+
+body div.div-home {
+    position: sticky;
+    padding-bottom: 60px;
+}
+
+.navbar>.container-fluid {
+    height: 4em;
+}
+
+.h-login>div {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#main-content {
+    padding-bottom: 30px;
+}
+
+.dark-mode, .div-dark {
+    color: var(--font-dark) !important;
+    background-color: var(--elevate-dark);
+}
+
+.input-dark,
+.input-dark:focus,
+.select-dark,
+.text-area-dark {
+    color: var(--font-dark);
+    background-color: var(--light-dark);
+}
+
+.header-dark-mode>.container-fluid,
+.h-login.div-dark,
+.h-login.div-dark>div,
+.menu-container.div-dark,
+.footer-dark-mode,
+.footer-dark-mode div {
+    color: var(--font-dark) !important;
+    background-color: var(--full-dark) !important;
+}
+
+.btn-nav-dark {
+    background-color: var(--light-dark) !important;
+}
+
+.btn-nav-dark span {
+    background-color: var(--font-dark) !important;
+}
+
+.nav-link-dark {
+    color: var(--font-dark) !important;
+}

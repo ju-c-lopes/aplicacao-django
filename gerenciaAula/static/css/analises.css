@@ -67,6 +67,10 @@
         visibility: visible;
         opacity: 1;
     }
+    .descricao-habs.div-dark.descricao-open {
+        color: black !important;
+        background-color: var(--light-dark);
+    }
 }
 
 @media (min-width: 768px) {

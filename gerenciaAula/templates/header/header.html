@@ -2,7 +2,7 @@
 
 {% block content %}
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow px-2 py-1 fixed-top nav-header">
+<nav class="navbar navbar-expand-lg shadow px-2 py-1 fixed-top nav-header" width="100%" height="64">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">
             <img src="{% static 'img/logo-univesp.png' %}" alt="Logo" />
@@ -12,29 +12,35 @@
             <span></span>
             <span></span>
         </button>
-        <div class="menu-container" id="menu">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Início</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'aboutus' %}">Sobre nós</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'cadastrar-aula' %}">Cadastro das Aulas</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'ver-aulas' %}">Consultar Aulas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'analises' %}">Análises das Habilidades</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
         {% include 'log-in/log-in.html' %}
+    </div>
+    <div class="menu-container" id="menu">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Início</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'aboutus' %}">Sobre nós</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cadastrar-aula' %}">Cadastro das Aulas</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'ver-aulas' %}">Consultar Aulas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'analises' %}">Análises das Habilidades</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div class="button-theme">
+            <p>Modo Escuro</p>
+            <div class="button-dark btn-dark-left">
+                <button class="btn-dark" type="button"></button>
+            </div>
+        </div>
     </div>
 </nav>
 {% block scripts %}

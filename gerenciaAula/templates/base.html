@@ -35,12 +35,12 @@
 
 <body class="container-fluid vh-100">
 
-    <div class="d-flex flex-column">
+    <!-- Cabeçalho da página com opções de menu e login -->
+    <div class="row">
+        {% include "header/header.html" %}
+    </div>
+    <div class="{% if request.path == '/' %}div-home{% endif %} d-flex flex-column">
 
-        <!-- Cabeçalho da página com opções de menu e login -->
-        <div class="row">
-            {% include "header/header.html" %}
-        </div>
 
         <!-- Chama o conteúdo principal da tela -->
         <div id="main-content" class="row mt-5 px-5 mb-5">
@@ -58,6 +58,7 @@
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="{% static './js/darkMode.js' %}"></script>
         {% block scripts %}{% endblock %}
 </body>
 

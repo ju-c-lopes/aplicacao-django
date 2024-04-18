@@ -9,15 +9,24 @@
     #main-content {
         padding-bottom: 20vh !important;
     }
+    .form-control {
+        position: relative;
+    }
     .form-control input, .form-control button {
         display: inline-block;
-
+        width: 100%;
     }
     .form-control button{
+        position: absolute;
+        right: 25px;
+        width: 10px;
         background-color: #fff;
         border: none;
         margin: 0;
         padding: 0;
+    }
+    .form-control.div-dark button {
+        background-color: rgba(0, 0, 0, 0);
     }
     .input-checkbox {
         margin: 1em 0 1em 0;
