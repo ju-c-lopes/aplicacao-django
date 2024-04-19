@@ -58,6 +58,10 @@ body div.div-home {
     background-color: var(--light-dark);
 }
 
+.input-dark::placeholder {
+    color: #b2b2b2;
+}
+
 .header-dark-mode>.container-fluid,
 .h-login.div-dark,
 .h-login.div-dark>div,

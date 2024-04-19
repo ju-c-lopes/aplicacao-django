@@ -52,7 +52,7 @@
                     {% else %}
                     <label for="{{ form.nome.id_for_label }}" class="label">Usuário</label>
                     <input type="text" id="{{ form.nome.id_for_label }}" name="nome" class="cadastro-usuario--nome"
-                        placeholder="Digite seu nome" />
+                        placeholder="Digite seu nome" required />
                     {% endif %}
                 </div>
 
@@ -70,7 +70,7 @@
                     {% else %}
                     
                     <label for="{{ form.nivel_usuario.id_for_label }}" class="label">Cargo</label>
-                    <select name="{{ form.nivel_usuario.html_name }}" class="cadastro-usuario--cargo" id="{{ form.nivel_usuario.id_for_label }}">
+                    <select name="{{ form.nivel_usuario.html_name }}" class="cadastro-usuario--cargo" id="{{ form.nivel_usuario.id_for_label }}" required >
                         <option value="selecione">Selecione</option>
                         {% for value, label in form.nivel_usuario.field.choices %}
                             <option value="{{ value }}">{{ label }}</option>
@@ -89,7 +89,7 @@
                         {% if aprovar and eventual_doc == value %}
                         <input class="form-check-input" type="radio" id="id_agreed_to_terms_{{ forloop.counter }}" name="{{ form.eventual_doc.html_name }}" value="{{ value }}" checked>
                         {% else %}
-                        <input class="form-check-input" type="radio" id="id_agreed_to_terms_{{ forloop.counter }}" name="{{ form.eventual_doc.html_name }}" value="{{ value }}">
+                        <input class="form-check-input" type="radio" id="id_agreed_to_terms_{{ forloop.counter }}" name="{{ form.eventual_doc.html_name }}" value="{{ value }}" {% if not value %}checked{% endif %}>
                         {% endif %}
                         <label id="label-radio" class="form-check-label" for="id_agreed_to_terms_{{ forloop.counter }}">{{ label }}</label>
                     </div>
