@@ -6,6 +6,8 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import io, base64
+from django.http import HttpResponse
+import csv
 
 def gerar_graficos(request):
     aulas = [(aula.cod_hab.cod_hab, aula.cod_hab.desc_habilidade, aula.cod_hab.habilidade) for aula in Aula.objects.all()]
@@ -29,6 +31,9 @@ def gerar_graficos(request):
             desc_hab_list[f"{aula[0]}"]['desc'] = aula[1]
             desc_hab_list[f"{aula[0]}"]['hab'] = aula[2]
     desc_hab_list = {k: v for k, v in sorted(desc_hab_list.items(), key=lambda item: item[1]["cont"], reverse=True)}
+    # for k, v in desc_hab_list.items():
+    #     print("\n\nDESC Hab List KEY ==> ", k, "\n\tVALUE DESC ==> ", v)
+    arquivo_csv = salvar_csv(desc_hab_list)
 
     fig, ax = plt.subplots(dpi=150)
     bar_labels = list(asc_hab_list.keys())
@@ -54,5 +59,22 @@ def gerar_graficos(request):
     context['chart'] = b64
     context['habilidade'] = desc_hab_list
     context['user_agent'] = user_agent
+    context['csv_file'] = arquivo_csv.content.decode("utf-8")
 
     return render(request, template_name='analises/analises.html', context=context, status=200)
+
+
+def salvar_csv(dados_apresentados):
+    response = HttpResponse(
+        content_type="text/csv",
+        headers={"Content-Disposition": 'attachment; filename="enter-your-filename.csv"'},
+    )
+
+    header_csv = ["Código da Habilidade", "Habilidade", "Descrição da Habilidade", "Quantidade"]
+
+    writer = csv.writer(response)
+    writer.writerow(header_csv)
+    for k, v in dados_apresentados.items():
+        line_csv = [f"{k}", f"{v['hab']}", f"{v['desc']}", f"{v['cont']}"]
+        writer.writerow(line_csv)
+    return response

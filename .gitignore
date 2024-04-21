@@ -2,3 +2,4 @@
 .idea
 /gerenciaAula/migrations/
 /projeto/media/
+*.code-workspace

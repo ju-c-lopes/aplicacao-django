@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="grafico-h1">
-    <h1>Quantidade de Habilidade mais aplicada</h1>
+    <h1>Quantidade de Habilidades mais aplicadas</h1>
 </div>
 <div class="grafico">
     <div>
@@ -19,7 +19,6 @@
     </div>
 
     <div class="lista-habilidades-retornadas">
-
         <div class="aba-hab">
             {% for key, hab in habilidade.items %}
                 <div class="habs-head">
@@ -35,7 +34,14 @@
         </div>
     </div>
 </div>
+{% if csv_file %}
+<textarea id="csvContent">{{ csv_file }}</textarea>
+<div class="salvar-csv">
+    <button class="btn-save-csv btn btn-primary">Salvar CSV</button>
+</div>
+{% endif %}
 {% endblock %}
 {% block scripts %}
 <script src="{% static 'js/analise.js' %}"></script>
+<script src="{% static 'js/salvarDados.js' %}"></script>
 {% endblock %}
