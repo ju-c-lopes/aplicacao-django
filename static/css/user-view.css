@@ -57,7 +57,6 @@
         z-index: 5;
     }
 
-
     .no-user--img {
         position: absolute;
         top: 2em;
@@ -76,7 +75,8 @@
         color: black;
     }
 
-    .user-img, .user-img picture {
+    .user-img,
+    .user-img picture {
         position: sticky;
         top: 0;
         width: 40%;
@@ -84,7 +84,9 @@
         justify-content: center;
     }
 
-    .user-img--foto, .user-img--foto picture, .user-img--foto picture img {
+    .user-img--foto,
+    .user-img--foto picture,
+    .user-img--foto picture img {
         position: sticky;
         border-radius: 50%;
         width: 20vw;
@@ -93,7 +95,6 @@
         object-fit: cover;
         object-position: center;
     }
-
 
     .logout-img {
         position: fixed;
@@ -111,6 +112,7 @@
 
     .menu-buttons {
         position: relative;
+        background: none;
         top: -5em;
         display: flex;
         flex-direction: column;
@@ -122,14 +124,14 @@
         background-color: rgba(255, 255, 255, 0.7);
         border: none;
         border-radius: 2em;
-        box-shadow: 0.5em 0.5em 2em rgba(255, 255, 255, 0.7);
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
         margin: 0 auto 0.7em auto;
         width: 40%;
     }
 
     .img-menu--button a {
-        text-decoration: none;
-        color: #000;
+        text-decoration: none !important;
+        color: #000 !important;
     }
 
     .dados-user {
@@ -203,6 +205,7 @@
     }
 
     table {
+        border: #9c9c9c 0.1em dotted;
         width: 100%;
     }
 
@@ -220,6 +223,7 @@
 
     .menu-buttons {
         position: relative;
+        background: none;
         top: -12vh;
         display: flex;
         flex-direction: column;
@@ -227,11 +231,16 @@
         z-index: 2;
     }
 
+    .img-menu--button a {
+        text-decoration: none !important;
+        color: #000 !important;
+    }
+
     .img-menu--button {
         background-color: rgba(255, 255, 255, 0.7);
         border: none;
         border-radius: 2em;
-        box-shadow: 0.5em 0.5em 2em rgba(0, 0, 0, 0.5);
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
         margin: 0 auto 0.3em auto;
         width: 80%;
     }
