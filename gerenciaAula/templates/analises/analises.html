@@ -22,7 +22,8 @@
         <div class="aba-hab">
             {% for key, hab in habilidade.items %}
                 <div class="habs-head">
-                    {{ key }}
+                    <span>{{ key }}</span>
+                    <span><span class="aulas-dadas">Aulas dadas: </span><span>{{ hab.cont }}</span></span>
                     <img class="expand-bt" src="{% static 'img/open-bt.png' %}" />
                 </div>
                 <div class="descricao-habs">
@@ -37,6 +38,7 @@
 {% if csv_file %}
 <textarea id="csvContent">{{ csv_file }}</textarea>
 <div class="salvar-csv">
+    <button class="btn-save-grafico btn btn-primary">Salvar Gráfico</button>
     <button class="btn-save-csv btn btn-primary">Salvar CSV</button>
 </div>
 {% endif %}

@@ -31,8 +31,7 @@ def gerar_graficos(request):
             desc_hab_list[f"{aula[0]}"]['desc'] = aula[1]
             desc_hab_list[f"{aula[0]}"]['hab'] = aula[2]
     desc_hab_list = {k: v for k, v in sorted(desc_hab_list.items(), key=lambda item: item[1]["cont"], reverse=True)}
-    # for k, v in desc_hab_list.items():
-    #     print("\n\nDESC Hab List KEY ==> ", k, "\n\tVALUE DESC ==> ", v)
+    
     arquivo_csv = salvar_csv(desc_hab_list)
 
     fig, ax = plt.subplots(dpi=150)
