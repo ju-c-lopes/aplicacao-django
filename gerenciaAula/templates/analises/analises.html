@@ -12,9 +12,9 @@
 <div class="grafico">
     <div>
         {% if 'Android' in user_agent or 'Iphone' in user_agent %}
-        <img width="500" src="data:image/png;base64,{{ chart }}" alt="">
+        <img id="imagem-grafico" width="500" src="data:image/png;base64,{{ chart }}" alt="">
         {% else %}
-        <img width="720" height="480" src="data:image/png;base64,{{ chart }}" alt="">
+        <img id="imagem-grafico" width="720" height="480" src="data:image/png;base64,{{ chart }}" alt="">
         {% endif %}
     </div>
 
