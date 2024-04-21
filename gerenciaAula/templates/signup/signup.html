@@ -71,7 +71,7 @@
                     
                     <label for="{{ form.nivel_usuario.id_for_label }}" class="label">Cargo</label>
                     <select name="{{ form.nivel_usuario.html_name }}" class="cadastro-usuario--cargo" id="{{ form.nivel_usuario.id_for_label }}" required >
-                        <option value="selecione">Selecione</option>
+                        <option value="" selected disabled hidden>Selecione</option>
                         {% for value, label in form.nivel_usuario.field.choices %}
                             <option value="{{ value }}">{{ label }}</option>
                         {% endfor %}

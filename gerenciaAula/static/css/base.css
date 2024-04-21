@@ -4,14 +4,14 @@
     --bncc-green: #002907;
     --full-dark: #000000;
     --elevate-dark: #212124;
+    --elevate-middle-dark: #2c2c2c;
     --light-dark: #818181;
     --font-dark: #ffffff;
 }
 
 * {
     margin: 0;
-    padding: 0
-
+    padding: 0;
 }
 
 html {
@@ -58,7 +58,9 @@ body div.div-home {
     background-color: var(--light-dark);
 }
 
-.input-dark::placeholder {
+.input-dark::placeholder,
+.text-area-dark::placeholder,
+.select-dark>option:disabled {
     color: #b2b2b2;
 }
 
@@ -70,6 +72,11 @@ body div.div-home {
 .footer-dark-mode div {
     color: var(--font-dark) !important;
     background-color: var(--full-dark) !important;
+}
+
+#lista-table.div-dark table tbody tr {
+    color: var(--font-dark);
+    background-color: var(--elevate-dark);
 }
 
 .btn-nav-dark {

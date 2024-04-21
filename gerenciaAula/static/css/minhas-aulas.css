@@ -79,11 +79,17 @@
         text-align: center;
         margin-bottom: 1em;
     }
+    .form-control {
+        position: relative;
+    }
     .form-control button{
+        position: absolute;
+        left: 250px;
         background-color: #fff;
         border: none;
         margin: 0;
         padding: 0;
+        background-color: rgba(0, 0, 0, 0);
     }
     .btn, .btn-primary {
         width: 10em !important;
@@ -101,7 +107,22 @@
     thead {
         background-color: #b0b0b0;
     }
+    #main-content.div-dark>table>thead>tr {
+        /* background-color: var(--elevate-middle-dark) !important; */
+        color: black;
+    }
+
+    #main-content.div-dark>table>tbody>tr:nth-of-type(odd) {
+        background-color: var(--elevate-dark) !important;
+        /* color: var(--font-dark) !important; */
+        background-color: #000 !important;
+    }
+
     #main-content {
         padding-bottom: 10vh;
+    }
+    .div-dark>form>table,
+    .div-dark>table {
+        color: var(--font-dark) !important;
     }
 }

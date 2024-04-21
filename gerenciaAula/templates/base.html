@@ -53,13 +53,14 @@
             {% include "footer/footer.html" %}
         </div>
 
-        <!-- Include Bootstrap JS -->
+    </div>
+    <!-- Include Bootstrap JS -->
 
-        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="{% static './js/darkMode.js' %}"></script>
-        {% block scripts %}{% endblock %}
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{% static './js/darkMode.js' %}"></script>
+    {% block scripts %}{% endblock %}
 </body>
 
 </html>

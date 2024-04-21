@@ -23,8 +23,14 @@ function setTheme(tema) {
     localStorage.setItem("tema", tema);
 }
 
-buttonDark.addEventListener("click" || "touchstart", () => {
+buttonDark.addEventListener("click" || "touchstart", (e) => {1
+    console.log(e.type)
     slideButton();
+    if (buttonDark.classList.contains("btn-dark-right")) {
+        localStorage.setItem("tema", "dark");
+    } else {
+        localStorage.setItem("tema", "light");
+    }
     bodyElement.classList.toggle("dark-mode");
     navHeader.classList.toggle("header-dark-mode");
     divButtonDark.classList.toggle("button-dark-component");
@@ -48,11 +54,6 @@ buttonDark.addEventListener("click" || "touchstart", () => {
         }
     }
     mainFooter.classList.toggle("footer-dark-mode")
-    if (buttonDark.classList.contains("btn-dark-right")) {
-        localStorage.setItem("tema", "dark");
-    } else {
-        localStorage.setItem("tema", "light");
-    }
 })
 
 setTheme(localStorage.getItem("tema") || "light");
