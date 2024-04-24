@@ -42,7 +42,6 @@ def gerar_graficos(request):
     ax.set_ylabel("Habilidades")
     ax.set_title("Habilidades aplicadas")
     plt.xticks(rotation=60)
-    ax.set_ylim(0, 10)
 
     file_io = io.BytesIO()
     fig.savefig(file_io, bbox_inches='tight')
