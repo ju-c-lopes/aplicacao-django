@@ -6,9 +6,40 @@
 {% endblock %}
 
 {% block content %}
+<div class="filters">
+    <div class="forms-show">
+        <form action="" method="POST">
+            <!-- FOR DJANGO TEMPLATE -->
+            <div class="professores-form">
+                    <span>Professores</span>
+                    <button class="list-prof-btn" type="button">Listar</button>
+                    <div class="professores closed">
+                        {% for professor in professores %}
+                        <div class="professor">
+                            <input type="checkbox" name="professor-selecionado" id="professor-selecionado-{{ professor.id }}" value="{{ professor.user }}">
+                            <label for="professor-selecionado">{{ professor.nome }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="btn-filter">
+        <span>
+            FILTROS
+        </span>
+        <button type="button" class="btn-expand-filters">
+            <img src="{% static 'img/open-bt.png' %}" alt="botão de filtros para análises">
+        </button>
+    </div>
+</div>
+
 <div class="grafico-h1">
     <h1>Quantidade de Habilidades mais aplicadas</h1>
 </div>
+
+<!-- ============== GRÁFICOS ================ -->
 <div class="grafico">
     <div>
         {% if 'Android' in user_agent or 'Iphone' in user_agent %}
@@ -44,6 +75,7 @@
 {% endif %}
 {% endblock %}
 {% block scripts %}
+<script src="{% static 'js/listarProfessores.js' %}"></script>
 <script src="{% static 'js/analise.js' %}"></script>
 <script src="{% static 'js/salvarDados.js' %}"></script>
 {% endblock %}

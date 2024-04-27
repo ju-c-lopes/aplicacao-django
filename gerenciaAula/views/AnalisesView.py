@@ -10,29 +10,18 @@ from django.http import HttpResponse
 import csv
 
 def gerar_graficos(request):
-    aulas = [(aula.cod_hab.cod_hab, aula.cod_hab.desc_habilidade, aula.cod_hab.habilidade) for aula in Aula.objects.all()]
-    habilidades = Counter([aula[0] for aula in aulas])
-
     def addlabels(xaxis, yaxis):
         for i in range(len(xaxis)):
             plt.text(i, yaxis[i], yaxis[i])
 
-    asc_hab = {hab: qtd for hab, qtd in sorted(habilidades.items(), key=lambda item: item[1], reverse=True)}
+    return_data = None
 
-    asc_hab_list = list(asc_hab.items())
-    asc_hab_list = asc_hab_list[:5]
-    asc_hab_list = dict(asc_hab_list)
-
-    desc_hab_list = {}
-    for aula in aulas:
-        if aula[0] in asc_hab_list.keys():
-            desc_hab_list[f"{aula[0]}"] = {}
-            desc_hab_list[f"{aula[0]}"]['cont'] = asc_hab_list[f"{aula[0]}"]
-            desc_hab_list[f"{aula[0]}"]['desc'] = aula[1]
-            desc_hab_list[f"{aula[0]}"]['hab'] = aula[2]
-    desc_hab_list = {k: v for k, v in sorted(desc_hab_list.items(), key=lambda item: item[1]["cont"], reverse=True)}
+    if not request.POST:
+        grafico = gerar_grafico_padrao()
+        return_data = grafico[0]
+        asc_hab_list = grafico[1]
     
-    arquivo_csv = salvar_csv(desc_hab_list)
+    arquivo_csv = salvar_csv(return_data)
 
     fig, ax = plt.subplots(dpi=150)
     bar_labels = list(asc_hab_list.keys())
@@ -55,12 +44,33 @@ def gerar_graficos(request):
 
     context = {}
     context['chart'] = b64
-    context['habilidade'] = desc_hab_list
+    context['professores'] = Usuario.objects.all()
+    if not request.POST:
+        context['habilidade'] = return_data
     context['user_agent'] = user_agent
     context['csv_file'] = arquivo_csv.content.decode("utf-8")
 
     return render(request, template_name='analises/analises.html', context=context, status=200)
 
+def gerar_grafico_padrao():
+    aulas = [(aula.cod_hab.cod_hab, aula.cod_hab.desc_habilidade, aula.cod_hab.habilidade) for aula in Aula.objects.all()]
+    habilidades = Counter([aula[0] for aula in aulas])
+
+    asc_hab = {hab: qtd for hab, qtd in sorted(habilidades.items(), key=lambda item: item[1], reverse=True)}
+
+    asc_hab_list = list(asc_hab.items())
+    asc_hab_list = asc_hab_list[:5]
+    asc_hab_list = dict(asc_hab_list)
+
+    desc_hab_list = {}
+    for aula in aulas:
+        if aula[0] in asc_hab_list.keys():
+            desc_hab_list[f"{aula[0]}"] = {}
+            desc_hab_list[f"{aula[0]}"]['cont'] = asc_hab_list[f"{aula[0]}"]
+            desc_hab_list[f"{aula[0]}"]['desc'] = aula[1]
+            desc_hab_list[f"{aula[0]}"]['hab'] = aula[2]
+    desc_hab_list = {k: v for k, v in sorted(desc_hab_list.items(), key=lambda item: item[1]["cont"], reverse=True)}
+    return (desc_hab_list, asc_hab_list)
 
 def salvar_csv(dados_apresentados):
     response = HttpResponse(
