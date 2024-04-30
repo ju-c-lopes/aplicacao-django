@@ -25,10 +25,14 @@ class UsuarioAdmin(admin.ModelAdmin):
     def cod_discList(self, obj):
         return [i.cod_disc for i in obj.cod_disc.all()]
 
-# Register your models here.
+class AulaAdmin(admin.ModelAdmin):
+    list_display = ['aula_dada', 'cod_hab', 'cod_disc']
+
+    def aula_dada(self, obj):
+        return f"Aula de {obj.cod_disc.nome_disc} por {obj.user.nome}"
 
 admin.site.register(Usuario, UsuarioAdmin)
-admin.site.register(Aula)
+admin.site.register(Aula, AulaAdmin)
 admin.site.register(Disciplina)
 admin.site.register(Habilidade)
 admin.site.register(Turma)

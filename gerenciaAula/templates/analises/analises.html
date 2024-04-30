@@ -6,20 +6,27 @@
 {% endblock %}
 
 {% block content %}
+
+<!-- =========== FORM FILTERS =========== -->
+
 <div class="filters">
     <div class="forms-show">
-        <form action="" method="POST">
+        <form action="" method="POST">{% csrf_token %}
             <!-- FOR DJANGO TEMPLATE -->
             <div class="professores-form">
+                <input type="hidden" name="professor-analysis" value="1">
                     <span>Professores</span>
                     <button class="list-prof-btn" type="button">Listar</button>
                     <div class="professores closed">
                         {% for professor in professores %}
                         <div class="professor">
-                            <input type="checkbox" name="professor-selecionado" id="professor-selecionado-{{ professor.id }}" value="{{ professor.user }}">
+                            <input type="checkbox" name="professor-selecionado" id="professor-selecionado-{{ professor.id }}" value="{{ professor.user }}" class="check-teacher">
                             <label for="professor-selecionado">{{ professor.nome }}</label>
                         </div>
                         {% endfor %}
+                        <div class="div-apply-button">
+                            <button type="submit" class="btn btn-primary">Aplicar</button>
+                        </div>
                     </div>
                 </select>
             </div>
@@ -35,23 +42,42 @@
     </div>
 </div>
 
-<div class="grafico-h1">
-    <h1>Quantidade de Habilidades mais aplicadas</h1>
-</div>
+{% for dado in dados %}
+
+    <!-- =========== TITLE H1 =========== -->
+
+    {% for titulo in titulos%}
+    {% if forloop.counter0 == forloop.parentloop.counter0 %}
+    <div class="grafico-h1">
+        <h2>{{ titulo.0 }}</h2>
+        {% if id_analise == "prof" %}
+        <p>{{ titulo.1 }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
 
 <!-- ============== GRÁFICOS ================ -->
+
 <div class="grafico">
+    {% for chart in charts %}
+    {% if forloop.counter0 == forloop.parentloop.counter0 %}
     <div>
         {% if 'Android' in user_agent or 'Iphone' in user_agent %}
-        <img id="imagem-grafico" width="500" src="data:image/png;base64,{{ chart }}" alt="">
+        <img id="imagem-grafico{{ forloop.counter0 }}" width="500" src="data:image/png;base64,{{ chart }}" alt="">
         {% else %}
         <img id="imagem-grafico" width="720" height="480" src="data:image/png;base64,{{ chart }}" alt="">
         {% endif %}
     </div>
+    {% endif %}
+    {% endfor %}
 
+<!-- =========== TABELA COM DADOS =========== -->
+
+    {% if id_analise == "padrão" %}
     <div class="lista-habilidades-retornadas">
         <div class="aba-hab">
-            {% for key, hab in habilidade.items %}
+            {% for key, hab in dado.items %}
                 <div class="habs-head">
                     <span>{{ key }}</span>
                     <span><span class="aulas-dadas">Aulas dadas: </span><span>{{ hab.cont }}</span></span>
@@ -65,14 +91,45 @@
             {% endfor %}
         </div>
     </div>
+    {% elif id_analise == "prof" %}
+    <div class="lista-habilidades-retornadas">
+        <div class="aba-hab">
+            {% for key, value in dado.items %}
+                <div class="habs-head">
+                    <p class="tag-header">
+                        {% load split_word %}
+                        {% for word in key|split_word:" | " %}
+                        <span>{{ word }}</span>
+                        {% endfor %}
+                    </p>
+                    <span><span class="aulas-dadas">Aulas dadas: </span><span>{{ value.cont }}</span></span>
+                    <img class="expand-bt" src="{% static 'img/open-bt.png' %}" />
+                </div>
+                <div class="descricao-habs">
+                    {{ value.habilidade }}
+                    <hr>
+                    {{ value.desc }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 </div>
+
+<!-- =========== BOTÕES PARA SALVAR =========== -->
+
 {% if csv_file %}
-<textarea id="csvContent">{{ csv_file }}</textarea>
-<div class="salvar-csv">
+{% for csv in csv_file %}
+<textarea id="csvContent{{ forloop.counter0 }}" class="csv-hide">{{ csv }}</textarea>
+{% endfor %}
+<div class="save-data">
     <button class="btn-save-grafico btn btn-primary">Salvar Gráfico</button>
     <button class="btn-save-csv btn btn-primary">Salvar CSV</button>
 </div>
 {% endif %}
+
+{% endfor %}
+
 {% endblock %}
 {% block scripts %}
 <script src="{% static 'js/listarProfessores.js' %}"></script>
