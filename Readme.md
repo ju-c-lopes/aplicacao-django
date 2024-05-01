@@ -1,10 +1,10 @@
-# Pi-Votorantim-2023
+# Pi-Votorantim-2024
 
 
 ## Pré-Requisitos
 ---
-* [Python >= 3.9](https://www.python.org/downloads/)
-* [MySQL Server](https://dev.mysql.com/downloads/mysql/)
+* [Python >= 3.10](https://www.python.org/downloads/)
+* [Django >= 5.0.4](https://docs.djangoproject.com/en/5.0/intro/install/)
 
 ## Iniciando o projeto
 ---
@@ -18,26 +18,24 @@ Após baixar o repositório, usar o comando: `pip install -r requirements.txt`
 ## Integrando com o banco de dados
 --- 
 
-Crie uma conexão local com as seguintes configurações:
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original-wordmark.svg" style="width: 200px;" alt="SQLite3 Logo" />
 
-<img src="configuracao.png"><br>
+O banco de dados utilizado no projeto atualmente está sendo o SQLite3, para facilitar o compartilhamento do BD entre a equipe, evitando complexidades de instalações.
 
-Clone o repositório com o script para criação e preenchimento das tabelas:  
-`git clone https://github.com/Projeto-Integrador-Univesp-Votorantim/banco_de_dados.git`
+A aplicação já está configurada, então é necessário apenas ligar o servidor que pode ser executado a partir da raiz da aplicação com o seguinte comando:
 
-
-Aplique as migrations no projeto django:
-
-``` bash
-python manage.py makemigrations
-python manage.py migrate
+```
+python manage.py runserver
 ```
 
-Para verificar os dados do BD:
+Para então, no seu navegador, digitar o endereço ```127.0.0.1:8000```
+
+
+Para verificar os dados do BD através da linha de comando, pode usar os seguintes comando:
 
 ``` python
 python manage.py shell<br>
-from pi.models import Habilidades<br>
+from gerenciaAula.models import Habilidades<br>
 Habilidades.objects.all()
 ```
 
