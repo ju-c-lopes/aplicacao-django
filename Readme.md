@@ -34,8 +34,8 @@ Para então, no seu navegador, digitar o endereço ```127.0.0.1:8000```
 Para verificar os dados do BD através da linha de comando, pode usar os seguintes comando:
 
 ``` python
-python manage.py shell<br>
-from gerenciaAula.models import Habilidades<br>
+python manage.py shell
+from gerenciaAula.models import Habilidades
 Habilidades.objects.all()
 ```
 

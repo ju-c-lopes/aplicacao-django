@@ -57,6 +57,7 @@
         position: absolute;
         width: 15px;
         right: 3vw;
+        filter: drop-shadow(0 2px 1px rgba(255, 255, 255, 0.3));
     }
     .descricao-habs {
         text-align: center;
@@ -113,14 +114,14 @@
     }
     .forms-show {
         position: absolute;
-        top: -4em;
+        top: calc(-4em - 4em - 12px);
         width: 100vw;
         height: 0;
     }
     .professores-form {
         background: white;
         position: relative;
-        top: -4em;
+        top: -8em;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -162,6 +163,53 @@
         z-index: 5;
     }
     .professores.div-dark {
+        background: var(--elevate-dark);
+    }
+    .classes-form {
+        background: white;
+        position: relative;
+        top: -8em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 12px;
+        z-index: 5;
+    }
+    .classes-form.div-dark {
+        background: var(--elevate-dark);
+    }
+    .turma {
+        width: 100%;
+        padding: 5px 0 5px 30vw;
+    }
+    .classes-form button {
+        background: white;
+        color: black;
+        width: 90%;
+        padding: 2px;
+        outline: none;
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        margin-bottom: 5px;
+    }
+    .classes-form.div-dark button {
+        width: 90%;
+        padding: 2px;
+        outline: none;
+        border: none;
+        background-color: var(--elevate-dark);
+        color: var(--light-dark);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        margin-bottom: 5px;
+    }
+    .classes {
+        background: white;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        z-index: 5;
+    }
+    .classes.div-dark {
         background: var(--elevate-dark);
     }
     .div-apply-button {
@@ -220,6 +268,14 @@
     .grafico {
         flex-direction: row;
         justify-content: space-around;
+        align-items: flex-start;
+    }
+    .grafico>div {
+        height: 520px;
+    }
+    #imagem-grafico {
+        width: 720px;
+        height: 480px;
     }
     .lista-habilidades-retornadas {
         position: relative;
@@ -250,6 +306,7 @@
         position: absolute;
         width: 20px;
         right: 1em;
+        filter: drop-shadow(0 2px 1px rgba(255, 255, 255, 0.3));
     }
     .descricao-habs {
         background: linear-gradient(180deg, rgba(233, 233, 233, .8), rgba(200, 200, 200, .8));
@@ -301,7 +358,7 @@
     }
     .forms-show {
         position: absolute;
-        top: -4.5em;
+        top: calc(-4.5em - 4em);
         border-top: none;
         width: 15em;
         height: 0;
@@ -311,6 +368,7 @@
         top: 0;
         border: 1px rgba(255, 255, 255, 0.5) solid;
         border-top: none;
+        border-bottom: none;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -348,6 +406,56 @@
         z-index: 5;
     }
     .professores.div-dark {
+        background: var(--elevate-dark);
+    }
+    .classes-form {
+        background: white;
+        position: relative;
+        top: -8em;
+        border: 1px rgba(255, 255, 255, 0.5) solid;
+        border-top: none;
+        border-bottom: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 12px;
+        z-index: 5;
+    }
+    .classes-form.div-dark {
+        background: var(--elevate-dark);
+    }
+    .turma {
+        width: 100%;
+        padding: 5px 0 5px 1vw;
+    }
+    .classes-form button {
+        background: white;
+        color: black;
+        width: 90%;
+        padding: 2px;
+        outline: none;
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        margin-bottom: 5px;
+    }
+    .classes-form.div-dark button {
+        width: 90%;
+        padding: 2px;
+        outline: none;
+        border: none;
+        background-color: var(--elevate-dark);
+        color: var(--light-dark);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        margin-bottom: 5px;
+    }
+    .classes {
+        background: white;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        z-index: 5;
+    }
+    .classes.div-dark {
         background: var(--elevate-dark);
     }
     .div-apply-button {
