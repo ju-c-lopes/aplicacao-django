@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 from gerenciaAula.models import Usuario, Disciplina, Turma
 from gerenciaAula.forms import RegistrationForm
+import re
 
 def signup(request):
 
@@ -54,7 +55,18 @@ def signup(request):
         form = RegistrationForm(request.POST)
         
         if form.is_valid():
-            password = request.POST['password1']
+            password1 = request.POST['password1']
+            password2 = request.POST['password2']
+            if check_password_request(pass1=password1, pass2=password2):
+                password = password1
+            else:
+                message = {'type': 'erro', 'text': 'Não foi possível cadastrar seu usuário.'}
+                context = {
+                    'usuario': user_do_usuario,
+                    'message': message,
+                    'form': form,
+                }
+                return render(request, 'signup/signup.html', context=context)
 
             aprovar = request.POST.get('aprovar', False)
 
@@ -129,4 +141,15 @@ def signup(request):
     if redirecionar:
         url = reverse('login') + f"?usuario={context['usuario']}&message={context['message']['text']}&type={context['message']['type']}"
         return redirect(url)
-    return render(request, 'signup/signup.html', context=context) 
+    return render(request, 'signup/signup.html', context=context)
+
+def check_password_request(pass1, pass2):
+    validations = [pass1 == pass2]
+    validations.append(len(pass2) >= 10 and len(pass2) <= 16)
+    upper_regex = re.compile(r"[A-Z]").search(pass2)
+    validations.append(upper_regex)
+    number_regex = re.compile(r"\d").search(pass2)
+    validations.append(number_regex)
+    special_regex = re.compile(r"[\W_]").search(pass2)
+    validations.append(special_regex)
+    return all(validations)

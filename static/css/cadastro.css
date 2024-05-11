@@ -79,7 +79,7 @@
         z-index: 2;
     }
     .aprovar.div-dark {
-        background-color: var(--elevate-dark);
+        background-color: var(--elevate-dark) !important;
     }
     
     .aprovar input {
@@ -215,6 +215,9 @@
         width: 20em;
         text-align: center;
         z-index: 2;
+    }
+    .aprovar.div-dark {
+        background-color: var(--elevate-dark) !important;
     }
     
     .aprovar input {
