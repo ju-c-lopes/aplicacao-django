@@ -79,7 +79,6 @@
 <div class="grafico" width="100%" height="600">
     {% for chart in charts %}
     {% if forloop.counter0 == forloop.parentloop.counter0 %}
-    {{ forloop.counter0 }}
     <div>
         {% if 'Android' in user_agent or 'Iphone' in user_agent %}
         <img id="imagem-grafico{{ forloop.counter0 }}" width="500" src="data:image/png;base64,{{ chart }}" alt="">
