@@ -143,7 +143,7 @@ if not DEBUG:
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/'
+MEDIA_URL = os.environ.get("MEDIA_FILES", '/media/')
 MEDIA_ROOT = os.environ.get("MEDIA_FILES", 'media')
 
 # Default primary key field type
