@@ -17,3 +17,6 @@ python manage.py migrate
 
 # Populate the database with initial data
 python manage.py init_db
+
+# Create Superuser
+python manage.py createsuperuser --no-input
