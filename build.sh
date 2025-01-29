@@ -19,6 +19,6 @@ python manage.py migrate
 python manage.py init_db
 
 # Create Superuser
-if [[ -n "$CREATE_SUPERUSER" == "True" ]]; then
+if [[ "$CREATE_SUPERUSER" == "True" ]]; then
     python manage.py createsuperuser --no-input
 fi
