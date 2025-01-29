@@ -1,1 +1,5 @@
-INSERT INTO Turma (cod_turma, nome_turma) values (1, '1° Ano'), (2, '2° Ano'), (3, '3° Ano');
+INSERT INTO "Turma" (cod_turma, nome_turma) 
+VALUES 
+  ('1', '1° Ano'), 
+  ('2', '2° Ano'), 
+  ('3', '3° Ano');

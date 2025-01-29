@@ -112,7 +112,7 @@
     }
     .salvo img {
         margin-top: 2em;
-        width: 50%;
+        width: 176px !important;
         height: auto;
     }
 }
@@ -207,7 +207,13 @@
         justify-content: center;
         align-items: center;
     }
-    
+
+    .salvo img {
+        margin-top: 2em;
+        width: 256px !important;
+        height: auto;
+    }
+
     .adicional-div-form {
         margin-top: 10vh;
         width: 100%;

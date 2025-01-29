@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "projeto-integrador"
+version = "3.0"
+description = "Projeto acadêmico feito em grupo para gerenciamento de aulas dadas por professores e analisando os requisitos do Curriculo Paulista para as aulas dadas."
+authors = ["Juliano <juliano.co.lopes@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+asgiref = "*"
+beautifulsoup4 = "*"
+contourpy = "*"
+coverage = "*"
+cycler = "*"
+django = "*"
+django-bootstrap4 = "*"
+fonttools = "*"
+kiwisolver = "*"
+matplotlib = "*"
+numpy = "*"
+packaging = "*"
+pandas = "*"
+pillow = "*"
+pyparsing = "*"
+python-dateutil = "*"
+pytz = "*"
+six = "*"
+soupsieve = "*"
+sqlparse = "*"
+typing-extensions = "*"
+tzdata = "*"
+psycopg2-binary = "*"
+django-dotenv = "*"
+dj-database-url = "*"
+whitenoise = { version = "*", extras = ["brotli"] }
+gunicorn = "*"
+uvicorn = "*"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

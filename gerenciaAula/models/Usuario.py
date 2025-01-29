@@ -1,6 +1,10 @@
 from gerenciaAula.models import *
 
+
 class Usuario(models.Model):
+    class Meta:
+        db_table = 'Usuario'
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=45, blank=True, null=True)
     nivel_usuario = models.IntegerField(choices=ROLE_CHOICE, default=3)
@@ -35,6 +39,3 @@ class Usuario(models.Model):
             instance.usuario.save()
         except:
             pass
-
-    class Meta:
-        db_table = 'Usuario'

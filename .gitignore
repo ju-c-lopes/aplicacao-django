@@ -3,3 +3,8 @@
 /gerenciaAula/migrations/
 /projeto/media/
 *.code-workspace
+/pg_data/
+__pycache__/
+*.sqlite3
+.vscode/
+.env

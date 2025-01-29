@@ -20,3 +20,9 @@ soupsieve
 sqlparse
 typing_extensions
 tzdata
+psycopg2-binary
+django-dotenv
+dj-database-url
+whitenoise[brotli]
+gunicorn
+uvicorn

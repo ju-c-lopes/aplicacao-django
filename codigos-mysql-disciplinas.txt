@@ -1,1 +1,8 @@
-INSERT INTO Disciplina (cod_disc, nome_disc) values ('mat', 'Matemática'), ('por', 'Português'), ('his', 'História'), ('geo', 'Geografia'), ('qui', 'Química'), ('fis', 'Física');
+INSERT INTO "Disciplina" (cod_disc, nome_disc) 
+VALUES 
+  ('mat', 'Matemática'), 
+  ('por', 'Português'), 
+  ('his', 'História'), 
+  ('geo', 'Geografia'), 
+  ('qui', 'Química'), 
+  ('fis', 'Física');

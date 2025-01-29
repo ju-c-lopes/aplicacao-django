@@ -1,4 +1,5 @@
-INSERT INTO Habilidade values
+INSERT INTO "Habilidade" (cod_hab, habilidade, desc_habilidade) 
+VALUES 
 ('EM13CNT310', 'Habilidades de Linguagens e suas Tecnologias','Investigar e analisar os efeitos de programas de infraestrutura e demais serviços básicos (saneamento, energia elétrica, transporte, telecomunicações, cobertura vacinal, atendimento primário à saúde e produção de alimentos, entre outros) e identificar necessidades locais e/ou regionais em relação a esses serviços, a fim de avaliar e/ou promover ações que contribuam para a melhoria na qualidade de vida e nas condições de saúde da população.'),
 ('EM13LGG101', 'Habilidades de Linguagens e suas Tecnologias','Compreender e analisar processos de produção e circulação de discursos, nas diferentes linguagens, para fazer escolhas fundamentadas em função de interesses pessoais e coletivos.'),
 ('EM13LGG102', 'Habilidades de Linguagens e suas Tecnologias','Analisar visões de mundo, conflitos de interesse, preconceitos e ideologias presentes nos discursos veiculados nas diferentes mídias, ampliando suas possibilidades de explicação, interpretação e intervenção crítica da/na realidade.'),

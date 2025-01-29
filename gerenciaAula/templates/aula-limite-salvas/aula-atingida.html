@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head-css %}
+<link rel="stylesheet" type="text/css" href="{% static './css/listagens.css' %}" media="all">
+{% endblock %}
+
+{% block content %}
+
+    <div class="salvo">
+        <h1>Limite de aulas atingidas para {{ request.user.usuario.nome }}.</h1>
+        <img src="{% static './img/error.png' %}" alt="">
+    </div>
+
+{% endblock %}
