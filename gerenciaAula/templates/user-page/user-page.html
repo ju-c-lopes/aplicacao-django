@@ -9,7 +9,7 @@
 {% block content %}
 <div>
     <div class="page-user">
-        
+
         <div class="user-img">
             <div class="user-img--foto">
                 {% if not request.user.usuario.image %}
@@ -22,12 +22,12 @@
                 {% else %}
                 <!-- Div que vai cobrir a pagina para exibir a imagem full -->
                 <div class="full-user--img">
-                    <img src="/media/{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
+                    <img src="{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
                     <div class="logout-img"></div>
                 </div>
                 <picture>
-                    <source src="/media/{{ request.user.usuario.image }}" type="" media="" />
-                    <img src="/media/{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
+                    <source src="{{ request.user.usuario.image }}" type="" media="" />
+                    <img src="{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
                 </picture>
                 {% endif %}
                 <div class="menu-buttons">
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        
+
         <div class="dados-user">
             <table>
                 <tbody>
@@ -59,9 +59,11 @@
                         {% if forloop.counter == 1 %}
                         <td>{{ cod.nome_disc }}</td>
                         {% else %}
-                        <tr><td>{{ cod.nome_disc }}</td></tr>
-                        {% endif %}
-                        {% endfor %}
+                    <tr>
+                        <td>{{ cod.nome_disc }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
                     </tr>
                 </tbody>
             </table>
@@ -73,9 +75,11 @@
                         {% if forloop.counter == 1 %}
                         <td>{{ cod.nome_turma }}</td>
                         {% else %}
-                        <tr><td>{{ cod.nome_turma }}</td></tr>
-                        {% endif %}
-                        {% endfor %}
+                    <tr>
+                        <td>{{ cod.nome_turma }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
                     </tr>
                 </tbody>
             </table>

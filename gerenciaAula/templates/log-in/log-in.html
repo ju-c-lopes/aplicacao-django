@@ -1,9 +1,9 @@
 {% block content %}
-    {% if not request.user.is_authenticated %}
-    <div width="100" class="h-login logged">
+{% if not request.user.is_authenticated %}
+<div width="100" class="h-login logged">
     {% else %}
     <div width="100" class="h-login">
-    {% endif %}
+        {% endif %}
         {% load static %}
         {% if not request.user.is_authenticated %}
         <a class="pull-right btn btn-primary mr-auto" href="{% url 'login' %}">Login</a>
@@ -12,9 +12,9 @@
             <picture>
                 <source src="{% static './img/user.jpg' %}" type="image/jpg" media="all" />
                 <!--   -->
-                
+
                 <img class="h-login--img" src="{% static './img/user.jpg' %}" alt="login" />
-                
+
             </picture>
         </div>
         {% else %}
@@ -29,19 +29,23 @@
                 <picture>
                     <source src="{% static './img/user.jpg' %}" type="image/jpg" media="all" />
                     <!--   -->
-                    <img class="h-login--img" src="{% static './img/user.jpg' %}" alt="{{ request.user.usuario.image }}" />
+                    <img class="h-login--img" src="{% static './img/user.jpg' %}"
+                        alt="{{ request.user.usuario.image }}" />
                 </picture>
                 {% else %}
                 <!-- imagem login -->
                 <picture>
-                    <source src="/media/images/{{ request.user.usuario.image }}" type="image/jpg" media="all" />
+                    <source src="images/{{ request.user.usuario.image }}" type="image/jpg" media="all" />
                     <!--   -->
-                    <img class="h-login--img" src="/media/{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
+                    <img class="h-login--img" src="{{ request.user.usuario.image }}"
+                        alt="usuário {{ request.user.usuario.nome }}" />
                 </picture>
                 {% endif %}
             </a>
         </div>
-        <a href="{% url 'logout' %}"><div class="logout"></div></a>
+        <a href="{% url 'logout' %}">
+            <div class="logout"></div>
+        </a>
         {% endif %}
     </div>
-{% endblock %}
+    {% endblock %}
