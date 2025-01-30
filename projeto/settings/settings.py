@@ -163,7 +163,7 @@ MEDIA_ROOT = os.environ.get("MEDIA_FILES", 'media')
 
 STORAGES = {
     'default': {
-        'class': 'storages.backends.s3boto3.S3Boto3Storage',
+        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
         'options': {
             'access_key': AWS_S3_ACCESS_KEY_ID,
             'secret_key': AWS_S3_SECRET_ACCESS_KEY,
@@ -171,7 +171,17 @@ STORAGES = {
             'region_name': AWS_S3_REGION_NAME,
             'signature_version': AWS_S3_SIGNATURE_VERSION,
         },
-    }
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+        'options': {
+            'access_key': AWS_S3_ACCESS_KEY_ID,
+            'secret_key': AWS_S3_SECRET_ACCESS_KEY,
+            'bucket_name': AWS_STORAGE_BUCKET_NAME,
+            'region_name': AWS_S3_REGION_NAME,
+            'signature_version': AWS_S3_SIGNATURE_VERSION,
+        },
+    },
 }
 
 # Default primary key field type
