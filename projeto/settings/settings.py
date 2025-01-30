@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'gerenciaAula',  # Adicionado manualmente o app
     'bootstrap4',
     'coverage',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+FILE_UPLOAD_STORAGE = os.environ.get('FILE_UPLOAD_STORAGE')
+
+if FILE_UPLOAD_STORAGE == "s3":
+    # Using django-storages
+    # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+    AWS_S3_ACCESS_KEY_ID = os.environ.get("AWS_S3_ACCESS_KEY_ID")
+    AWS_S3_SECRET_ACCESS_KEY = os.environ.get("AWS_S3_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME")
+    AWS_S3_SIGNATURE_VERSION = os.environ.get("AWS_S3_SIGNATURE_VERSION")
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
@@ -145,6 +160,19 @@ if not DEBUG:
 
 MEDIA_URL = os.environ.get("MEDIA_FILES", '/media/')
 MEDIA_ROOT = os.environ.get("MEDIA_FILES", 'media')
+
+STORAGES = {
+    'default': {
+        'class': 'storages.backends.s3boto3.S3Boto3Storage',
+        'options': {
+            'access_key': AWS_S3_ACCESS_KEY_ID,
+            'secret_key': AWS_S3_SECRET_ACCESS_KEY,
+            'bucket_name': AWS_STORAGE_BUCKET_NAME,
+            'region_name': AWS_S3_REGION_NAME,
+            'signature_version': AWS_S3_SIGNATURE_VERSION,
+        },
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

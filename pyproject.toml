@@ -35,6 +35,7 @@ dj-database-url = "*"
 whitenoise = { version = "*", extras = ["brotli"] }
 gunicorn = "*"
 uvicorn = "*"
+django-storages = {version = "*", extras = ["s3"]}
 
 
 [build-system]
