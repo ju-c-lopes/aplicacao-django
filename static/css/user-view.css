@@ -103,11 +103,13 @@
         color: #FFF;
         margin-left: auto;
         background-color: rgba(0, 0, 0, 0);
+        z-index: 10;
     }
     .logout-img:after {
         content: "\2715";
         font-size: 3em;
         background-color: rgba(0, 0, 0, 0);
+        z-index: 10;
     }
 
     .menu-buttons {
