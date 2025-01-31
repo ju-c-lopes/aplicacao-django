@@ -12,7 +12,7 @@
 
         <div class="user-img">
             <div class="user-img--foto">
-                {% if not request.user.usuario.image %}
+                {% if not request.user.usuario.image.url %}
                 <!-- Span para pop up informando que não tem foto -->
                 <span class="no-user--img">Usuário sem foto</span>
                 <picture>
@@ -22,12 +22,12 @@
                 {% else %}
                 <!-- Div que vai cobrir a pagina para exibir a imagem full -->
                 <div class="full-user--img">
-                    <img src="{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
+                    <img src="{{ request.user.usuario.image.url }}" alt="usuário {{ request.user.usuario.nome }}" />
                     <div class="logout-img"></div>
                 </div>
                 <picture>
-                    <source src="{{ request.user.usuario.image }}" type="" media="" />
-                    <img src="{{ request.user.usuario.image }}" alt="usuário {{ request.user.usuario.nome }}" />
+                    <source src="{{ request.user.usuario.image.url }}" type="" media="" />
+                    <img src="{{ request.user.usuario.image.url }}" alt="usuário {{ request.user.usuario.nome }}" />
                 </picture>
                 {% endif %}
                 <div class="menu-buttons">
