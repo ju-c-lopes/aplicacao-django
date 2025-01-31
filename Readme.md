@@ -1,5 +1,13 @@
 # Pi-Votorantim-2024
 
+URL da aplicação em produção: [https://aplicacao-django.onrender.com](https://aplicacao-django.onrender.com)
+
+Aplicação em produção no **Render Cloud** (render.com), usando **Postgres** como banco de dados, e servidor de arquivos estáticos e mídia em **Bucket da AWS S3**.
+
+Para testar a aplicação para registro de aulas, está disponibilizado o um usuário com _nickname:_ **usuario-teste**, e _password:_ **kufx0%Q3Sc0GUo**
+
+Este usuário é limitado a registrar até 15 aulas, sendo imposibilitado de fazer novos registros, se limitando a fazer apenas consultas das aulas registradas.
+
 
 ## Pré-Requisitos
 ---
@@ -35,8 +43,8 @@ Para verificar os dados do BD através da linha de comando, pode usar os seguint
 
 ``` python
 python manage.py shell
-from gerenciaAula.models import Habilidades
-Habilidades.objects.all()
+from gerenciaAula.models import Habilidade
+Habilidade.objects.all()
 ```
 
 Com isso, vemos que todos os dados do banco estão presentes
