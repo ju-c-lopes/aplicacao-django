@@ -160,6 +160,7 @@ if not DEBUG:
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = f"{AWS_STORAGE_BUCKET_NAME}.storage_backends.StaticStorage"
+    MEDIA_ROOT = f"https://{AWS_S3_CUSTOM_DOMAIN}"
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
 
@@ -186,8 +187,8 @@ STORAGES = {
     },
 }
 
-MEDIA_URL = "/media/"
 if DEBUG:
+    MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 # Default primary key field type
