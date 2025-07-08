@@ -8,45 +8,150 @@ Para testar a aplicação para registro de aulas, está disponibilizado o um usu
 
 Este usuário é limitado a registrar até 15 aulas, sendo imposibilitado de fazer novos registros, se limitando a fazer apenas consultas das aulas registradas.
 
-
 ## Pré-Requisitos
+
 ---
-* [Python >= 3.10](https://www.python.org/downloads/)
-* [Django >= 5.0.4](https://docs.djangoproject.com/en/5.0/intro/install/)
+
+-   [Python >= 3.11](https://www.python.org/downloads/)
+-   [Django >= 5.0.4](https://docs.djangoproject.com/en/5.0/intro/install/)
 
 ## Iniciando o projeto
+
 ---
-Para baixar o repositório:  
-`git clone https://github.com/Projeto-Integrador-Univesp-Votorantim/aplicacao-django.git`
 
-Após baixar o repositório, usar o comando: `pip install -r requirements.txt`
+### Opção 1: Setup Completo Automático (Recomendado)
 
-*OBS: este comando irá instalar as dependências python (pacotes necessários) para a execução da aplicação* 
+Para setup completo do projeto após clonar o repositório:
+
+```bash
+git clone https://github.com/Projeto-Integrador-Univesp-Votorantim/aplicacao-django.git
+cd aplicacao-django
+./build.sh
+```
+
+O script `build.sh` irá automaticamente:
+
+-   🔧 Instalar Poetry e dependências
+-   📊 Coletar arquivos estáticos
+-   🗄️ Criar e aplicar migrações do banco de dados
+-   📋 Popular o banco com dados iniciais (Disciplinas, Turmas, Habilidades)
+-   👤 Criar superusuário (se `CREATE_SUPERUSER=True` no arquivo `.env`)
+
+### Opção 2: Setup Manual
+
+Se preferir fazer o setup passo a passo:
+
+1. **Clone o repositório:**
+
+    ```bash
+    git clone https://github.com/Projeto-Integrador-Univesp-Votorantim/aplicacao-django.git
+    cd aplicacao-django
+    ```
+
+2. **Instale as dependências:**
+
+    ```bash
+    pip install poetry
+    poetry install --no-root
+    ```
+
+3. **Configure o banco de dados:**
+
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
+
+4. **Popular banco com dados iniciais:**
+
+    ```bash
+    # Usando comando Django (recomendado)
+    python manage.py init_db
+
+    # OU usando script shell
+    ./populate_db.sh
+    ```
+
+5. **Criar superusuário (opcional):**
+
+    ```bash
+    python manage.py createsuperuser
+    ```
+
+6. **Iniciar o servidor:**
+    ```bash
+    python manage.py runserver
+    ```
+
+### Opção 3: Apenas Popular Banco de Dados
+
+Se você já fez migrações e quer apenas popular o banco:
+
+```bash
+# Básico
+./populate_db.sh
+
+# Forçar inserção (ignorar duplicatas)
+./populate_db.sh --force
+
+# Usar comando Django
+./populate_db.sh --django-command
+```
+
+### Configuração de Ambiente
+
+O projeto usa um arquivo `.env` para configurações. Certifique-se de que existe e contém:
+
+```env
+SECRET_KEY=sua_chave_secreta_aqui
+DEBUG=True
+CREATE_SUPERUSER=False
+```
 
 ## Integrando com o banco de dados
---- 
+
+---
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original-wordmark.svg" style="width: 200px;" alt="SQLite3 Logo" />
 
-O banco de dados utilizado no projeto atualmente está sendo o SQLite3, para facilitar o compartilhamento do BD entre a equipe, evitando complexidades de instalações.
+O banco de dados utilizado no projeto é o **SQLite3**, localizado em `./projeto/settings/db.sqlite3`, para facilitar o compartilhamento do BD entre a equipe, evitando complexidades de instalações.
 
-A aplicação já está configurada, então é necessário apenas ligar o servidor que pode ser executado a partir da raiz da aplicação com o seguinte comando:
+### Executando a aplicação
 
-```
+A aplicação já está configurada. Para iniciar o servidor:
+
+```bash
 python manage.py runserver
 ```
 
-Para então, no seu navegador, digitar o endereço ```127.0.0.1:8000```
+Em seguida, acesse no navegador: `http://127.0.0.1:8000`
 
+### Dados Iniciais do Banco
 
-Para verificar os dados do BD através da linha de comando, pode usar os seguintes comando:
+O banco é automaticamente populado com:
 
-``` python
+-   **📚 6 Disciplinas**: Matemática, Português, História, Geografia, Química, Física
+-   **🎓 3 Turmas**: 1° Ano, 2° Ano, 3° Ano
+-   **🎯 50+ Habilidades**: Códigos BNCC (EM13LGG101, EM13MAT101, etc.)
+
+### Verificando os dados
+
+Para verificar os dados através da linha de comando:
+
+```python
 python manage.py shell
-from gerenciaAula.models import Habilidade
-Habilidade.objects.all()
+from gerenciaAula.models import Habilidade, Disciplina, Turma
+print(f"Disciplinas: {Disciplina.objects.count()}")
+print(f"Turmas: {Turma.objects.count()}")
+print(f"Habilidades: {Habilidade.objects.count()}")
 ```
 
-Com isso, vemos que todos os dados do banco estão presentes
+### Scripts de População
+
+-   **`./build.sh`** - Setup completo (migrations + população)
+-   **`python manage.py init_db`** - Comando Django para popular banco
+-   **`./populate_db.sh`** - Script shell independente
+
+Para mais detalhes, consulte o arquivo [`DATABASE_POPULATION.md`](DATABASE_POPULATION.md)
 
 <hr>

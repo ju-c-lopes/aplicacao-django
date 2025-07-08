@@ -14,23 +14,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-from django.conf.urls.static import static
+
 from django.conf import settings
 from django.conf.urls import include
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import path
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('gerenciaAula.urls.IndexUrl')),
-    path('usuario/', include('gerenciaAula.urls.UserPageUrl')),
-    path('sobre-nos/', include('gerenciaAula.urls.AboutUsUrl')),
-    path('login/', include('gerenciaAula.urls.LoginUrl')),
-    path('logout/', include('gerenciaAula.urls.LogoutUrl')),
-    path('signup/', include('gerenciaAula.urls.SignUpUrl')),
-    path('cadastrar-aula', include('gerenciaAula.urls.CadastraAulaUrl')),
-    path('cadastrar-aula/mais-info/', include('gerenciaAula.urls.MaisInfoUrl')),
-    path('salvar/', include('gerenciaAula.urls.SalvaAulaUrl')),
-    path('minhas-aulas/', include('gerenciaAula.urls.MinhasAulasUrl')),
-    path('analises/', include('gerenciaAula.urls.AnalisesUrl')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = (
+    [
+        path("admin/", admin.site.urls),
+        path("", include("gerenciaAula.urls.IndexUrl")),
+        path("usuario/", include("gerenciaAula.urls.UserPageUrl")),
+        path("sobre-nos/", include("gerenciaAula.urls.AboutUsUrl")),
+        path("login/", include("gerenciaAula.urls.LoginUrl")),
+        path("logout/", include("gerenciaAula.urls.LogoutUrl")),
+        path("signup/", include("gerenciaAula.urls.SignUpUrl")),
+        path("cadastrar-aula", include("gerenciaAula.urls.CadastraAulaUrl")),
+        path("cadastrar-aula/mais-info/", include("gerenciaAula.urls.MaisInfoUrl")),
+        path("salvar/", include("gerenciaAula.urls.SalvaAulaUrl")),
+        path("minhas-aulas/", include("gerenciaAula.urls.MinhasAulasUrl")),
+        path("analises/", include("gerenciaAula.urls.AnalisesUrl")),
+    ]
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)

@@ -1,7 +1,8 @@
 from django.urls import path
-from gerenciaAula.views.UserPageView import view_user, edit_user, view_imagem
+
+from gerenciaAula.views.UserPageView import edit_user, view_imagem, view_user
 
 urlpatterns = [
-    path("<int:id>", view_user, name='usuario-view'),
-    path("edit/", edit_user, name='usuario-edit'),
+    path("<int:id>", view_user, name="usuario-view"),
+    path("edit/", edit_user, name="usuario-edit"),
 ]

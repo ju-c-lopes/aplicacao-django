@@ -7,6 +7,7 @@ For more information on this file, see
 https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 """
 
+import logging
 import os
 import sys
 
@@ -14,7 +15,6 @@ import sys
 from django.core.wsgi import get_wsgi_application
 
 from projeto.settings import settings
-import logging
 
 logger = logging.getLogger(__name__)
 

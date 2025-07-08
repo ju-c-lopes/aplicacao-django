@@ -1,15 +1,13 @@
 from django.test import TestCase
 
-#from django.contrib.auth.models import User
-from gerenciaAula.models import Turma, Disciplina
+# from django.contrib.auth.models import User
+from gerenciaAula.models import Disciplina, Turma
 
 
 class TurmaModelTest(TestCase):
     def setUp(self):
         # Crie uma disciplina de teste
-        self.disciplina = Disciplina.objects.create(
-            nome_disc="Test Disciplina"
-        )
+        self.disciplina = Disciplina.objects.create(nome_disc="Test Disciplina")
 
     def test_create_turma(self):
         # Crie um objeto Turma associado à disciplina de teste

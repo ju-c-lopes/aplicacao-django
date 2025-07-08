@@ -1,17 +1,24 @@
-from django.shortcuts import render
-from gerenciaAula.views import *
-from gerenciaAula.models import Aula, Usuario, Turma
 from collections import Counter
+
 import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import io, base64
-from django.http import HttpResponse
+from django.shortcuts import render
+
+from gerenciaAula.models import Aula, Turma, Usuario
+from gerenciaAula.views import *
+
+matplotlib.use("Agg")
+import base64
 import csv
+import io
+
+import matplotlib.pyplot as plt
+from django.http import HttpResponse
+
 
 def addlabels(xaxis, yaxis):
     for i in range(len(xaxis)):
         plt.text(i, yaxis[i], yaxis[i])
+
 
 def gerar_graficos(request):
     """
@@ -61,24 +68,28 @@ def gerar_graficos(request):
         id_analise = "turma"
 
     user_agent = False
-    if request.META['HTTP_USER_AGENT'].find('Android') != -1:
-        user_agent = 'Android'
-    elif request.META['HTTP_USER_AGENT'].find('iPhone') != -1:
-        user_agent = 'Iphone'
+    if request.META["HTTP_USER_AGENT"].find("Android") != -1:
+        user_agent = "Android"
+    elif request.META["HTTP_USER_AGENT"].find("iPhone") != -1:
+        user_agent = "Iphone"
 
     context = {}
-    context['charts'] = imagens_grafico
-    context['professores'] = Usuario.objects.all()
-    context['turmas'] = Turma.objects.all()
-    context['dados'] = return_data
-    context['user_agent'] = user_agent
-    context['csv_file'] = arquivos_csv
-    context['titulos'] = titulos
-    context['id_analise'] = id_analise
+    context["charts"] = imagens_grafico
+    context["professores"] = Usuario.objects.all()
+    context["turmas"] = Turma.objects.all()
+    context["dados"] = return_data
+    context["user_agent"] = user_agent
+    context["csv_file"] = arquivos_csv
+    context["titulos"] = titulos
+    context["id_analise"] = id_analise
 
-    return render(request, template_name='analises/analises.html', context=context, status=200)
+    return render(
+        request, template_name="analises/analises.html", context=context, status=200
+    )
+
 
 # GRAFICO PADRÃO INICIAL
+
 
 def gerar_grafico_padrao():
     """
@@ -96,12 +107,20 @@ def gerar_grafico_padrao():
         3-) Arquivos CSV para serem baixados posteriormente
         4-) Título principal para o gráfico
     """
-    aulas = [(aula.cod_hab.cod_hab, aula.cod_hab.desc_habilidade, aula.cod_hab.habilidade) for aula in Aula.objects.all()]
+    aulas = [
+        (aula.cod_hab.cod_hab, aula.cod_hab.desc_habilidade, aula.cod_hab.habilidade)
+        for aula in Aula.objects.all()
+    ]
     habilidades = Counter([aula[0] for aula in aulas])
-    
+
     titulo = [("Quantidade de Habilidades mais aplicadas",)]
 
-    asc_hab = {hab: qtd for hab, qtd in sorted(habilidades.items(), key=lambda item: item[1], reverse=True)}
+    asc_hab = {
+        hab: qtd
+        for hab, qtd in sorted(
+            habilidades.items(), key=lambda item: item[1], reverse=True
+        )
+    }
 
     asc_hab_list = list(asc_hab.items())
     asc_hab_list = asc_hab_list[:5]
@@ -111,18 +130,33 @@ def gerar_grafico_padrao():
     for aula in aulas:
         if aula[0] in habilidades.keys():
             todas_hab[f"{aula[0]}"] = {}
-            todas_hab[f"{aula[0]}"]['cont'] = habilidades[f"{aula[0]}"]
-            todas_hab[f"{aula[0]}"]['desc'] = aula[1]
-            todas_hab[f"{aula[0]}"]['hab'] = aula[2]
+            todas_hab[f"{aula[0]}"]["cont"] = habilidades[f"{aula[0]}"]
+            todas_hab[f"{aula[0]}"]["desc"] = aula[1]
+            todas_hab[f"{aula[0]}"]["hab"] = aula[2]
         if aula[0] in asc_hab_list.keys():
             desc_hab_list[f"{aula[0]}"] = {}
-            desc_hab_list[f"{aula[0]}"]['cont'] = asc_hab_list[f"{aula[0]}"]
-            desc_hab_list[f"{aula[0]}"]['desc'] = aula[1]
-            desc_hab_list[f"{aula[0]}"]['hab'] = aula[2]
-    desc_hab_list = {k: v for k, v in sorted(desc_hab_list.items(), key=lambda item: item[1]["cont"], reverse=True)}
-    todas_hab = {k: v for k, v in sorted(todas_hab.items(), key=lambda item: item[1]["cont"], reverse=True)}
+            desc_hab_list[f"{aula[0]}"]["cont"] = asc_hab_list[f"{aula[0]}"]
+            desc_hab_list[f"{aula[0]}"]["desc"] = aula[1]
+            desc_hab_list[f"{aula[0]}"]["hab"] = aula[2]
+    desc_hab_list = {
+        k: v
+        for k, v in sorted(
+            desc_hab_list.items(), key=lambda item: item[1]["cont"], reverse=True
+        )
+    }
+    todas_hab = {
+        k: v
+        for k, v in sorted(
+            todas_hab.items(), key=lambda item: item[1]["cont"], reverse=True
+        )
+    }
 
-    headers = ["Código da Habilidade", "Habilidade", "Descrição da Habilidade", "Quantidade"]
+    headers = [
+        "Código da Habilidade",
+        "Habilidade",
+        "Descrição da Habilidade",
+        "Quantidade",
+    ]
     arquivo_csv = salvar_csv(todas_hab, headers, 1)
 
     fig, ax = plt.subplots(dpi=150)
@@ -135,12 +169,14 @@ def gerar_grafico_padrao():
     plt.xticks(rotation=60)
 
     file_io = io.BytesIO()
-    fig.savefig(file_io, bbox_inches='tight')
+    fig.savefig(file_io, bbox_inches="tight")
     b64 = base64.b64encode(file_io.getvalue()).decode()
 
     return ([desc_hab_list], [b64], [arquivo_csv.content.decode("utf-8")], titulo)
 
+
 # GRÁFICO POR PROFESSORES
+
 
 def gerar_grafico_professores(teacher_list):
     """
@@ -149,7 +185,7 @@ def gerar_grafico_professores(teacher_list):
     ARGS:
     -----
         :param teacher_list: Uma lista de professores que terão suas aulas analisadas.
-    
+
     A função inicia com a abertura de uma lista para receber dados dos professores e das aulas que foram ministradas por eles.
     Faz a iteração armazenando os dados das aulas de cada um dos professores fornecidos no filtro.
     Filtra as aulas dadas por cada professor.
@@ -160,15 +196,32 @@ def gerar_grafico_professores(teacher_list):
     for i in range(len(teacher_list)):
         teacher_list[i] = Usuario.objects.get(user__username=teacher_list[i])
         aulas_dadas_pelo_professor = Aula.objects.filter(user=teacher_list[i].id)
-        
-        titulos = (f"Aulas dadas por {teacher_list[i].nome}", f"Total de aulas: {len(aulas_dadas_pelo_professor)}")
-        
+
+        titulos = (
+            f"Aulas dadas por {teacher_list[i].nome}",
+            f"Total de aulas: {len(aulas_dadas_pelo_professor)}",
+        )
+
         qtd_aulas_dadas = []
         for aula in aulas_dadas_pelo_professor:
             habilidade_materia = f"{aula.cod_hab.cod_hab} | {aula.cod_disc.nome_disc}"
-            qtd_aulas_dadas.append((habilidade_materia, aula.cod_hab.habilidade, aula.cod_hab.desc_habilidade, aula.user.nome))
-            
-        hab_mat = {hab: qtd for hab, qtd in sorted(Counter([aulas[0] for aulas in qtd_aulas_dadas]).items(), key=lambda item: item[1], reverse=True)}
+            qtd_aulas_dadas.append(
+                (
+                    habilidade_materia,
+                    aula.cod_hab.habilidade,
+                    aula.cod_hab.desc_habilidade,
+                    aula.user.nome,
+                )
+            )
+
+        hab_mat = {
+            hab: qtd
+            for hab, qtd in sorted(
+                Counter([aulas[0] for aulas in qtd_aulas_dadas]).items(),
+                key=lambda item: item[1],
+                reverse=True,
+            )
+        }
 
         asc_hab_mat = list(hab_mat.items())
         asc_hab_mat = asc_hab_mat[:5]
@@ -182,7 +235,12 @@ def gerar_grafico_professores(teacher_list):
                 aulas[f"{aula[0]}"]["habilidade"] = aula[1]
                 aulas[f"{aula[0]}"]["desc"] = aula[2]
                 aulas[f"{aula[0]}"]["prof"] = aula[3]
-        aulas = {k: v for k, v in sorted(aulas.items(), key=lambda item: item[1]["cont"], reverse=True)}
+        aulas = {
+            k: v
+            for k, v in sorted(
+                aulas.items(), key=lambda item: item[1]["cont"], reverse=True
+            )
+        }
 
         for aula in qtd_aulas_dadas:
             if aula[0] in hab_mat.keys():
@@ -192,7 +250,13 @@ def gerar_grafico_professores(teacher_list):
                 todas_aulas[f"{aula[0]}"]["desc"] = aula[2]
                 todas_aulas[f"{aula[0]}"]["prof"] = aula[3]
 
-        headers = ["Habilidade/Matéria", "Aulas Dadas", "Habilidade", "Descrição", "Professor(a)"]
+        headers = [
+            "Habilidade/Matéria",
+            "Aulas Dadas",
+            "Habilidade",
+            "Descrição",
+            "Professor(a)",
+        ]
         arquivo_csv = salvar_csv(todas_aulas, headers, 2)
 
         fig, ax = plt.subplots(dpi=150)
@@ -205,12 +269,13 @@ def gerar_grafico_professores(teacher_list):
         plt.xticks(rotation=60)
 
         file_io = io.BytesIO()
-        fig.savefig(file_io, bbox_inches='tight')
+        fig.savefig(file_io, bbox_inches="tight")
         b64 = base64.b64encode(file_io.getvalue()).decode()
 
         dados.append((aulas, b64, arquivo_csv.content.decode("utf-8"), titulos))
-    
+
     return dados
+
 
 def gerar_grafico_turma(classes_list):
     """
@@ -219,7 +284,7 @@ def gerar_grafico_turma(classes_list):
     ARGS:
     -----
         :param classes_list: Uma lista de com dados das turmas que terão suas aulas analisadas.
-    
+
     A função inicia com a abertura de uma lista para receber dados das turmas e das aulas que foram ministradas nelas.
     Faz a iteração armazenando os dados das aulas das habilidades aplicadas em cada uma das turmas fornecidas no filtro.
     """
@@ -227,16 +292,33 @@ def gerar_grafico_turma(classes_list):
     for i in range(len(classes_list)):
         classes_list[i] = Turma.objects.get(cod_turma=classes_list[i])
         aulas_dadas_por_turma = Aula.objects.filter(cod_turma=classes_list[i].cod_turma)
-        
-        titulos = (f"Aulas dadas para turma do {classes_list[i].nome_turma}", f"Total de aulas: {len(aulas_dadas_por_turma)}")
-        
+
+        titulos = (
+            f"Aulas dadas para turma do {classes_list[i].nome_turma}",
+            f"Total de aulas: {len(aulas_dadas_por_turma)}",
+        )
+
         qtd_aulas_dadas = []
         for aula in aulas_dadas_por_turma:
             habilidade_materia = f"{aula.cod_hab.cod_hab} | {aula.cod_disc.nome_disc}"
-            qtd_aulas_dadas.append((habilidade_materia, aula.cod_hab.habilidade, aula.cod_hab.desc_habilidade, aula.cod_turma.nome_turma))
-            
-        hab_mat = {hab: qtd for hab, qtd in sorted(Counter([aulas[0] for aulas in qtd_aulas_dadas]).items(), key=lambda item: item[1], reverse=True)}
-        
+            qtd_aulas_dadas.append(
+                (
+                    habilidade_materia,
+                    aula.cod_hab.habilidade,
+                    aula.cod_hab.desc_habilidade,
+                    aula.cod_turma.nome_turma,
+                )
+            )
+
+        hab_mat = {
+            hab: qtd
+            for hab, qtd in sorted(
+                Counter([aulas[0] for aulas in qtd_aulas_dadas]).items(),
+                key=lambda item: item[1],
+                reverse=True,
+            )
+        }
+
         asc_hab_mat = list(hab_mat.items())
         asc_hab_mat = asc_hab_mat[:5]
         asc_hab_mat = dict(asc_hab_mat)
@@ -249,7 +331,12 @@ def gerar_grafico_turma(classes_list):
                 aulas[f"{aula[0]}"]["habilidade"] = aula[1]
                 aulas[f"{aula[0]}"]["desc"] = aula[2]
                 aulas[f"{aula[0]}"]["turma"] = aula[3]
-        aulas = {k: v for k, v in sorted(aulas.items(), key=lambda item: item[1]["cont"], reverse=True)}
+        aulas = {
+            k: v
+            for k, v in sorted(
+                aulas.items(), key=lambda item: item[1]["cont"], reverse=True
+            )
+        }
 
         for aula in qtd_aulas_dadas:
             if aula[0] in hab_mat.keys():
@@ -259,7 +346,13 @@ def gerar_grafico_turma(classes_list):
                 todas_aulas[f"{aula[0]}"]["desc"] = aula[2]
                 todas_aulas[f"{aula[0]}"]["turma"] = aula[3]
 
-        headers = ["Habilidade/Matéria", "Aulas Dadas", "Habilidade", "Descrição", "Turma"]
+        headers = [
+            "Habilidade/Matéria",
+            "Aulas Dadas",
+            "Habilidade",
+            "Descrição",
+            "Turma",
+        ]
         arquivo_csv = salvar_csv(todas_aulas, headers, 3)
 
         fig, ax = plt.subplots(dpi=150)
@@ -272,17 +365,20 @@ def gerar_grafico_turma(classes_list):
         plt.xticks(rotation=60)
 
         file_io = io.BytesIO()
-        fig.savefig(file_io, bbox_inches='tight')
+        fig.savefig(file_io, bbox_inches="tight")
         b64 = base64.b64encode(file_io.getvalue()).decode()
 
         dados.append((aulas, b64, arquivo_csv.content.decode("utf-8"), titulos))
-    
+
     return dados
+
 
 def salvar_csv(dados_apresentados, headers, tipo):
     response = HttpResponse(
         content_type="text/csv",
-        headers={"Content-Disposition": 'attachment; filename="enter-your-filename.csv"'},
+        headers={
+            "Content-Disposition": 'attachment; filename="enter-your-filename.csv"'
+        },
     )
 
     header_csv = headers
@@ -293,8 +389,20 @@ def salvar_csv(dados_apresentados, headers, tipo):
         if tipo == 1:
             line_csv = [f"{k}", f"{v['hab']}", f"{v['desc']}", f"{v['cont']}"]
         elif tipo == 2:
-            line_csv = [f"{k}", f"{v['cont']}", f"{v['habilidade']}", f"{v['desc']}", f"{v['prof']}"]
+            line_csv = [
+                f"{k}",
+                f"{v['cont']}",
+                f"{v['habilidade']}",
+                f"{v['desc']}",
+                f"{v['prof']}",
+            ]
         elif tipo == 3:
-            line_csv = [f"{k}", f"{v['cont']}", f"{v['habilidade']}", f"{v['desc']}", f"{v['turma']}"]
+            line_csv = [
+                f"{k}",
+                f"{v['cont']}",
+                f"{v['habilidade']}",
+                f"{v['desc']}",
+                f"{v['turma']}",
+            ]
         writer.writerow(line_csv)
     return response

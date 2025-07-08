@@ -11,10 +11,7 @@
             <!-- imagem login -->
             <picture>
                 <source src="{% static './img/user.jpg' %}" type="image/jpg" media="all" />
-                <!--   -->
-
                 <img class="h-login--img" src="{% static './img/user.jpg' %}" alt="login" />
-
             </picture>
         </div>
         {% else %}
@@ -22,21 +19,18 @@
             {{ request.user.usuario.nome }}
         </div>
         <div class="user-logged">
-
             <a href="{% url 'usuario-view' request.user.id %}">
-                {% if not request.user.usuario.image.url %}
+                {% if not request.user.usuario.image %}
                 <!-- imagem login -->
                 <picture>
                     <source src="{% static './img/user.jpg' %}" type="image/jpg" media="all" />
-                    <!--   -->
                     <img class="h-login--img" src="{% static './img/user.jpg' %}"
-                        alt="{{ request.user.usuario.image.url }}" />
+                        alt="{{ request.user.usuario.nome }}" />
                 </picture>
                 {% else %}
                 <!-- imagem login -->
                 <picture>
                     <source src="images/{{ request.user.usuario.image.url }}" type="image/jpg" media="all" />
-                    <!--   -->
                     <img class="h-login--img" src="{{ request.user.usuario.image.url }}"
                         alt="usuário {{ request.user.usuario.nome }}" />
                 </picture>

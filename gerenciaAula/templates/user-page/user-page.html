@@ -12,7 +12,7 @@
 
         <div class="user-img">
             <div class="user-img--foto">
-                {% if not request.user.usuario.image.url %}
+                {% if not request.user.usuario.image %}
                 <!-- Span para pop up informando que não tem foto -->
                 <span class="no-user--img">Usuário sem foto</span>
                 <picture>
