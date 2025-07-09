@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 from gerenciaAula.models import Disciplina, Habilidade, Turma
-from gerenciaAula.views import *
 
 
 def cadastrar_aula(request):

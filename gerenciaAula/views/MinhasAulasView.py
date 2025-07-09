@@ -2,8 +2,7 @@ from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from gerenciaAula.models import *
-from gerenciaAula.views import *
+from gerenciaAula.models import Usuario, Aula, Habilidade
 
 
 def ver_aulas(request):

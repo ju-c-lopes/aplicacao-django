@@ -1,11 +1,10 @@
 from django.shortcuts import render
 
 from gerenciaAula.models import Disciplina, Turma
-from gerenciaAula.views import *
 
 
 def mais_info(request):
-
+    """View to display more information about a class."""
     user_agent = False
     if request.META["HTTP_USER_AGENT"].find("Android") != -1:
         user_agent = "Android"

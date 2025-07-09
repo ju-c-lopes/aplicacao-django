@@ -1,7 +1,5 @@
 from django.shortcuts import render
 
-from gerenciaAula.views import *
-
 
 def list_usuario_view(request, id=None):
     if id is None and request.user.is_authenticated:

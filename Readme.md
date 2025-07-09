@@ -108,6 +108,104 @@ DEBUG=True
 CREATE_SUPERUSER=False
 ```
 
+## 🧹 Limpeza de Dívida Técnica - Import Refactoring
+
+---
+
+### Problema Identificado
+
+O projeto originalmente continha vários problemas de importação que afetavam performance e manutenibilidade:
+
+- **Importações Circulares**: Módulos importando uns aos outros criando loops de dependência
+- **Wildcard Imports**: Uso excessivo de `from module import *` carregando código desnecessário
+- **Importações Redundantes**: Módulos importando muito mais do que realmente precisavam
+
+### Refatoração Realizada
+
+Foi realizada uma refatoração completa eliminando todos os imports problemáticos:
+
+#### 📁 **Models** (`gerenciaAula/models/`)
+- ✅ Removidas todas as importações wildcard (`from gerenciaAula.models import *`)
+- ✅ Implementadas referências string para ForeignKeys evitando dependências circulares
+- ✅ Cada modelo agora importa apenas o que necessita
+
+**Exemplo de melhoria:**
+```python
+# ❌ ANTES (problemático)
+from gerenciaAula.models import *
+
+class Disciplina(models.Model):
+    aulas = models.ForeignKey(Aula, ...)  # Dependência circular!
+
+# ✅ DEPOIS (limpo)
+from django.db import models
+
+class Disciplina(models.Model):
+    aulas = models.ForeignKey('Aula', ...)  # Referência string
+```
+
+#### 📁 **Views** (`gerenciaAula/views/`)
+- ✅ Eliminadas todas as importações circulares (`from gerenciaAula.views import *`)
+- ✅ Cada view agora declara explicitamente suas dependências
+- ✅ Imports específicos apenas do que é usado
+
+**Exemplo de melhoria:**
+```python
+# ❌ ANTES (problemático)
+from gerenciaAula.views import *
+from gerenciaAula.models import *
+
+# ✅ DEPOIS (limpo)
+from django.shortcuts import render
+from gerenciaAula.models import Aula, Usuario
+from gerenciaAula.forms import LoginForm
+```
+
+#### 📁 **Forms** (`gerenciaAula/forms/`)
+- ✅ Removidas importações circulares (`from gerenciaAula.forms import *`)
+- ✅ Imports limpos apenas do Django e modelos necessários
+- ✅ Zero dependências desnecessárias
+
+### Benefícios Alcançados
+
+#### 🚀 **Performance**
+- **Carregamento mais rápido**: Módulos carregam apenas o necessário
+- **Menos uso de memória**: Sem objetos desnecessários em memória
+- **Startup mais rápido**: Django inicia sem resolver dependências circulares
+
+#### 🛠️ **Manutenibilidade**
+- **Dependências claras**: Cada arquivo mostra exatamente o que precisa
+- **Debugging facilitado**: Mais fácil rastrear origem de problemas
+- **Refatoração segura**: Mudanças não quebram dependências ocultas
+
+#### 🔧 **Qualidade de Código**
+- **Zero imports circulares**: Eliminado risco de runtime errors
+- **Código mais limpo**: Imports organizados e explícitos
+- **Melhor IDE support**: Autocompletar e análise estática funcionam melhor
+
+### Verificação
+
+Para confirmar que não há mais imports problemáticos:
+
+```bash
+# Verificar se não há mais wildcard imports
+grep -r "import \*" gerenciaAula/
+
+# Verificar se não há imports circulares
+grep -r "from gerenciaAula\." gerenciaAula/ | grep "import \*"
+
+# Verificar integridade do Django
+python manage.py check
+```
+
+**Resultado esperado**: Todos os comandos devem retornar vazio ou "System check identified no issues".
+
+### Impacto no Projeto
+
+Esta refatoração transformou o projeto de um estado com múltiplas dependências circulares e imports desnecessários para um código base limpo, performático e manutenível. A aplicação agora segue as melhores práticas Python/Django para gestão de imports.
+
+---
+
 ## Integrando com o banco de dados
 
 ---

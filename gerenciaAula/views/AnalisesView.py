@@ -4,7 +4,6 @@ import matplotlib
 from django.shortcuts import render
 
 from gerenciaAula.models import Aula, Turma, Usuario
-from gerenciaAula.views import *
 
 matplotlib.use("Agg")
 import base64

@@ -9,7 +9,6 @@ from django.urls import reverse
 
 from gerenciaAula.forms import RegistrationForm
 from gerenciaAula.models import Disciplina, Turma, Usuario
-from gerenciaAula.views import *
 
 
 def signup(request):

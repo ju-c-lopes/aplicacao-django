@@ -5,7 +5,6 @@ from django.urls import reverse
 
 from gerenciaAula.forms import LoginForm
 from gerenciaAula.models import Usuario
-from gerenciaAula.views import *
 
 
 def login_user(request):
@@ -51,7 +50,7 @@ def login_user(request):
                     login(request, user)
                     return redirect("/")
                 else:
-                    message["text"] = f"Senha inválida."
+                    message["text"] = "Senha inválida."
                     message["type"] = "erro"
             except Exception:
                 message["text"] = f"Usuário {username} não existe."

@@ -1,4 +1,4 @@
-from gerenciaAula.forms import *
+from django import forms
 
 
 class LoginForm(forms.Form):

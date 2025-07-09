@@ -3,9 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
 from gerenciaAula.forms import EditUserForm, UserForm
-from gerenciaAula.models import Usuario
-from gerenciaAula.models.__init__ import ROLE_CHOICE
-from gerenciaAula.views import *
+from gerenciaAula.models import Usuario, ROLE_CHOICE
 
 
 def view_user(request, id=None):

@@ -1,6 +1,4 @@
-from django.contrib.auth.models import User
-
-from gerenciaAula.forms import *
+from django import forms
 from gerenciaAula.models import Usuario
 
 
@@ -55,5 +53,4 @@ class RegistrationForm(forms.ModelForm):
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords do not match.")
-        print(f"pass Form =====> senha1 {password1} | senha2 {password2}")
         return password2

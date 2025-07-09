@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
-from gerenciaAula.models import *
-from gerenciaAula.views import *
+from gerenciaAula.models import Aula, Usuario, Habilidade, Disciplina, Turma
 
 
 def salvar_aula(request):
