@@ -2,6 +2,10 @@ from gerenciaAula.models import *
 
 
 class Usuario(models.Model):
+    """
+    Represents a user profile linked to Django's User model.
+    """
+
     class Meta:
         db_table = "Usuario"
 
@@ -32,12 +36,12 @@ class Usuario(models.Model):
         try:
             if created:
                 Usuario.objects.create(user=instance)
-        except:
+        except Exception:
             pass
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         try:
             instance.usuario.save()
-        except:
+        except Exception:
             pass

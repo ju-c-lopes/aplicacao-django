@@ -31,7 +31,7 @@ def login_user(request):
             nome = Usuario.objects.filter(nome__contains=nome_a_recordar)
             lembrar = False
             message["type"] = "success"
-        except:
+        except Exception:
             # se não houver usuário com este nome enviará mensagem de não encontrado
             nome = nome_a_recordar
             message["text"] = f"Nome {nome} não encontrado."
@@ -53,7 +53,7 @@ def login_user(request):
                 else:
                     message["text"] = f"Senha inválida."
                     message["type"] = "erro"
-            except:
+            except Exception:
                 message["text"] = f"Usuário {username} não existe."
                 message["type"] = "erro"
                 message["usuario_inv"] = True

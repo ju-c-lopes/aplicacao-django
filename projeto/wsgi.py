@@ -11,10 +11,14 @@ import logging
 import os
 import sys
 
-# from django.core.management import call_command
 from django.core.wsgi import get_wsgi_application
 
+# Load environment variables from .env file
+from dotenv import load_dotenv
+
 from projeto.settings import settings
+
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +27,7 @@ path = os.getcwd()
 if path not in sys.path:
     sys.path.insert(0, path)
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "projeto.settings.settings"
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "projeto.settings.settings")
 
 # if getattr(settings, "INIT_DB_ON_STARTUP", False):
 try:
