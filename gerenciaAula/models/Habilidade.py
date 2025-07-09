@@ -1,4 +1,4 @@
-from gerenciaAula.models import *
+from django.db import models
 
 
 class Habilidade(models.Model):

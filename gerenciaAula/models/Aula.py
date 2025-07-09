@@ -1,4 +1,4 @@
-from gerenciaAula.models import *
+from django.db import models
 
 
 class Aula(models.Model):
@@ -27,4 +27,6 @@ class Aula(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return f"Aula de {self.cod_disc.nome_disc} por {self.user.nome}"
+        if self.cod_disc and self.user:
+            return f"Aula de {self.cod_disc.nome_disc} por {self.user.usuario.nome}"
+        return f"Aula #{self.cod_aula}"

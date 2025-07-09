@@ -1,4 +1,10 @@
-from gerenciaAula.models import *
+from django.contrib.auth.models import User
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+# Import ROLE_CHOICE from the models package
+from gerenciaAula.models import ROLE_CHOICE
 
 
 class Usuario(models.Model):
@@ -33,6 +39,7 @@ class Usuario(models.Model):
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
+        """Create a user profile when a new User is created."""
         try:
             if created:
                 Usuario.objects.create(user=instance)
@@ -41,6 +48,7 @@ class Usuario(models.Model):
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
+        """Save the user profile when User is saved."""
         try:
             instance.usuario.save()
         except Exception:
