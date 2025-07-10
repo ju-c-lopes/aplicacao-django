@@ -85,9 +85,9 @@ class TestPasswordValidation:
 
     def test_minimum_length_boundary(self):
         """Test password length boundary conditions."""
-        # Assuming minimum length is 8 characters
+        # Assuming minimum length is 10 characters
         short_valid = "Abc123#"  # 7 characters - should fail
-        min_valid = "Abc123#A"  # 8 characters - should pass if all requirements met
+        min_valid = "Abcd1234#A"  # 10 characters - should pass if all requirements met
 
         assert check_password_request(short_valid, short_valid) is False
         assert check_password_request(min_valid, min_valid) is True

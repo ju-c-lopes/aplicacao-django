@@ -194,6 +194,8 @@ def signup(request):
 def check_password_request(pass1, pass2):
     validations = [pass1 == pass2]
     validations.append(len(pass2) >= 10 and len(pass2) <= 16)
+    lower_regex = re.compile(r"[a-z]").search(pass2)
+    validations.append(lower_regex)
     upper_regex = re.compile(r"[A-Z]").search(pass2)
     validations.append(upper_regex)
     number_regex = re.compile(r"\d").search(pass2)
