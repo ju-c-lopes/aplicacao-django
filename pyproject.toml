@@ -4,6 +4,7 @@ version = "3.0"
 description = "Projeto acadêmico feito em grupo para gerenciamento de aulas dadas por professores e analisando os requisitos do Curriculo Paulista para as aulas dadas."
 authors = ["Juliano <juliano.co.lopes@gmail.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = ">=3.11"
