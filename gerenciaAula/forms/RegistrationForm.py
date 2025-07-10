@@ -30,7 +30,7 @@ class RegistrationForm(forms.ModelForm):
 
     CLASSES = (("1", "1° Ano"), ("2", "2° Ano"), ("3", "3° Ano"))
 
-    nome = forms.TextInput()
+    nome = forms.CharField(required=True, widget=forms.TextInput)
     eventual_doc = forms.ChoiceField(
         label="Professor Eventual",
         choices=BOOLEAN_CHOICES,
@@ -38,10 +38,10 @@ class RegistrationForm(forms.ModelForm):
     )
     nivel_usuario = forms.ChoiceField(choices=ROLE_CHOICE, widget=forms.Select)
     teached_subject = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple, choices=SUBJECTS
+        widget=forms.CheckboxSelectMultiple, choices=SUBJECTS, required=False
     )
     teached_classes = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple, choices=CLASSES
+        widget=forms.CheckboxSelectMultiple, choices=CLASSES, required=False
     )
 
     class Meta:

@@ -125,6 +125,7 @@
         background-color: var(--full-dark);
     }
     .popup-validate p {
+        color:#000000;
         padding-left: 2vw;
     }
     .popup-validate ul {
@@ -285,6 +286,7 @@
         visibility: hidden;
     }
     .popup-validate p {
+        color:#000000;
         padding-left: 2vw;
     }
     .popup-validate ul {

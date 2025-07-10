@@ -264,4 +264,19 @@
     .user-img--foto.div-dark>.no-user--img {
         color: black;
     }
+    .logout-img {
+        position: fixed;
+        top: 4em;
+        right: 2em;
+        color: #FFF;
+        margin-left: auto;
+        background-color: rgba(0, 0, 0, 0);
+        z-index: 10;
+    }
+    .logout-img:after {
+        content: "\2715";
+        font-size: 3em;
+        background-color: rgba(0, 0, 0, 0);
+        z-index: 10;
+    }
 }

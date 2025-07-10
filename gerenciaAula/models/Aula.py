@@ -28,5 +28,5 @@ class Aula(models.Model):
 
     def __str__(self) -> str:
         if self.cod_disc and self.user:
-            return f"Aula de {self.cod_disc.nome_disc} por {self.user.usuario.nome}"
+            return f"Aula de {self.cod_disc.nome_disc} por {self.user.nome}"
         return f"Aula #{self.cod_aula}"

@@ -5,8 +5,9 @@ from gerenciaAula.models import Aula, Usuario, Habilidade, Disciplina, Turma
 
 def salvar_aula(request):
     aula_user_teste = Aula.objects.filter(user=Usuario.objects.get(user=request.user))
-    print(f"Len de aula: {len(aula_user_teste)}")
-    if aula_user_teste[0].user.nome == "Usuário Teste" and len(aula_user_teste) >= 17:
+
+    print(f"Usuário Teste: {aula_user_teste}")
+    if len(aula_user_teste) >= 17 and aula_user_teste[0].user.nome == "Usuário Teste":
         return render(request, "aula-limite-salvas/aula-atingida.html", status=403)
 
     docente = Usuario.objects.get(user=request.user)

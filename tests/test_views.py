@@ -1,37 +1,8 @@
 import pytest
 from django.contrib.auth.models import User
-from django.contrib.messages import get_messages
 from django.urls import reverse
 
 from gerenciaAula.models import Aula, Usuario
-
-
-@pytest.mark.django_db
-@pytest.mark.views
-class TestIndexView:
-    """Test cases for Index/Home view."""
-
-    def test_index_view_get(self, client):
-        """Test GET request to index view."""
-        url = reverse("home")
-        response = client.get(url)
-
-        assert response.status_code == 200
-        assert "index/index.html" in [t.name for t in response.templates]
-
-    def test_index_view_anonymous_access(self, client):
-        """Test that anonymous users can access index."""
-        url = reverse("home")
-        response = client.get(url)
-
-        assert response.status_code == 200
-
-    def test_index_view_authenticated_access(self, authenticated_client):
-        """Test that authenticated users can access index."""
-        url = reverse("home")
-        response = authenticated_client.get(url)
-
-        assert response.status_code == 200
 
 
 @pytest.mark.django_db

@@ -12,7 +12,9 @@ from gerenciaAula.models import Disciplina, Turma, Usuario
 
 
 def signup(request):
+    print(request.POST)
 
+    #breakpoint()
     form = RegistrationForm()
     redirecionar = False
     message = None
@@ -57,6 +59,7 @@ def signup(request):
         form = RegistrationForm(request.POST)
 
         if form.is_valid():
+            print("Formulário válido: " + str(form.is_valid()))
             password1 = request.POST["password1"]
             password2 = request.POST["password2"]
             if check_password_request(pass1=password1, pass2=password2):
@@ -71,24 +74,32 @@ def signup(request):
                     "message": message,
                     "form": form,
                 }
+                print(f"Contexto de erro: {context}")
                 return render(request, "signup/signup.html", context=context)
 
-            aprovar = request.POST.get("aprovar", False)
+            #print(f"===> {username} <===")
+            aprovar = bool(request.POST.get("aprovar", False))
 
+            print(f"Aprovar: {aprovar}")
+            print(f"Tipo de aprovar: {type(aprovar)}")
+            print(f"Booleano: {aprovar is True}")
             if aprovar:
                 super = request.POST["super"]
                 superior = Usuario.objects.filter(user__username=super).first()
                 pass_super = check_password(
                     request.POST["pass-super"], superior.user.password
                 )
+                print(f"Password validação: {pass_super}")
                 if (nivel_usuario == 1 or nivel_usuario == 2) and (
                     superior.nivel_usuario == 1 and pass_super
                 ):
+                    print(f"Nivel do usuário: {nivel_usuario}")
                     approved = True
                 elif nivel_usuario == 3 and (
                     (superior.nivel_usuario == 2 and pass_super)
                     or (superior.nivel_usuario == 1 and pass_super)
                 ):
+                    print(f"Nivel do usuário: {nivel_usuario}")
                     approved = True
 
             else:
@@ -105,6 +116,7 @@ def signup(request):
                     "subjects": subjects,
                     "classes": classes,
                 }
+                print(f"Contexto de renderização: {context}")
                 return render(request, "signup/signup.html", context=context)
 
             if approved:
@@ -155,7 +167,7 @@ def signup(request):
             else:
                 message = {
                     "type": "erro",
-                    "text": "Não foi possível cadastrar seu usuário.",
+                    "text": "Cadastro não efetuado.",
                 }
         else:
             message = {
