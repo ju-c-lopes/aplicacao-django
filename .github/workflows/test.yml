@@ -34,5 +34,7 @@ jobs:
                   poetry install --with dev
 
             - name: Run tests with pytest
+              env:
+                  DJANGO_SETTINGS_MODULE: projeto.settings.settings
               run: |
                   poetry run pytest
