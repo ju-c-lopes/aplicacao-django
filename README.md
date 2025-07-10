@@ -253,4 +253,3 @@ print(f"Habilidades: {Habilidade.objects.count()}")
 Para mais detalhes, consulte o arquivo [`DATABASE_POPULATION.md`](DATABASE_POPULATION.md)
 
 <hr>
-<hr>
