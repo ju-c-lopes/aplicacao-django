@@ -246,10 +246,40 @@ print(f"Habilidades: {Habilidade.objects.count()}")
 
 ### Scripts de População
 
--   **`./build.sh`** - Setup completo (migrations + população)
+-   **`./entrypoint.sh`** - Setup completo (migrations + população)
 -   **`python manage.py init_db`** - Comando Django para popular banco
 -   **`./populate_db.sh`** - Script shell independente
 
 Para mais detalhes, consulte o arquivo [`DATABASE_POPULATION.md`](DATABASE_POPULATION.md)
+
+<hr>
+
+## ☁️ Deploy via Fly.io
+A aplicação foi configurada para deploy automatizado em ambiente de produção com o serviço Fly.io, utilizando uma infraestrutura leve, escalável e gratuita.
+
+### 📦 Destaques da Infraestrutura:
+
+* 🐳 Docker: Imagem customizada com Poetry, SQLite e Gunicorn
+
+* 🧪 Testes automatizados com pytest, rodando via GitHub Actions antes do deploy
+
+* 🚀 CI/CD completo com GitHub Actions, integrado à branch main
+
+* 💾 Banco SQLite com volume persistente no Fly.io (sem custos com PostgreSQL)
+
+* ⚙️ Script de entrada (entrypoint.sh) responsável por:
+
+Aplicar migrações (migrate)
+
+Popular o banco com os dados iniciais (Disciplinas, Turmas, Habilidades)
+
+Criar superusuário opcional
+
+Rodar o servidor com Gunicorn
+
+🔐 Gerenciamento de secrets via Fly.io, incluindo SECRET_KEY, ALLOWED_HOSTS, DEBUG e outros
+
+🌐 Aplicação online (modo vitrine):
+https://aplicacao-django.fly.dev
 
 <hr>

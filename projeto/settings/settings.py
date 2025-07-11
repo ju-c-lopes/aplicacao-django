@@ -14,6 +14,8 @@ DEBUG = os.environ.get("DEBUG", "False")
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
 
+CSRF_TRUSTED_ORIGINS = ["https://aplicacao-django.fly.dev"]
+
 INIT_DB_ON_STARTUP = True
 
 if os.getenv("FLY_APP_NAME"):
