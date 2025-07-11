@@ -1,12 +1,12 @@
 # Pi-Votorantim-2024
 
-URL da aplicação em produção: [https://aplicacao-django.onrender.com](https://aplicacao-django.onrender.com)
+URL da aplicação em produção: [https://aplicacao-django.fly.dev/](https://aplicacao-django.fly.dev)
 
-Aplicação em produção no **Render Cloud** (render.com), usando **Postgres** como banco de dados, e servidor de arquivos estáticos e mídia em **Bucket da AWS S3**.
+Aplicação em produção no **Fly.io**, usando **SQLite** como banco de dados, e pipeline CI/CD rodando com **GitHub Actions**.
 
 Para testar a aplicação para registro de aulas, está disponibilizado o um usuário com _nickname:_ **usuario-teste**, e _password:_ **kufx0%Q3Sc0GUo**
 
-Este usuário é limitado a registrar até 15 aulas, sendo imposibilitado de fazer novos registros, se limitando a fazer apenas consultas das aulas registradas.
+Este usuário é limitado a registrar até 15 aulas, sendo impossibilitado de fazer novos registros, ficando limitado a fazer apenas consultas das aulas registradas.
 
 ## Pré-Requisitos
 
@@ -24,7 +24,7 @@ Este usuário é limitado a registrar até 15 aulas, sendo imposibilitado de faz
 Para setup completo do projeto após clonar o repositório:
 
 ```bash
-git clone https://github.com/Projeto-Integrador-Univesp-Votorantim/aplicacao-django.git
+git clone https://github.com/ju-c-lopes/aplicacao-django.git
 cd aplicacao-django
 ./build.sh
 ```
@@ -280,6 +280,6 @@ Rodar o servidor com Gunicorn
 🔐 Gerenciamento de secrets via Fly.io, incluindo SECRET_KEY, ALLOWED_HOSTS, DEBUG e outros
 
 🌐 Aplicação online (modo vitrine):
-https://aplicacao-django.fly.dev
+[https://aplicacao-django.fly.dev](https://aplicacao-django.fly.dev)
 
 <hr>

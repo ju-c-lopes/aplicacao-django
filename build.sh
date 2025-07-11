@@ -2,6 +2,10 @@
 # Exit on error
 set -o errexit
 
+# Modify this line as needed for your package manager (pip, poetry, etc.)
+pip install poetry -U
+poetry install --no-root
+
 # Convert static asset files
 python manage.py collectstatic --no-input
 
@@ -39,6 +43,3 @@ u.save()
         echo "⚠️ Superusuário já existe. Pulando criação."
     fi
 fi
-
-echo "✅ Iniciando Gunicorn..."
-exec gunicorn --bind 0.0.0.0:8000 projeto.wsgi:application
