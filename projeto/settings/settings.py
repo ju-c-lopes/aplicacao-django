@@ -16,21 +16,31 @@ ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 INIT_DB_ON_STARTUP = True
 
-DATABASES = (
-    {
+if os.getenv("FLY_APP_NAME"):
+    # Ambiente de produção no Fly.io — usa volume montado em /data
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "/data/db.sqlite3",
+        }
+    }
+elif not DEBUG:
+    # Ambiente de produção local
+    DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "projeto/settings/db.sqlite3",
         }
     }
-    if not DEBUG
-    else {
+else:
+    # Ambiente de desenvolvimento
+    DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "tests/db.sqlite3",
         }
     }
-)
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",

@@ -1,0 +1,31 @@
+app = "aplicacao-django"
+primary_region = "gig" # Rio de Janeiro
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  DJANGO_SETTINGS_MODULE = "projeto.settings.settings"
+  PYTHONUNBUFFERED = "1"
+
+[mounts]
+  source = "data"
+  destination = "/data"
+
+[[services]]
+  internal_port = 8000
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    interval = 10000
+    timeout = 2000
+    grace_period = "5s"
+    restart_limit = 0
