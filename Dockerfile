@@ -12,11 +12,11 @@ RUN pip install --upgrade pip && \
     poetry config virtualenvs.create false && \
     poetry install --no-root --with dev
 
-# Coleta arquivos estáticos
-RUN python manage.py collectstatic --noinput
-
 # Cria diretório para volume de dados
 RUN mkdir -p /data && chmod -R 755 /data
 
-# Executa a aplicação
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "aplicacao_django.wsgi:application"]
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
