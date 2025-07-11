@@ -12,11 +12,13 @@ python manage.py makemigrations
 python manage.py migrate
 
 # Populate the database with initial data
-if [ ! -f /data/db.sqlite3 ]; then
-    echo "Populando o banco de dados inicial..."
+if [ -f /data/db.sqlite3 ]; then
+    echo ">> Populando banco de dados..."
     sqlite3 /data/db.sqlite3 < codigos-mysql-turma.txt
     sqlite3 /data/db.sqlite3 < codigos-mysql-disciplinas.txt
     sqlite3 /data/db.sqlite3 < codigos-mysql-habilidades.txt
+else
+    echo "⚠️  Banco ainda não existe, pulando etapa de carga SQL."
 fi
 
 # Create Superuser
