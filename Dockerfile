@@ -3,6 +3,11 @@ FROM python:3.11-slim
 # Diretório de trabalho
 WORKDIR /app
 
+# Instala sqlite3 e bash
+RUN apt-get update && \
+    apt-get install -y sqlite3 bash && \
+    apt-get clean
+
 # Copia os arquivos do projeto
 COPY . .
 
