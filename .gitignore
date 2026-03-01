@@ -2,6 +2,7 @@
 .idea
 /gerenciaAula/migrations/
 /projeto/media/
+/media/
 *.code-workspace
 /pg_data/
 __pycache__/

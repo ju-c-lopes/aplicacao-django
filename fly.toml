@@ -12,6 +12,10 @@ primary_region = "gig" # Rio de Janeiro
   source = "data"
   destination = "/data"
 
+[[statics]]
+  guest_path = "/data/media"
+  url_prefix = "/media/"
+
 [[services]]
   internal_port = 8000
   protocol = "tcp"

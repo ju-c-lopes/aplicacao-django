@@ -20,6 +20,7 @@ from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+from gerenciaAula import views
 
 urlpatterns = (
     [
@@ -35,6 +36,7 @@ urlpatterns = (
         path("salvar/", include("gerenciaAula.urls.SalvaAulaUrl")),
         path("minhas-aulas/", include("gerenciaAula.urls.MinhasAulasUrl")),
         path("analises/", include("gerenciaAula.urls.AnalisesUrl")),
+        path("sitemap.xml", views.IndexView.sitemap_view),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

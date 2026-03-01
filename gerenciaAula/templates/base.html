@@ -13,10 +13,12 @@
     <meta charset="utf-8">
     <!--Add keywords that describe your project between the quotation marks. This helps search engines find and index your content-->
     <meta name="google-site-verification" content="rpvE1HNdAtriwWrP40M_l-VBoRueePTSkYw5kGnt4g4" />
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
     <meta name="keywords" content="BNCC, Currículo Paulista">
     <link rel="icon" type="image/x-icon" href="{% static '/img/favicon.ico' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
     {% block head-meta %}{% endblock %}
 
     <!-- CSSs do bootstrap -->
@@ -30,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="{% static './css/header.css' %}" media="all">
     {% block head-css %}{% endblock %}
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>Projeto Integrador - {% block title %}{% endblock %}</title>
 
 </head>
 
