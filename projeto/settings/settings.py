@@ -10,11 +10,19 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev_secret_key")
 
-DEBUG = os.environ.get("DEBUG", "False")
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ") if not DEBUG else ["*"]
 
 CSRF_TRUSTED_ORIGINS = ["https://aplicacao-django.fly.dev"]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
 INIT_DB_ON_STARTUP = True
 
@@ -54,7 +62,6 @@ INSTALLED_APPS = [
     "gerenciaAula",  # Adicionado manualmente o app
     "bootstrap4",
     "coverage",
-    "storages",
 ]
 
 MIDDLEWARE = [
