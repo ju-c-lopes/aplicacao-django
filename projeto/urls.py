@@ -37,6 +37,7 @@ urlpatterns = (
         path("minhas-aulas/", include("gerenciaAula.urls.MinhasAulasUrl")),
         path("analises/", include("gerenciaAula.urls.AnalisesUrl")),
         path("sitemap.xml", views.IndexView.sitemap_view),
+        path("robots.txt", views.IndexView.robots_view),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

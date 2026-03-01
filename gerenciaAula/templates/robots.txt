@@ -1,0 +1,10 @@
+User-agent: *
+
+Allow: /
+Disallow: /admin
+Disallow: /analises
+Disallow: /minhas-aulas
+Disallow: /cadastrar-aula
+Disallow: /usuario
+
+Sitemap: https://aplicacao-django.fly.dev/sitemap.xml
