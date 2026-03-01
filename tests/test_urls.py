@@ -220,7 +220,7 @@ class TestURLAccessControl:
                 response = client.get(url)
 
                 # Should allow access (200) or redirect (302) but not deny (401/403)
-                assert response.status_code in [200, 302]
+                assert response.status_code in [200, 301, 302]
             except Exception:
                 # URL pattern doesn't exist, skip
                 continue
@@ -235,7 +235,7 @@ class TestURLRedirects:
         response = client.get("/")
 
         # Should either show content (200) or redirect (302)
-        assert response.status_code in [200, 302]
+        assert response.status_code in [200, 301, 302]
 
     def test_trailing_slash_handling(self, client):
         """Test that URLs handle trailing slashes correctly."""

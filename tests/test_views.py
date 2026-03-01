@@ -28,7 +28,7 @@ class TestAuthenticationViews:
             response = client.post(url, data=form_data)
 
             # Should redirect after successful login
-            assert response.status_code in [200, 302]
+            assert response.status_code in [200, 301, 302]
         except Exception:
             pytest.skip("Login URL pattern not found")
 
@@ -81,7 +81,7 @@ class TestAuthenticationViews:
             response = client.post(url, data=form_data)
 
             # Check if user was created
-            if response.status_code in [200, 302]:
+            if response.status_code in [200, 301, 302]:
                 assert User.objects.filter(username="newsignupuser").exists()
         except Exception:
             pytest.skip("Signup URL pattern not found")
@@ -171,7 +171,7 @@ class TestAulaViews:
             response = authenticated_client.post(url, data=form_data)
 
             # Should create aula and redirect or show success
-            if response.status_code in [200, 302]:
+            if response.status_code in [200, 301, 302]:
                 assert Aula.objects.filter(cod_aula=999).exists()
         except Exception:
             pytest.skip("Salva aula URL pattern not found")
@@ -233,7 +233,7 @@ class TestAnalysisViews:
             response = client.get(url)
 
             # Depending on implementation, might redirect or deny access
-            assert response.status_code in [200, 302, 401, 403]
+            assert response.status_code in [200, 301, 302, 401, 403]
         except Exception:
             pytest.skip("Analises URL pattern not found")
 

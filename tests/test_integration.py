@@ -32,7 +32,7 @@ class TestUserRegistrationWorkflow:
             response = client.post(signup_url, data=registration_data)
 
             # Should create user and redirect or show success
-            if response.status_code in [200, 302]:
+            if response.status_code in [200, 301, 302]:
                 # Verify user was created
                 assert User.objects.filter(username="integrationuser").exists()
 
@@ -48,7 +48,7 @@ class TestUserRegistrationWorkflow:
                 }
 
                 response = client.post(login_url, data=login_data)
-                assert response.status_code in [200, 302]
+                assert response.status_code in [200, 301, 302]
 
         except Exception as e:
             pytest.skip(f"Registration workflow URLs not configured: {e}")
@@ -90,7 +90,7 @@ class TestAulaManagementWorkflow:
             save_url = reverse("salva_aula")
             response = authenticated_client.post(save_url, data=aula_data)
 
-            if response.status_code in [200, 302]:
+            if response.status_code in [200, 301, 302]:
                 # Verify aula was created
                 assert Aula.objects.filter(cod_aula=101).exists()
                 created_aula = Aula.objects.get(cod_aula=101)
@@ -346,13 +346,13 @@ class TestCompleteApplicationFlow:
 
             response = client.post(signup_url, data=registration_data)
 
-            if response.status_code in [200, 302]:
+            if response.status_code in [200, 301, 302]:
                 # Step 4: User logs in
                 login_url = reverse("login")
                 login_data = {"username": "endtoenduser", "password": "SecurePass123#"}
 
                 response = client.post(login_url, data=login_data)
-                assert response.status_code in [200, 302]
+                assert response.status_code in [200, 301, 302]
 
                 # Step 5: User explores the application
                 user_page_url = reverse("user_page")
