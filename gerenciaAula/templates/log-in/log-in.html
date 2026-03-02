@@ -11,7 +11,7 @@
             <!-- imagem login -->
             <picture>
                 <source src="{% static './img/user.jpg' %}" type="image/jpg" media="all" />
-                <img class="h-login--img" src="{% static './img/user.jpg' %}" alt="login" />
+                <img class="h-login--img" src="{% static './img/user.jpg' %}" alt="usuário não conectado" />
             </picture>
         </div>
         {% else %}
@@ -25,14 +25,14 @@
                 <picture>
                     <source src="{% static './img/user.jpg' %}" type="image/jpg" media="all" />
                     <img class="h-login--img" src="{% static './img/user.jpg' %}"
-                        alt="{{ request.user.usuario.nome }}" />
+                        alt="usuário {{ request.user.usuario.nome }} sem imagem" />
                 </picture>
                 {% else %}
                 <!-- imagem login -->
                 <picture>
                     <source src="images/{{ request.user.usuario.image.url }}" type="image/jpg" media="all" />
                     <img class="h-login--img" src="{{ request.user.usuario.image.url }}"
-                        alt="usuário {{ request.user.usuario.nome }}" />
+                        alt="usuário {{ request.user.usuario.nome }} conectado" />
                 </picture>
                 {% endif %}
             </a>

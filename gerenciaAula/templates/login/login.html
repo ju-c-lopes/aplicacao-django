@@ -4,6 +4,7 @@
 {% block meta_description %}Faça login para acessar o portal de gerenciamento de aulas e aplicação das habilidades de conhecimento.{% endblock %}
 
 {% block head-css %}
+<meta name="robots" content="index, follow">
 <link rel="stylesheet" type="text/css" href="{% static './css/login.css' %}" media="all">
 {% endblock %}
 
@@ -21,7 +22,7 @@ Login - Portal BNCC
     <div class="col-md-6">
         <div class="card mt-5">
             <div class="card-header">
-                <h4>Login</h4>
+                <h1>Login</h1>
             </div>
             {% if not lembrar %}
             <div class="card-body">

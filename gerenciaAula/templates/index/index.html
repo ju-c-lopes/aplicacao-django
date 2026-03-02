@@ -3,7 +3,23 @@
 
 {% block meta_description %}Projeto acadêmico da Univesp para gerenciamento de aulas e avaliação de ensino conforme Curriculo Paulista.{% endblock %}
 {% block head-css %}
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="stylesheet" type="text/css" href="{% static './css/index.css' %}" media="all">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Univesp - Universidade Virtual do Estado de São Paulo",
+  "alternateName": "Projeto Integrador Votorantim",
+  "url": "https://aplicacao-django.fly.dev/",
+  "logo": "https://aplicacao-django.fly.dev/static/img/logo-univesp.png",
+  "sameAs": [
+    "https://www.linkedin.com/in/juliano-lopes-votorantim-sp/",
+    "https://github.com/Projeto-Integrador-Univesp-Votorantim",
+    "https://www.github.com/ju-c-lopes"
+  ]
+}
+</script>
 {% endblock %}
 
 {% block title %}

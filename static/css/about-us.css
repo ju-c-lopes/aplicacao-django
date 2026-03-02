@@ -6,3 +6,10 @@
     font-weight: bold;
     padding-bottom: 20vh;
 }
+
+.paragraph-about-us {
+    font-size: 1.25rem !important;
+    padding-top: 20vh;
+    font-weight: 500;
+    line-height: 1.6;
+}
